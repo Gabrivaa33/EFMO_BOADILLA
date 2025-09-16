@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale: 1.0, maximum scale=1.0, minimum scale=1.0">
+    <title>Fantasy EFMO</title>
+    <style>
+        body {
+            background-color: rgb(245, 255, 255);
+            font-family: Arial, sans-serif;
+        }
+        .container { max-width: 1200px;}
+        table {
+            width: 100%; border-collapse: collapse;
+        }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        .total { background-color: #f0f0f0; font-weight: bold; }
+        .media { background-color: #e0e0e0; font-weight: bold; }
+        .rojo { background-color: #ff3200; }
+        .gris { background-color: #d6d6d6; }
+        .amarillo { background-color: #ffff42; }
+        .verde { background-color: #23d750; }
+        .azul { background-color: #4bffff; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+  <h1>Puntos y valoración de los partidos temp. 24/25</h1>
+  <table>
+    <thead>
+    <tr>
+      <th>Jornada</th>
+      <th colspan="2">Gabri</th>
+      <th colspan="2">Álvaro</th>
+      <th colspan="2">Rafa</th>
+      <th colspan="2">Álvaro G.S.</th>
+      <th colspan="2">Erik</th>
+      <th colspan="2">José An</th>
+      <th colspan="2">Carlos A</th>
+      <th colspan="2">Carlacas</th>
+      <th colspan="2">Dani</th>
+      <th colspan="2">Agustín</th>
+      <th colspan="2">Edu (Cadete)</th>
+      <th colspan="2">Alvarito</th>
+      <th colspan="2">Sagi</th>
+      <th colspan="2">Gárate</th>
+      <th colspan="2">Martín</th>
+      <th colspan="2">Madero</th>
+      <th colspan="2">Joaquín (CB)</th>  
+      <th colspan="2">Fer</th>
+      <th colspan="2">Adri</th>
+      <th colspan="2">Mario Perea</th>
+      <th colspan="2">Jaime</th>
+      <th colspan="2">Mario</th>
+      <th colspan="2">Elo</th>
+      <th colspan="2">David</th>
+      <th colspan="2">Kebe (CB)</th>  
+    </tr>
+    <tr>
+      <th></th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>  
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+      <th>Puntos</th>
+      <th>···································</th>
+    </tr>
+    </thead>
+    <tbody id="tablaJornadas"></tbody>
+    <tfoot>
+    <tr class="total">
+      <td><strong>Total</strong></td>
+     <td></td><td></td>
+    </tr>
+    <tr class="media">
+      <td><strong>Media</strong></td>
+      <td></td><td></td>
+    </tr>
+    </tfoot>
+  </table>
+</div>
+
+<script>
+  // Datos predefinidos para 30 jornadas y 20 jugadores con comentarios
+  const jugadores = [
+    { nombre: "Jugador 1"/*Gabri*/, puntos: [8, 3, 10, null, 6, 0, 1, 6, null, null, null, 11, null, 7, 5, 6, null], 
+     comentarios: ["↩️ (7,7)", "(6,6)", "🟨↪️ (8,1)", "Descanso", "↪️ (7,2)", "↪️ (6,1)", "↪️ (6,2)", "↪️ (7,3)", "Lesionado", "Lesionado", "Lesionado", "(9,0)", "No convocado", "↪️ (7,4)", "(7,0)", "↪️ (7,3)", "-"] },
+    { nombre: "Jugador 2"/*Álvaro*/, puntos: [-2, null, 2, null, 3, 2, 3, null, 6, 4, 2, null, 5, 3, null, 1, null], 
+     comentarios: ["↪️ (5,6)", "-", "↩️ (6,5)", "Descanso", "🟨↩️ (6,6)", "↩️ (6,5)", "↩️ (6,6)", "- ↩️", "(7,3)", "(6,8)", "(6,4)", "-", "(7,0)", "↩️ (6,6)", "No convocado", "↩️ (6,3)", "-"] },
+    { nombre: "Jugador 3"/*Rafa*/, puntos: [14, 5, 10, null, 10, 7, 10, 15, 7, 3, 10, 1, null, 16, null, 10, null], 
+     comentarios: ["🟨🟢 (7,8+🟢)", "(7,1)", "(8,0)", "Descanso", "(8,2)", "(7,4)", "(8,0)", "🟨🟢 (8,5+🟢)", "(7,4)", "🟨 (6,7)", "➡️(7,9+➡️)", "🟥 (7,4+🟥)", "Sancionado", "🟨🟢 (8,8+🟢)", "No convocado", "(8,4)", "-"] },
+    { nombre: "Jugador 4"/*Álvaro G.S:*/, puntos: [null, 4, 9, null, 6, 3, 12, 6, 0, -2, 1, 10, 6, null, 5, 5, null], 
+     comentarios: ["Lesionado", "↩️ (6,9)", "(7,9)", "Descanso", "↪️ (7,3)", "↪️ (6,7)", "🟢 (7,5+🟢)", "↪️ (7,3)", "(6,1)", "↪️ (5,5)", "🟨 (6,3)", "(8,2)", "(7,2)", "No convocado", "(7,0)", "(7,1)", "-"] },
+    { nombre: "Jugador 5"/*Erik*/, puntos: [4, 5, null, null, 3, 5, null, 3, 3, null, null, 7, 4, 5, 10, 7, null], 
+     comentarios: ["↩️ (6,9)", "↪️ (7,1)", "No convocado", "Descanso", "↩️ (6,7)", "(7,0)", "No convocado", "↩️ (6,7)", "↩️ (6,7)", "No convocado", "No convocado", "↪️ (7,4)", "↪️ (6,8)", "↪️ (7,0)", "(8,1)", "(7,4)", "-"] },
+    { nombre: "Jugador 6"/*José An*/, puntos: [2, 6, 8, null, 6, 7, 9, 9, 10, 1, 0, 6, null, null, 2, 7, null], 
+     comentarios: ["↪️ (6,4)", "↩️ (7,3)", "➡️ (7,4+➡️)", "Descanso", "🟨↪️ (7,2)", "↪️ (7,4)", "↪️ (7,8)", "(7,9)", "(8,0)", "(6,2)", "(6,0)", "↩️ (7,2)", "Lesionado", "Lesionado", "🟨↩️ (6,5)", "↪️ (7,4)", "-"] },
+    { nombre: "Jugador 7"/*Carlos A*/, puntos: [0, null, null, null, 3, 3, 3, 2, null, 1, null, 2, 6, 1, null, null, null], 
+     comentarios: ["↩️ (6,1)", "No convocado", "No convocado", "Descanso", "↩️ (6,6)", "↩️ (6,6)", "↩️ (6,6)", "↩️ (6,5)", "No convocado", "↩️ (6,2)", "-", "↩️ (6,4)", "(7,3)", "↩️↪️ (6,3)", "No convocado", "No convocado", "-"] },
+    { nombre: "Jugador 8"/*Carlacas*/, puntos: [4, 5, null, null, null, null, 9, 5, 2, 4, 2, 5, 5, 7, 5, 5, null], 
+     comentarios: ["🟨 (6,9)", "↪️ (7,1)", "Lesionado", "Descanso", "Lesionado", "Lesionado", "🟨↪️ (7,8)", "↪️ (7,0)", "↪️ (6,5)", "(6,8)", "(6,5)", "(7,0)", "(7,0)", "(7,4)", "🟨↪️ (7,1)", "↪️ (7,0)", "-"] },
+    { nombre: "Jugador 9"/*Dani*/, puntos: [2, -8, 10, null, 8, 1, 8, 16, 7, 2, null, 4, 2, 4, 19, null, null], 
+     comentarios: ["(6,5)", "🟥 (5,5+🟥)", "(8,1)", "Descanso", "(7,7)", "🟨 (6,3)", "(7,7)", "🟢➡️ (8,1+🟢+➡️)", "🟨 (7,4)", "(6,4)", "Lesionado", "↪️ (6,8)", "(6,5)", "➡️ (6,6+➡️)", "🟢⬆️🟢➡️<br>(8,5+🟢⬆️+🟢+➡️)", "No convocado", "-"] },
+    { nombre: "Jugador 10"/*Agustín*/, puntos: [null, null, null, null, null, null, null, null, null, null, null, null, null, 3, null, 1, null], 
+     comentarios: ["-", "-", "-", "Descanso", "-", "-", "-", "-", "-", "-", "-", "-", "-", "↩️ (6,6)", "-", "↩️ (6,3)", "-"] },
+    { nombre: "Jugador 11"/*Edu (CD)*/, puntos: [null, null, null, null, null, null, null, null, null, null, null, null, -1, null, null, null, null], 
+     comentarios: ["En el CD", "En el CD", "En el CD", "Descanso", "En el CD", "En el CD", "En el CD", "En el CD", "En el CD", "En el CD", "En el CD", "En el CD", "↩️ (5,9)", "En el CD", "En el CD", "En el CD", "-"] },  
+    { nombre: "Jugador 12"/*Alvarito*/, puntos: [11, 6, 9, null, 2, -1, null, null, 4, 8, 3, 2, 2, 9, 10, 9, null], 
+     comentarios: ["🟢 (7,7+🟢)", "↪️ (7,2)", "➡️ (7,6+➡️)", "Descanso", "↪️ (6,4)", "🟨↪️ (5,8)", "Lesionado", "Lesionado", "↩️ (6,9)", "🟨↩️🟢⬆️ (7,0+🟢⬆️)", "(6,7)", "↩️ (6,4)", "(6,5)", "↪️🟢 (7,3+🟢)", "🟢 (7,5+🟢)", "↪️🟢 (7,2+🟢)", "-"] },
+    { nombre: "Jugador 13"/*Sagi*/, puntos: [0, 3, 7, null, 1, 0, 5, 5, 1, 3, 1, 4, 10, 5, 3, 7, null], 
+     comentarios: ["🟨↪️ (6,1)", "↪️ (6,7)", "(7,4)", "Descanso", "↪️ (6,3)", "(6,1)", "↪️ (7,1)", "↪️ (7,0)", "↪️ (6,2)", "↪️ (6,6)", "↪️ (6,3)", "(6,9)", "🟢 (7,3+🟢)", "↪️ (7,0)", "↩️ (6,6)", "↪️ (7,4)", "-"] },
+    { nombre: "Jugador 14"/*Gárate*/, puntos: [null, 4, null, null, 2, null, -1, 3, 2, 3, 4, 4, 2, 8, 1, 1, null], 
+     comentarios: ["No convocado", "↩️ (6,8)", "- ↩️", "Descanso", "↩️ (6,4)", "No convocado", "🟨↩️ (5,9)", "↩️ (6,7)", "↩️ (6,5)", "↩️ (6,6)", "↩️ (6,9)", "↩️ (6,8)", "↩️ (6,5)", "↩️➡️ (7,4+➡️)", "↪️ (6,2)", "↩️ (6,2)", "-"] },
+    { nombre: "Jugador 15"/*Martín*/, puntos: [3, 5, 10, null, 7, null, 13, 14, 1, 3, null, 5, null, 5, 10, 9, null], 
+     comentarios: ["🟨↩️ (6,7)", "↩️ (7,0)", "↪️➡️ (7,9+➡️)", "Descanso", "(7,4)", "No convocado", "🟨↪️🟢 (8,0+🟢)", "🟢➡️ (8,4+🟢+➡️)", "(6,3)", "(6,7)", "No convocado", "↪️ (7,1)", "No convocado", "(7,0)", "(8,3)", "(7,8)", "-"] },
+    { nombre: "Jugador 16"/*Madero*/, puntos: [2, 4, 6, null, 2, 2, 18, 5, 1, 0, 6, 4, -1, 8, 3, 2, null], 
+     comentarios: ["↪️ (6,4)", "(6,9)", "🟨 (7,2)", "Descanso", "↪️ (6,4)", "↪️ (6,4)", "🟨↪️🟢🟢➡️<br>(7,9+🟢🟢+➡️)", "↪️ (7,1)", "↪️ (6,2)", "↪️ (6,0)", "↪️ (7,2)", "↪️ (6,8)", "↪️ (5,8)", "🟨 (7,6)", "↪️ (6,7)", "↩️ (6,5)", "-"] },
+    { nombre: "Jugador 17"/*Joaquín (CB)*/, puntos: [null, null, null, null, null, null, null, null, null, null, 3, null, null, null, null, null, null], 
+     comentarios: ["En el CB", "En el CB", "En el CB", "Descanso", "En el CB", "En el CB", "En el CB", "En el CB", "En el CB", "En el CB", "↩️ (6,6)", "En el CB", "En el CB", "En el CB", "En el CB", "En el CB", "-"] },
+    { nombre: "Jugador 18"/*Fer*/, puntos: [5, 4, 27, null, 5, 10, 10, 14, 4, null, null, null, null, null, null, null, null], 
+     comentarios: ["(7,1)", "(6,8)", "↪️🟢⬆️🟢🟢🟢🟢 (10+🟢🟢🟢🟢+🟢⬆️)", "Descanso", "(7,1)", "🟢 (7,4+🟢)", "➡️ (7,8+➡️)", "↪️🟢➡️ (8,4+🟢+➡️)", "↪️➡️ (6,6+➡️)", "Lesionado", "Lesionado", "Lesionado", "Lesionado", "Lesionado", "Lesionado", "Lesionado", "-"] },
+    { nombre: "Jugador 19"/*Adri*/, puntos: [null, 4, 6, null, 4, 4, 9, 9, null, 7, 1, 4, null, 1, 5, 9, null], 
+     comentarios: ["No convocado", "↩️ (6,8)", "↪️ (7,3)", "Descanso", "(6,9)", "(6,8)", "🟨➡️ (7,7+➡️)", "🟨↪️🟢 (7,3+🟢)", "No convocado", "(7,5)", "(6,2)", "↪️ (6,9)", "Lesionado", "↪️ (6,3)", "➡️ (6,9+➡️)", "↪️➡️ (7,6+➡️)", "-"] },
+    { nombre: "Jugador 20"/*Mario Perea*/, puntos: [2, 5, null, null, 1, 3, 3, 4, 3, 4, 1, 4, 0, 2, null, 2, null], 
+     comentarios: ["↪️ (6,5)", "↪️ (7,0)", "No convocado", "Descanso", "↩️ (6,3)", "↩️ (6,6)", "↩️ (6,6)", "↩️ (6,8)", "↩️ (6,7)", "↩️ (6,9)", "↪️ (6,2)", "↩️ (6,8)", "(6,0)", "↩️ (6,5)", "No convocado", "↩️ (6,4)", "-"] },
+    { nombre: "Jugador 21"/*Jaime*/, puntos: [null, null, null, null, null, null, null, null, null, null, 0, null, null, 6, 2, null, null], 
+     comentarios: ["-", "-", "-", "Descanso", "No convocado", "↩️ -", "No convocado", "No convocado", "-", "No convocado", "↩️ (6,1)", "↩️ -", "No convocado", "↩️➡️ (7,0+➡️)", "↩️ (6,4)", "No convocado", "-"] },
+    { nombre: "Jugador 22"/*Mario*/, puntos: [null, null, null, null, null, null, null, null, null, null, null, null, null, null, null, 2, null], 
+     comentarios: ["-", "-", "-", "Descanso", "-", "-", "-", "-", "-", "-", "-", "-", "-", "-", "No convocado", "↩️ (6,4)", "-"] },  
+    { nombre: "Jugador 23"/*Elo*/, puntos: [2, -2, 9, null, 1, null, 1, 4, 3, 2, 3, 3, 1, 12, 8, 6, null], 
+     comentarios: ["(6,4)", "↪️ (5,6)", "↩️🟢 (7,3+🟢)", "Descanso", "🟨↩️ (6,3)", "No convocado", "↩️ (6,3)", "↩️ (6,8)", "🟨🟢 (6,0+🟢)", "↪️ (6,4)", "↪️ (6,7)", "↪️ (6,6)", "(6,2)", "↪️🟢 (7,8+🟢)", "↪️🟢 (7,0+🟢)", "↪️ (7,2)", "-"] },
+    { nombre: "Jugador 24"/*David*/, puntos: [1, 2, null, null, null, 0, 2, null, null, null, null, null, null, 3, 2, 2, null], 
+     comentarios: ["↩️ (6,3)", "↩️ (6,4)", "- ↩️", "Descanso", "Lesionado", "↩️ (6,0)", "↩️ (6,4)", "- ↩️", "-", "-", "No conovcado", "No convocado", "No convocado", "↩️ (6,7)", "↩️ (6,5)", "↩️ (6,5)", "-"] },
+    { nombre: "Jugador 25"/*Kebe (CB)*/, puntos: [null, null, null, null, null, null, null, null, null, null, 8, null, null, null, null, null, null], 
+     comentarios: ["En el CB", "En el CB", "En el CB", "Descanso", "En el CB", "En el CB", "En el CB", "En el CB", "En el CB", "En el CB", "↩️🟢(7,1+🟢)", "En el CB", "En el CB", "En el CB", "En el CB", "En el CB", "-"] }
+  ];
+// Función para mostrar los datos en la tabla
+    function mostrarJugadores() {
+        const tabla = document.getElementById("tablaJornadas");
+        jugadores[0].puntos.forEach((_, jornada) => {
+            const fila = `<tr>
+                <td>${jornada + 1}</td>
+                ${jugadores.map(jugador => {
+                const puntos = jugador.puntos[jornada];
+                let color = '';
+                if (puntos === null || puntos === 0 || puntos === '-') {
+                    color = 'gris';
+                } else if (puntos < 0) {
+                    color = 'rojo';
+                } else if (puntos >= 1 && puntos <= 4) {
+                    color = 'amarillo';
+                } else if (puntos >= 5 && puntos <= 9) {
+                    color = 'verde';
+                } else if (puntos >= 10) {
+                    color = 'azul';
+                }
+                return `<td class="${color}">${puntos !== null ? puntos : ''}</td><td>${jugador.comentarios[jornada]}</td>`;
+            }).join('')}
+            </tr>`;
+            tabla.innerHTML += fila;
+        });
+
+        // Calcular totales y medias
+        const totales = jugadores.map(jugador => calcularTotal(jugador.puntos));
+        const medias = jugadores.map(jugador => calcularMedia(jugador.puntos));
+
+        // Mostrar totales
+        const totalRow = document.querySelector('.total');
+        totalRow.innerHTML = `<td><strong>Total</strong></td>` + totales.map(total => `<td>${total}</td><td></td>`).join('');
+
+        // Mostrar medias
+        const mediaRow = document.querySelector('.media');
+        mediaRow.innerHTML = `<td><strong>Media</strong></td>` + medias.map(media => `<td>${media}</td><td></td>`).join('');
+    }
+
+    function calcularTotal(puntos) {
+        return puntos.reduce((acc, punto) => acc + (punto !== null ? punto : 0), 0);
+    }
+
+    function calcularMedia(puntos) {
+        const total = calcularTotal(puntos);
+        const cantidadValida = puntos.filter(punto => punto !== null).length;
+        return cantidadValida > 0 ? (total / cantidadValida).toFixed(2) : 'N/A';
+    }
+
+    // Mostrar jugadores al cargar la página
+    window.onload = mostrarJugadores;
+</script>
+
+</body>
+</html>
