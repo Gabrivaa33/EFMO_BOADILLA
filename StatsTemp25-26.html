@@ -30,6 +30,23 @@
       font-weight: 700;
       text-align: center;
     }
+
+.title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  color: #e9fafa;
+  animation: fadeIn 1.5s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+    
     .card-container {
       display: flex;
       flex-direction: column; /* Tarjetas en una columna */
@@ -107,7 +124,7 @@
   <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <body>
 
-<h1>Estadísticas Temp. 25/26</h1>
+<h1 class="title">Estadísticas Temp. 25/26</h1>
 
 <div class="card-container" id="tabla-jugadores">
   <!-- Las tarjetas con los datos de los jugadores se generarán aquí -->
