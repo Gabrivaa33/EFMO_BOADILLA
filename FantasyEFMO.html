@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fantasy EFMO</title>
+  <h1 class="title">Fantasy EFMO</h1>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -11,6 +11,33 @@
       margin: 0;
       padding: 0;
     }
+
+    .title {
+  text-align: center;
+  font-size: 48px;
+  font-weight: 800;
+  color: #007b83; /* Verde azulado elegante */
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  margin-bottom: 30px;
+  background: linear-gradient(90deg, #00c6ff, #0072ff); /* Degradado azul */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: fadeIn 2s ease-in-out;
+}
+
+/* Animación de aparición suave */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+    
     .container {
       width: 80%;
       margin: 20px auto;
