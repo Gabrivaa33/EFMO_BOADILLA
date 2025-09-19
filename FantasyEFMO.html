@@ -144,6 +144,19 @@
 <div class="container">
   <h1 class="title">Fantasy EFMO</h1>
   <ul class="player-list">
+
+    <li class="player-item" onclick="toggleDetails('player0')" id="player0-item">
+      <div class="player-name">Muestra de la función</div>
+      <div class="player-stats" id="player0-stats">
+        <!-- Se mostrarán las últimas 3 puntuaciones -->
+      </div>
+      <div class="total-points" id="player0-total">Total: 0 puntos - Media: 0.00</div>
+      <div id="player0" class="player-details">
+        <h3>Puntuaciones Detalladas</h3>
+        <!-- Aquí se mostrarán todas las puntuaciones -->
+      </div>
+    </li>
+    
     <li class="player-item" onclick="toggleDetails('player1')" id="player1-item">
       <div class="player-name">Agudo</div>
       <div class="player-stats" id="player1-stats">
@@ -457,6 +470,19 @@
 <script>
   // Datos de jugadores con 15 puntuaciones y comentarios
   const players = [
+    
+    {
+      id: 'player0',
+      name: 'Muestra de la función',
+      scores: [9, 10, 1, 0, -2, 6],
+      comments: [
+        "(7,9)", "🟢 (7,1+🟢)", "(6,2)", "🟨↩️ (6,0)", "🟥 (6,8+🟥)",  "↪️➡️ (7,0+➡️)",
+        "-", "-", "-", "-", "-",  "-",
+        "-", "-", "-", "-", "-",  "-",
+        "-", "-", "-", "-", "-",  "-"
+      ]
+    },
+    
     {
       id: 'player1',
       name: 'Agudo',
