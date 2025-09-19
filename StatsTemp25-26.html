@@ -181,11 +181,6 @@
         <div class="detalle-minutos">
           <strong>Desglose de minutos:</strong>
         ${jugador.minutos.map((minuto, i) => {
-        if (i === 3 || i === 18 && minuto === 0) {
-          return `<p><span class="jornada">J${i + 1}:</span> <span class="total-minutos">Descanso</span></p>`;
-        } else if (i === 25 && minuto === 0) {
-          return `<p><span class="jornada">J${i + 1}:</span> <span class="total-minutos">Victoria administrativa</span></p>`;
-        } else {
           return `<p><span class="jornada">J${i + 1}:</span> <span class="total-minutos">${minuto}</span></p>`;
         }
         }).join('')}
