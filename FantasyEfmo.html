@@ -57,9 +57,9 @@
 
         <select id="statusFilter" class="w-full p-2 bg-slate-800 rounded">
           <option value="all">Todos los estados</option>
-          <option value="available">Disponible</option>
-          <option value="injured">Lesionado</option>
-          <option value="doubt">Duda</option>
+          <option value="OK">Disponible</option>
+          <option value="Lesionado">Lesionado</option>
+          <option value="Duda">Duda</option>
         </select>
       </div>
 
@@ -102,59 +102,130 @@
 
 <script>
 const players = [
-  { id:1, name:'Jorge Agudo', pos:'Portero', status:'available', performances:[
-    {points:2, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
-    {points:0, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
-    {points:5, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
-    {points:3, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
-  { id:2, name:'Carlos Vega', pos:'Defensa', status:'doubt', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:3, name:'Luis Romero', pos:'Centrocampista', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:4, name:'Jugador 4', pos:'Delantero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:5, name:'Jugador 5', pos:'Defensa', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:6, name:'Jugador 6', pos:'Centrocampista', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:7, name:'Jugador 7', pos:'Portero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:8, name:'Jugador 8', pos:'Delantero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:9, name:'Jugador 9', pos:'Defensa', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:10, name:'Jugador 10', pos:'Centrocampista', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:11, name:'Jugador 11', pos:'Delantero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:12, name:'Jugador 12', pos:'Defensa', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:13, name:'Jugador 13', pos:'Centrocampista', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:14, name:'Jugador 14', pos:'Portero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:15, name:'Jugador 15', pos:'Delantero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:16, name:'Jugador 16', pos:'Defensa', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:17, name:'Jugador 17', pos:'Centrocampista', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:18, name:'Jugador 18', pos:'Delantero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:19, name:'Jugador 19', pos:'Defensa', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:20, name:'Jugador 20', pos:'Centrocampista', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:21, name:'Jugador 21', pos:'Portero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:22, name:'Jugador 22', pos:'Delantero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:23, name:'Jugador 23', pos:'Defensa', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:24, name:'Jugador 24', pos:'Centrocampista', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-  { id:25, name:'Jugador 25', pos:'Delantero', status:'available', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]}
+  { id:1, name:'J. Agudo', pos:'Portero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:2, name:'Gabri', pos:'Portero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:3, name:'Álvaro', pos:'Portero', status:'Duda', performances:[
+    {points:2, minutes:90, goals:0, assists:0, cards:0, comment:'(6,5)'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:4, name:'Luisja', pos:'Defensa', status:'OK', performances:[
+    {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,2)'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:5, name:'Jugador 5', pos:'Defensa', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:6, name:'Jugador 6', pos:'Centrocampista', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:7, name:'Jugador 7', pos:'Portero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:8, name:'Jugador 8', pos:'Delantero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:9, name:'Jugador 9', pos:'Defensa', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:10, name:'Jugador 10', pos:'Centrocampista', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:11, name:'Jugador 11', pos:'Delantero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:12, name:'Jugador 12', pos:'Defensa', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:13, name:'Jugador 13', pos:'Centrocampista', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:14, name:'Jugador 14', pos:'Portero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:15, name:'Jugador 15', pos:'Delantero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:16, name:'Jugador 16', pos:'Defensa', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:17, name:'Jugador 17', pos:'Centrocampista', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:18, name:'Jugador 18', pos:'Delantero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:19, name:'Jugador 19', pos:'Defensa', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:20, name:'Jugador 20', pos:'Centrocampista', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:21, name:'Jugador 21', pos:'Portero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:22, name:'Jugador 22', pos:'Delantero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:23, name:'Jugador 23', pos:'Defensa', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:24, name:'Jugador 24', pos:'Delantero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  
+  { id:25, name:'Jugador 25', pos:'Delantero', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]}
 ];
 
 // Funciones de render y modal como antes
