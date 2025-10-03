@@ -11,11 +11,11 @@
     .available { color: #fff; background: #10b981; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
     .doubt { color: #000; background: #facc15; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
     .score-badge { display: inline-block; min-width: 24px; text-align: center; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; margin-right: 2px; }
-    .score-red { background-color: #ff3200; color: #fff; }
-    .score-gray { background-color: #d6d6d6; color: #fff; }
-    .score-yellow { background-color: #ffff42; color: #fff; }
-    .score-green { background-color: #23d750; color: #fff; }
-    .score-blue { background-color: #4bffff; color: #fff; }
+    .score-red { background-color: #ff3200; color: #000; }
+    .score-gray { background-color: #d6d6d6; color: #000; }
+    .score-yellow { background-color: #ffff42; color: #000; }
+    .score-green { background-color: #23d750; color: #000; }
+    .score-blue { background-color: #4bffff; color: #000; }
     .cursor-pointer { cursor: pointer; }
   </style>
 </head>
@@ -140,8 +140,17 @@
 
     function render(){
       const grid=document.getElementById('gridView');
+      const posFilter=document.getElementById('positionFilter').value;
+      const statusFilter=document.getElementById('statusFilter').value;
+
       grid.innerHTML='';
-      players.forEach(p=>{
+      const filtered = players.filter(p=>{
+        const posOk = posFilter==='all' || p.pos===posFilter;
+        const statusOk = statusFilter==='all' || p.status===statusFilter;
+        return posOk && statusOk;
+      });
+
+      filtered.forEach(p=>{
         const totals = calculateTotals(p.performances);
         const lastThree = p.performances.slice(-3);
         const card=document.createElement('div');
@@ -155,11 +164,12 @@
           <div class='mt-3'>${lastThree.map(perf => renderScoreBadge(perf.points)).join(' ')}</div>
           <div class='mt-2'>${renderStatusBadge(p)}</div>
         `;
-        card.onclick=()=>openModal(p.id);
+        card.onclick = ()=>openModal(p.id);
         grid.appendChild(card);
       });
-      document.getElementById('playerCount').textContent=players.length;
-      document.getElementById('injuredCount').textContent=players.filter(p=>p.status==='injured').length;
+
+      document.getElementById('playerCount').textContent = filtered.length;
+      document.getElementById('injuredCount').textContent = players.filter(p=>p.status==='injured').length;
     }
 
     function openModal(id){
@@ -175,7 +185,6 @@
 
       const perfDiv=document.getElementById('modalPerformances');
       perfDiv.innerHTML='';
-
       // Mostrar todas las jornadas
       p.performances.forEach((perf,i)=>{
         const div=document.createElement('div');
@@ -188,6 +197,8 @@
       document.getElementById('statModal').classList.add('flex');
     }
 
+    document.getElementById('positionFilter').addEventListener('change', render);
+    document.getElementById('statusFilter').addEventListener('change', render);
     document.getElementById('closeModal').addEventListener('click',()=>{
       document.getElementById('statModal').classList.add('hidden'); 
       document.getElementById('statModal').classList.remove('flex');
@@ -197,3 +208,4 @@
   </script>
 </body>
 </html>
+
