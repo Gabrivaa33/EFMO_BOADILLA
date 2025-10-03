@@ -6,32 +6,29 @@
   <title>Equipo — Mock Movistar Fantasy (UI)</title>
   <script src="https://cdn.tailwindcss.com"></script>
   <style>
-    /* Pequeños ajustes para que parezca una app deportiva */
     .glass { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); }
-    .stat-pill { min-width: 56px; }
-    .injury { color: #fff; background: #ef4444; }
-    .ok { color: #fff; background: #10b981; }
+    .injury { color: #fff; background: #ef4444; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+    .ok { color: #fff; background: #10b981; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+    .doubt { color: #000; background: #facc15; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+    .score-badge { display: inline-block; min-width: 24px; text-align: center; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; margin-right: 2px; }
+    .score-red { background-color: #dc2626; color: #fff; }
+    .score-gray { background-color: #6b7280; color: #fff; }
+    .score-yellow { background-color: #facc15; color: #000; }
+    .score-green { background-color: #22c55e; color: #fff; }
+    .score-blue { background-color: #38bdf8; color: #000; }
+    .cursor-pointer { cursor: pointer; }
   </style>
 </head>
 <body class="bg-slate-900 text-slate-100 antialiased">
   <div class="max-w-6xl mx-auto p-6">
-    <!-- Header -->
     <header class="flex items-center justify-between mb-6">
       <div>
         <h1 class="text-2xl font-extrabold">Mi Equipo — Movistar Fantasy (mock)</h1>
         <p class="text-slate-400 text-sm">Vista de equipo con puntos, estadísticas y estado de lesión</p>
       </div>
-      <div class="flex gap-3 items-center">
-        <div class="text-right">
-          <div class="text-xs text-slate-400">Puntos totales</div>
-          <div id="teamPoints" class="text-xl font-bold">0</div>
-        </div>
-        <button id="exportCsv" class="px-3 py-2 bg-indigo-600 hover:bg-indigo-500 rounded">Exportar CSV</button>
-      </div>
     </header>
 
     <main class="grid lg:grid-cols-3 gap-6">
-      <!-- Left: resumen + filtros -->
       <section class="glass p-4 rounded-lg lg:col-span-1">
         <h2 class="font-semibold mb-3">Resumen</h2>
         <div class="space-y-3">
@@ -75,21 +72,16 @@
 
         <hr class="my-4 border-slate-700"/>
         <h3 class="font-semibold mb-2">Noticias / Lesiones</h3>
-        <div id="injuryFeed" class="space-y-3 text-sm text-slate-300">
-          <!-- dinámico -->
-        </div>
+        <div id="injuryFeed" class="space-y-3 text-sm text-slate-300"></div>
       </section>
 
-      <!-- Right: lista de jugadores (tabla o tarjetas) -->
       <section class="lg:col-span-2">
         <div id="playerList" class="glass p-3 rounded-lg overflow-hidden">
-          <!-- Controles superiores -->
           <div class="flex items-center justify-between mb-3">
             <div class="text-sm text-slate-400">Mostrando <span id="shownCount">0</span> jugadores</div>
             <div class="text-sm text-slate-400">Ver: <span id="viewModeLabel">Tabla</span></div>
           </div>
 
-          <!-- Tabla -->
           <div id="tableView" class="overflow-auto rounded">
             <table class="min-w-full text-left">
               <thead class="text-slate-400 text-sm border-b border-slate-700">
@@ -97,28 +89,22 @@
                   <th class="px-3 py-2">#</th>
                   <th class="px-3 py-2">Jugador</th>
                   <th class="px-3 py-2">Posición</th>
-                  <th class="px-3 py-2">Equipo</th>
                   <th class="px-3 py-2">Puntos</th>
                   <th class="px-3 py-2">Min</th>
                   <th class="px-3 py-2">G/A</th>
+                  <th class="px-3 py-2">Últimas 3</th>
                   <th class="px-3 py-2">Estado</th>
                 </tr>
               </thead>
-              <tbody id="playersTableBody" class="text-sm">
-                <!-- dinámico -->
-              </tbody>
+              <tbody id="playersTableBody" class="text-sm"></tbody>
             </table>
           </div>
 
-          <!-- Grid view (oculto por defecto) -->
-          <div id="gridView" class="hidden grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3">
-            <!-- dinámico -->
-          </div>
+          <div id="gridView" class="hidden grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3"></div>
         </div>
       </section>
     </main>
 
-    <!-- Modal estadísticas -->
     <div id="statModal" class="fixed inset-0 hidden items-center justify-center bg-black/50">
       <div class="bg-slate-800 rounded-lg w-11/12 max-w-2xl p-4">
         <div class="flex items-start justify-between">
@@ -133,179 +119,107 @@
           <div><strong>Tarjetas:</strong> <span id="modalCards">0</span></div>
           <div><strong>Partidos:</strong> <span id="modalMatches">0</span></div>
         </div>
-        <div class="mt-4 text-sm text-slate-400">Últimas actuaciones (mock)</div>
-        <div id="modalPerformances" class="mt-2 space-y-2 text-slate-300 text-xs">
-          <!-- dinámico -->
-        </div>
+        <div class="mt-4 text-sm text-slate-400">Últimas actuaciones</div>
+        <div id="modalPerformances" class="mt-2 space-y-2 text-slate-300 text-xs"></div>
       </div>
     </div>
-
   </div>
 
   <script>
-    // Datos de ejemplo — sustituir por datos reales si se desea
     const players = [
-      { id:1, name:'Iker Martínez', pos:'Portero', team:'R. Madrid', points:32, minutes:270, goals:0, assists:0, cards:0, matches:3, status:'ok'},
-      { id:2, name:'Carlos Vega', pos:'Defensa', team:'Atlético', points:18, minutes:250, goals:1, assists:0, cards:1, matches:3, status:'doubt'},
-      { id:3, name:'Luis Romero', pos:'Centrocampista', team:'Sevilla', points:45, minutes:300, goals:3, assists:4, cards:0, matches:4, status:'ok'},
-      { id:4, name:'Fernando Díaz', pos:'Delantero', team:'Valencia', points:58, minutes:360, goals:6, assists:2, cards:1, matches:4, status:'ok'},
-      { id:5, name:'Raúl Sanz', pos:'Centrocampista', team:'Betis', points:7, minutes:60, goals:0, assists:0, cards:0, matches:1, status:'injured', injury:'Rotura muscular - 4 semanas'},
-      { id:6, name:'Miguel López', pos:'Defensa', team:'Villarreal', points:12, minutes:180, goals:0, assists:1, cards:2, matches:2, status:'ok'},
-      { id:7, name:'Javier Molina', pos:'Delantero', team:'Real Sociedad', points:27, minutes:210, goals:2, assists:1, cards:0, matches:3, status:'doubt'},
+      { id:1, name:'Iker Martínez', pos:'Portero', points:32, minutes:270, goals:0, assists:0, cards:0, matches:3, status:'ok', lastScores:[10,12,10], comments:['Buen partido','','Excelente']},
+      { id:2, name:'Carlos Vega', pos:'Defensa', points:18, minutes:250, goals:1, assists:0, cards:1, matches:3, status:'doubt', lastScores:[6,5,7], comments:['','','']},
+      { id:3, name:'Luis Romero', pos:'Centrocampista', points:45, minutes:300, goals:3, assists:4, cards:0, matches:4, status:'ok', lastScores:[14,15,16], comments:['Muy activo','Gran asistencia','']},
+      { id:4, name:'Fernando Díaz', pos:'Delantero', points:58, minutes:360, goals:6, assists:2, cards:1, matches:4, status:'ok', lastScores:[18,20,20], comments:['','Golazo','']},
+      { id:5, name:'Raúl Sanz', pos:'Centrocampista', points:7, minutes:60, goals:0, assists:0, cards:0, matches:1, status:'injured', injury:'Rotura muscular - 4 semanas', lastScores:[7,0,0], comments:['','','']},
+      { id:6, name:'Miguel López', pos:'Defensa', points:12, minutes:180, goals:0, assists:1, cards:2, matches:2, status:'ok', lastScores:[6,6,0], comments:['','','']},
+      { id:7, name:'Javier Molina', pos:'Delantero', points:27, minutes:210, goals:2, assists:1, cards:0, matches:3, status:'doubt', lastScores:[9,9,9], comments:['','','']},
     ];
 
     let currentSortDesc = true;
     let currentView = 'table';
 
-    // Render
-    function render() {
-      const tbody = document.getElementById('playersTableBody');
-      const grid = document.getElementById('gridView');
-      const teamPointsEl = document.getElementById('teamPoints');
-      const playerCount = document.getElementById('playerCount');
-      const startersCount = document.getElementById('startersCount');
-      const injuredCount = document.getElementById('injuredCount');
-      const injuryFeed = document.getElementById('injuryFeed');
+    function renderScoreBadge(score) {
+      if(score<0) return `<span class='score-badge score-red'>${score}</span>`;
+      if(score===0) return `<span class='score-badge score-gray'>${score}</span>`;
+      if(score>=1 && score<=4) return `<span class='score-badge score-yellow'>${score}</span>`;
+      if(score>=5 && score<=9) return `<span class='score-badge score-green'>${score}</span>`;
+      return `<span class='score-badge score-blue'>${score}</span>`;
+    }
 
-      // Aplicar filtros
-      const posFilter = document.getElementById('positionFilter').value;
-      const statusFilter = document.getElementById('statusFilter').value;
-      let filtered = players.filter(p => (posFilter==='all' || p.pos===posFilter) && (statusFilter==='all' || (statusFilter==='ok' ? p.status==='ok' : statusFilter===p.status)));
+    function renderStatusBadge(p){
+      if(p.status==='injured') return `<span class='injury'>Lesionado</span>`;
+      if(p.status==='doubt') return `<span class='doubt'>Duda</span>`;
+      return `<span class='ok'>OK</span>`;
+    }
 
-      // Orden
-      filtered.sort((a,b) => currentSortDesc ? b.points - a.points : a.points - b.points);
+    function render(){
+      const tbody=document.getElementById('playersTableBody');
+      const grid=document.getElementById('gridView');
+      const posFilter=document.getElementById('positionFilter').value;
+      const statusFilter=document.getElementById('statusFilter').value;
+      const filtered=players.filter(p=>(posFilter==='all'||p.pos===posFilter)&&(statusFilter==='all'||(statusFilter==='ok'?p.status==='ok':statusFilter===p.status)));
+      filtered.sort((a,b)=>currentSortDesc?b.points-a.points:a.points-b.points);
 
-      // Tabla
-      tbody.innerHTML = '';
-      grid.innerHTML = '';
-      filtered.forEach((p, idx) => {
-        const tr = document.createElement('tr');
-        tr.className = 'border-b border-slate-800 hover:bg-slate-800/30';
-        tr.innerHTML = `
-          <td class="px-3 py-2 text-slate-400">${p.id}</td>
-          <td class="px-3 py-2 cursor-pointer" data-id="${p.id}"><div class="flex items-center gap-3"><div class="w-9 h-9 rounded-full bg-slate-700 flex items-center justify-center text-xs">${p.name.split(' ').map(n=>n[0]).slice(0,2).join('')}</div><div><div class="font-medium">${p.name}</div><div class="text-xs text-slate-400">${p.team}</div></div></div></td>
-          <td class="px-3 py-2">${p.pos}</td>
-          <td class="px-3 py-2">${p.team}</td>
-          <td class="px-3 py-2 font-bold">${p.points}</td>
-          <td class="px-3 py-2">${p.minutes}</td>
-          <td class="px-3 py-2">${p.goals}/${p.assists}</td>
-          <td class="px-3 py-2">${renderStatusBadge(p)}</td>
-        `;
+      tbody.innerHTML=''; grid.innerHTML='';
+
+      filtered.forEach(p=>{
+        const tr=document.createElement('tr');
+        tr.className='border-b border-slate-800 hover:bg-slate-800/30 cursor-pointer';
+        tr.innerHTML=`<td class='px-3 py-2 text-slate-400'>${p.id}</td><td class='px-3 py-2'>${p.name}</td><td class='px-3 py-2'>${p.pos}</td><td class='px-3 py-2 font-bold'>${p.points}</td><td class='px-3 py-2'>${p.minutes}</td><td class='px-3 py-2'>${p.goals}/${p.assists}</td><td class='px-3 py-2'>${p.lastScores.map(renderScoreBadge).join(' ')}</td><td class='px-3 py-2'>${renderStatusBadge(p)}</td>`;
+        tr.onclick=()=>openModal(p.id);
         tbody.appendChild(tr);
 
-        // Grid card
-        const card = document.createElement('div');
-        card.className = 'p-3 bg-slate-800 rounded-lg';
-        card.innerHTML = `
-          <div class="flex items-start justify-between">
-            <div>
-              <div class="text-sm text-slate-400">${p.pos} • ${p.team}</div>
-              <div class="font-semibold">${p.name}</div>
-            </div>
-            <div class="text-right">
-              <div class="text-xs text-slate-400">Puntos</div>
-              <div class="text-lg font-bold">${p.points}</div>
-            </div>
-          </div>
-          <div class="mt-3 flex items-center justify-between text-xs text-slate-400">
-            <div>Min ${p.minutes}</div>
-            <div>G/A ${p.goals}/${p.assists}</div>
-            <div>${p.status==='injured' ? '<span class="px-2 py-1 rounded text-xs injury">Lesionado</span>' : p.status==='doubt' ? '<span class="px-2 py-1 rounded text-xs bg-amber-500 text-black">Duda</span>' : '<span class="px-2 py-1 rounded text-xs ok">OK</span>'}</div>
-          </div>
-        `;
+        const card=document.createElement('div');
+        card.className='p-3 bg-slate-800 rounded-lg cursor-pointer';
+        card.setAttribute('data-id',p.id);
+        card.innerHTML=`<div class='flex items-start justify-between'><div><div class='text-sm text-slate-400'>${p.pos}</div><div class='font-semibold'>${p.name}</div></div><div class='text-right'><div class='text-xs text-slate-400'>Puntos</div><div class='text-lg font-bold'>${p.points}</div></div></div><div class='mt-3'>${p.lastScores.map(renderScoreBadge).join(' ')}</div><div class='mt-2'>${renderStatusBadge(p)}</div>`;
+        card.onclick=()=>openModal(p.id);
         grid.appendChild(card);
       });
 
-      // Sumarios
-      const totalPoints = players.reduce((s,p)=>s+p.points,0);
-      teamPointsEl.textContent = totalPoints;
-      playerCount.textContent = players.length;
-      startersCount.textContent = Math.min(11, players.length);
-      injuredCount.textContent = players.filter(p=>p.status==='injured').length;
-      document.getElementById('shownCount').textContent = filtered.length;
-      document.getElementById('viewModeLabel').textContent = currentView === 'table' ? 'Tabla' : 'Tarjetas';
+      document.getElementById('playerCount').textContent=players.length;
+      document.getElementById('startersCount').textContent=Math.min(11,players.length);
+      document.getElementById('injuredCount').textContent=players.filter(p=>p.status==='injured').length;
+      document.getElementById('shownCount').textContent=filtered.length;
+      document.getElementById('viewModeLabel').textContent=currentView==='table'?'Tabla':'Tarjetas';
 
-      // Feed de lesiones (mock)
-      injuryFeed.innerHTML = '';
-      players.filter(p=>p.status==='injured').forEach(p => {
-        const div = document.createElement('div');
-        div.className = 'p-2 bg-slate-800 rounded text-sm';
-        div.innerHTML = `<div class="font-medium">${p.name} — Lesión</div><div class="text-slate-400 text-xs">${p.injury || 'Sin detalles'}</div>`;
+      const injuryFeed=document.getElementById('injuryFeed'); injuryFeed.innerHTML='';
+      players.filter(p=>p.status==='injured').forEach(p=>{
+        const div=document.createElement('div');
+        div.className='p-2 bg-slate-800 rounded text-sm';
+        div.innerHTML=`<div class='font-medium'>${p.name} — Lesión</div><div class='text-slate-400 text-xs'>${p.injury||'Sin detalles'}</div>`;
         injuryFeed.appendChild(div);
       });
-
-      // Añadir event listeners para abrir modal
-      document.querySelectorAll('[data-id]').forEach(el => {
-        el.addEventListener('click', (e) => {
-          const id = parseInt(el.getAttribute('data-id'));
-          openModal(id);
-        });
-      });
     }
 
-    function renderStatusBadge(p) {
-      if (p.status === 'injured') return `<span class=\"px-2 py-1 rounded text-xs injury\">Lesionado</span>`;
-      if (p.status === 'doubt') return `<span class=\"px-2 py-1 rounded text-xs bg-amber-500 text-black\">Duda</span>`;
-      return `<span class=\"px-2 py-1 rounded text-xs ok\">OK</span>`;
-    }
-
-    function openModal(id) {
-      const p = players.find(x=>x.id===id);
-      if (!p) return;
-      document.getElementById('modalName').textContent = p.name;
-      document.getElementById('modalPoints').textContent = p.points;
-      document.getElementById('modalMinutes').textContent = p.minutes;
-      document.getElementById('modalGoals').textContent = p.goals;
-      document.getElementById('modalAssists').textContent = p.assists;
-      document.getElementById('modalCards').textContent = p.cards;
-      document.getElementById('modalMatches').textContent = p.matches;
-      const perf = document.getElementById('modalPerformances');
-      perf.innerHTML = '';
-      // mock últimas actuaciones
-      for (let i=0;i<Math.min(5,p.matches);i++) {
-        const div = document.createElement('div');
-        div.className = 'p-2 bg-slate-700 rounded';
-        div.textContent = `Partido ${i+1}: ${Math.max(0, Math.round(p.points / Math.max(1,p.matches) + (Math.random()*5-2))) } pts`;
+    function openModal(id){
+      const p=players.find(x=>x.id===id); if(!p) return;
+      document.getElementById('modalName').textContent=p.name;
+      document.getElementById('modalPoints').textContent=p.points;
+      document.getElementById('modalMinutes').textContent=p.minutes;
+      document.getElementById('modalGoals').textContent=p.goals;
+      document.getElementById('modalAssists').textContent=p.assists;
+      document.getElementById('modalCards').textContent=p.cards;
+      document.getElementById('modalMatches').textContent=p.matches;
+      const perf=document.getElementById('modalPerformances'); perf.innerHTML='';
+      p.lastScores.forEach((score,i)=>{
+        const comment=p.comments[i]||'';
+        const div=document.createElement('div');
+        div.className='p-2 bg-slate-700 rounded flex justify-between items-center';
+        div.innerHTML=`<span>Partido ${i+1}: ${score} pts</span><span>${comment}</span>`;
         perf.appendChild(div);
-      }
+      });
       document.getElementById('statModal').classList.remove('hidden');
       document.getElementById('statModal').classList.add('flex');
     }
 
-    // Controles
-    document.getElementById('sortPoints').addEventListener('click', ()=>{
-      currentSortDesc = !currentSortDesc;
-      document.getElementById('sortPoints').textContent = currentSortDesc ? 'Ordenar por puntos ▼' : 'Ordenar por puntos ▲';
-      render();
-    });
+    document.getElementById('sortPoints').addEventListener('click',()=>{currentSortDesc=!currentSortDesc; document.getElementById('sortPoints').textContent=currentSortDesc?'Ordenar por puntos ▼':'Ordenar por puntos ▲'; render();});
+    document.getElementById('toggleView').addEventListener('click',()=>{currentView=currentView==='table'?'grid':'table'; document.getElementById('tableView').classList.toggle('hidden'); document.getElementById('gridView').classList.toggle('hidden'); render();});
+    document.getElementById('positionFilter').addEventListener('change',render);
+    document.getElementById('statusFilter').addEventListener('change',render);
+    document.getElementById('closeModal').addEventListener('click',()=>{document.getElementById('statModal').classList.add('hidden'); document.getElementById('statModal').classList.remove('flex');});
 
-    document.getElementById('toggleView').addEventListener('click', ()=>{
-      currentView = currentView === 'table' ? 'grid' : 'table';
-      document.getElementById('tableView').classList.toggle('hidden');
-      document.getElementById('gridView').classList.toggle('hidden');
-      render();
-    });
-
-    document.getElementById('positionFilter').addEventListener('change', render);
-    document.getElementById('statusFilter').addEventListener('change', render);
-
-    document.getElementById('closeModal').addEventListener('click', ()=>{
-      document.getElementById('statModal').classList.add('hidden');
-      document.getElementById('statModal').classList.remove('flex');
-    });
-
-    // Export CSV sencillo
-    document.getElementById('exportCsv').addEventListener('click', ()=>{
-      const header = ['id','name','pos','team','points','minutes','goals','assists','status'];
-      const rows = players.map(p=>[p.id,p.name,p.pos,p.team,p.points,p.minutes,p.goals,p.assists,p.status]);
-      const csv = [header, ...rows].map(r=>r.map(c=>`"${String(c).replace(/"/g,'""')}"`).join(',')).join('\n');
-      const blob = new Blob([csv], {type:'text/csv'});
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url; a.download = 'equipo.csv'; document.body.appendChild(a); a.click(); a.remove(); URL.revokeObjectURL(url);
-    });
-
-    // Render inicial
     render();
   </script>
 </body>
