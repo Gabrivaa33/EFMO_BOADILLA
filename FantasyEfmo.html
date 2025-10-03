@@ -8,7 +8,7 @@
   <style>
     .glass { background: linear-gradient(135deg, rgba(255,255,255,0.04), rgba(255,255,255,0.02)); }
     .injury { color: #fff; background: #ef4444; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
-    .ok { color: #fff; background: #10b981; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
+    .available { color: #fff; background: #10b981; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
     .doubt { color: #000; background: #facc15; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
     .score-badge { display: inline-block; min-width: 24px; text-align: center; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; margin-right: 2px; }
     .score-red { background-color: #ff3200; color: #fff; }
@@ -55,7 +55,7 @@
 
           <select id="statusFilter" class="w-full p-2 bg-slate-800 rounded">
             <option value="all">Todos los estados</option>
-            <option value="ok">Disponible</option>
+            <option value="available">Disponible</option>
             <option value="injured">Lesionado</option>
             <option value="doubt">Duda</option>
           </select>
@@ -95,13 +95,22 @@
 
   <script>
     const players = [
-      { id:1, name:'Iker Martínez', pos:'Portero', points:32, minutes:270, goals:0, assists:0, cards:0, matches:3, status:'ok', lastScores:[10,12,10,-2], comments:['Buen partido','','Excelente']},
-      { id:2, name:'Carlos Vega', pos:'Defensa', points:18, minutes:250, goals:1, assists:0, cards:1, matches:3, status:'doubt', lastScores:[6,5,7], comments:['','','']},
-      { id:3, name:'Luis Romero', pos:'Centrocampista', points:45, minutes:300, goals:3, assists:4, cards:0, matches:4, status:'ok', lastScores:[14,15,16], comments:['Muy activo','Gran asistencia','']},
-      { id:4, name:'Fernando Díaz', pos:'Delantero', points:58, minutes:360, goals:6, assists:2, cards:1, matches:4, status:'ok', lastScores:[18,20,20], comments:['','Golazo','']},
-      { id:5, name:'Raúl Sanz', pos:'Centrocampista', points:7, minutes:60, goals:0, assists:0, cards:0, matches:1, status:'injured', injury:'Rotura muscular - 4 semanas', lastScores:[7,0,0], comments:['','','']},
-      { id:6, name:'Miguel López', pos:'Defensa', points:12, minutes:180, goals:0, assists:1, cards:2, matches:2, status:'ok', lastScores:[6,6,0], comments:['','','']},
-      { id:7, name:'Javier Molina', pos:'Delantero', points:27, minutes:210, goals:2, assists:1, cards:0, matches:3, status:'doubt', lastScores:[9,9,9], comments:['','','']},
+      { id:1, name:'Iker Martínez', pos:'Portero', status:'available', performances:[
+        {points:10, minutes:90, goals:0, assists:0, cards:0, comment:'Buen partido'},
+        {points:12, minutes:90, goals:0, assists:0, cards:0, comment:''},
+        {points:10, minutes:90, goals:0, assists:0, cards:0, comment:'Excelente'},
+        {points:-2, minutes:45, goals:0, assists:0, cards:1, comment:'Mal partido'}
+      ]},
+      { id:2, name:'Carlos Vega', pos:'Defensa', status:'doubt', performances:[
+        {points:6, minutes:90, goals:0, assists:0, cards:0, comment:''},
+        {points:5, minutes:90, goals:0, assists:0, cards:0, comment:''},
+        {points:7, minutes:90, goals:0, assists:0, cards:1, comment:''}
+      ]},
+      { id:3, name:'Luis Romero', pos:'Centrocampista', status:'available', performances:[
+        {points:14, minutes:90, goals:1, assists:1, cards:0, comment:'Muy activo'},
+        {points:15, minutes:90, goals:1, assists:2, cards:0, comment:'Gran asistencia'},
+        {points:16, minutes:90, goals:1, assists:1, cards:0, comment:''}
+      ]}
     ];
 
     function renderScoreBadge(score){
@@ -115,58 +124,74 @@
     function renderStatusBadge(p){
       if(p.status==='injured') return `<span class='injury'>Lesionado</span>`;
       if(p.status==='doubt') return `<span class='doubt'>Duda</span>`;
-      return `<span class='ok'>OK</span>`;
+      return `<span class='available'>Disponible</span>`;
+    }
+
+    function calculateTotals(perfs){
+      return perfs.reduce((acc, p) => {
+        acc.points += p.points;
+        acc.minutes += p.minutes;
+        acc.goals += p.goals;
+        acc.assists += p.assists;
+        acc.cards += p.cards;
+        return acc;
+      }, {points:0, minutes:0, goals:0, assists:0, cards:0});
     }
 
     function render(){
       const grid=document.getElementById('gridView');
-      const posFilter=document.getElementById('positionFilter').value;
-      const statusFilter=document.getElementById('statusFilter').value;
-      const filtered=players.filter(p=>(posFilter==='all'||p.pos===posFilter)&&(statusFilter==='all'||(statusFilter==='ok'?p.status==='ok':statusFilter===p.status)));
       grid.innerHTML='';
-      filtered.forEach(p=>{
+      players.forEach(p=>{
+        const totals = calculateTotals(p.performances);
+        const lastThree = p.performances.slice(-3);
         const card=document.createElement('div');
         card.className='p-3 bg-slate-800 rounded-lg cursor-pointer';
         card.setAttribute('data-id',p.id);
-        card.innerHTML=`<div class='flex items-start justify-between'><div><div class='text-sm text-slate-400'>${p.pos}</div><div class='font-semibold'>${p.name}</div></div><div class='text-right'><div class='text-xs text-slate-400'>Puntos</div><div class='text-lg font-bold'>${p.points}</div></div></div><div class='mt-3'>${p.lastScores.map(renderScoreBadge).join(' ')}</div><div class='mt-2'>${renderStatusBadge(p)}</div>`;
+        card.innerHTML=`
+          <div class='flex items-start justify-between'>
+            <div><div class='text-sm text-slate-400'>${p.pos}</div><div class='font-semibold'>${p.name}</div></div>
+            <div class='text-right'><div class='text-xs text-slate-400'>Puntos</div><div class='text-lg font-bold'>${totals.points}</div></div>
+          </div>
+          <div class='mt-3'>${lastThree.map(perf => renderScoreBadge(perf.points)).join(' ')}</div>
+          <div class='mt-2'>${renderStatusBadge(p)}</div>
+        `;
         card.onclick=()=>openModal(p.id);
         grid.appendChild(card);
       });
       document.getElementById('playerCount').textContent=players.length;
       document.getElementById('injuredCount').textContent=players.filter(p=>p.status==='injured').length;
-      const injuryFeed=document.getElementById('injuryFeed'); injuryFeed.innerHTML='';
-      players.filter(p=>p.status==='injured').forEach(p=>{
-        const div=document.createElement('div');
-        div.className='p-2 bg-slate-800 rounded text-sm';
-        div.innerHTML=`<div class='font-medium'>${p.name} — Lesión</div><div class='text-slate-400 text-xs'>${p.injury||'Sin detalles'}</div>`;
-        injuryFeed.appendChild(div);
-      });
     }
 
     function openModal(id){
       const p=players.find(x=>x.id===id); if(!p) return;
+      const totals = calculateTotals(p.performances);
       document.getElementById('modalName').textContent=p.name;
-      document.getElementById('modalPoints').textContent=p.points;
-      document.getElementById('modalMinutes').textContent=p.minutes;
-      document.getElementById('modalGoals').textContent=p.goals;
-      document.getElementById('modalAssists').textContent=p.assists;
-      document.getElementById('modalCards').textContent=p.cards;
-      document.getElementById('modalMatches').textContent=p.matches;
-      const perf=document.getElementById('modalPerformances'); perf.innerHTML='';
-      p.lastScores.forEach((score,i)=>{
-        const comment=p.comments[i]||'';
+      document.getElementById('modalPoints').textContent=totals.points;
+      document.getElementById('modalMinutes').textContent=totals.minutes;
+      document.getElementById('modalGoals').textContent=totals.goals;
+      document.getElementById('modalAssists').textContent=totals.assists;
+      document.getElementById('modalCards').textContent=totals.cards;
+      document.getElementById('modalMatches').textContent=p.performances.length;
+
+      const perfDiv=document.getElementById('modalPerformances');
+      perfDiv.innerHTML='';
+
+      // Mostrar todas las jornadas
+      p.performances.forEach((perf,i)=>{
         const div=document.createElement('div');
         div.className='p-2 bg-slate-700 rounded flex justify-between items-center';
-        div.innerHTML=`<span>Jornada ${i+1}: ${renderScoreBadge(score)}</span><span>${comment}</span>`;
-        perf.appendChild(div);
+        div.innerHTML=`<span>Jornada ${i+1}: ${renderScoreBadge(perf.points)}</span><span>${perf.comment}</span>`;
+        perfDiv.appendChild(div);
       });
+
       document.getElementById('statModal').classList.remove('hidden');
       document.getElementById('statModal').classList.add('flex');
     }
 
-    document.getElementById('positionFilter').addEventListener('change',render);
-    document.getElementById('statusFilter').addEventListener('change',render);
-    document.getElementById('closeModal').addEventListener('click',()=>{document.getElementById('statModal').classList.add('hidden'); document.getElementById('statModal').classList.remove('flex');});
+    document.getElementById('closeModal').addEventListener('click',()=>{
+      document.getElementById('statModal').classList.add('hidden'); 
+      document.getElementById('statModal').classList.remove('flex');
+    });
 
     render();
   </script>
