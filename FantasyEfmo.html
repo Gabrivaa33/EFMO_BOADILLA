@@ -12,237 +12,251 @@
     .available { color: #fff; background: #10b981; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
     .doubt { color: #000; background: #facc15; padding: 2px 6px; border-radius: 4px; font-size: 0.75rem; }
     .score-badge { display: inline-block; min-width: 24px; text-align: center; padding: 2px 4px; border-radius: 4px; font-size: 0.75rem; font-weight: 500; margin-right: 2px; }
-    .score-red { background-color: #ff3200; color: #fff; }
-    .score-gray { background-color: #d6d6d6; color: #fff; }
-    .score-yellow { background-color: #ffff42; color: #fff; }
-    .score-green { background-color: #23d750; color: #fff; }
-    .score-blue { background-color: #4bffff; color: #fff; }
+    .score-red { background-color: #ff3200; color: #000; }
+    .score-gray { background-color: #d6d6d6; color: #000; }
+    .score-yellow { background-color: #ffff42; color: #000; }
+    .score-green { background-color: #23d750; color: #000; }
+    .score-blue { background-color: #4bffff; color: #000; }
+    .score-null { background-color: #d6d6d6; color: #000; }
     .cursor-pointer { cursor: pointer; }
   </style>
 </head>
 <body class="bg-slate-900 text-slate-100 antialiased">
-  <div class="max-w-6xl mx-auto p-6">
-    <header class="flex items-center justify-between mb-6">
-      <div>
-        <h1 class="text-2xl font-extrabold">E.F.M.O. Boadilla 'B'</h1>
-        <p class="text-slate-400 text-sm">Puntos, estadísticas, y mucho más</p>
+<div class="max-w-6xl mx-auto p-6">
+  <header class="flex items-center justify-between mb-6">
+    <div>
+      <h1 class="text-2xl font-extrabold">E.F.M.O. Boadilla 'B'</h1>
+      <p class="text-slate-400 text-sm">Puntos, estadísticas, y mucho más</p>
+    </div>
+  </header>
+
+  <main class="grid lg:grid-cols-3 gap-6">
+    <section class="glass p-4 rounded-lg lg:col-span-1">
+      <h2 class="font-semibold mb-3">Resumen</h2>
+      <div class="space-y-3">
+        <div class="flex items-center justify-between">
+          <div class="text-sm text-slate-400">Jugadores</div>
+          <div id="playerCount" class="font-bold">25</div>
+        </div>
+        <div class="flex items-center justify-between">
+          <div class="text-sm text-slate-400">Lesionados</div>
+          <div id="injuredCount" class="font-bold">0</div>
+        </div>
       </div>
-    </header>
 
-    <main class="grid lg:grid-cols-3 gap-6">
-      <section class="glass p-4 rounded-lg lg:col-span-1">
-        <h2 class="font-semibold mb-3">Resumen</h2>
-        <div class="space-y-3">
-          <div class="flex items-center justify-between">
-            <div class="text-sm text-slate-400">Jugadores</div>
-            <div id="playerCount" class="font-bold">0</div>
-          </div>
-          <div class="flex items-center justify-between">
-            <div class="text-sm text-slate-400">Lesionados</div>
-            <div id="injuredCount" class="font-bold">0</div>
-          </div>
-        </div>
+      <hr class="my-4 border-slate-700"/>
+      <h3 class="font-semibold mb-2">Filtros</h3>
+      <div class="space-y-2">
+        <select id="positionFilter" class="w-full p-2 bg-slate-800 rounded">
+          <option value="all">Todas las posiciones</option>
+          <option value="Portero">Portero</option>
+          <option value="Defensa">Defensa</option>
+          <option value="Centrocampista">Centrocampista</option>
+          <option value="Delantero">Delantero</option>
+        </select>
 
-        <hr class="my-4 border-slate-700"/>
-        <h3 class="font-semibold mb-2">Filtros</h3>
-        <div class="space-y-2">
-          <select id="positionFilter" class="w-full p-2 bg-slate-800 rounded">
-            <option value="all">Todas las posiciones</option>
-            <option value="Portero">Portero</option>
-            <option value="Defensa">Defensa</option>
-            <option value="Centrocampista">Centrocampista</option>
-            <option value="Delantero">Delantero</option>
-          </select>
-
-          <select id="statusFilter" class="w-full p-2 bg-slate-800 rounded">
-            <option value="all">Todos los estados</option>
-            <option value="available">Disponible</option>
-            <option value="injured">Lesionado</option>
-            <option value="doubt">Duda</option>
-          </select>
-        </div>
-
-        <hr class="my-4 border-slate-700"/>
-        <h3 class="font-semibold mb-2">Noticias / Lesiones</h3>
-        <div id="injuryFeed" class="space-y-3 text-sm text-slate-300">
-          <!-- Noticia/lesión de prueba -->
-          <div class="p-2 bg-slate-800 rounded text-sm">
-            <div class="font-medium">Jugador de prueba — Lesión</div>
-            <div class="text-slate-400 text-xs">Rotura muscular, 3 semanas</div>
-          </div>
-        </div>
-      </section>
-
-      <section class="lg:col-span-2">
-        <div id="playerList" class="glass p-3 rounded-lg overflow-hidden">
-          <div id="gridView" class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3"></div>
-        </div>
-      </section>
-    </main>
-
-    <div id="statModal" class="fixed inset-0 hidden items-center justify-center bg-black/50">
-      <div class="bg-slate-800 rounded-lg w-11/12 max-w-2xl p-4">
-        <div class="flex items-start justify-between">
-          <h3 id="modalName" class="text-xl font-bold">Nombre jugador</h3>
-          <button id="closeModal" class="text-slate-400">Cerrar ✕</button>
-        </div>
-        <div class="mt-3 text-sm text-slate-300 grid grid-cols-2 gap-3">
-          <div><strong>Puntos:</strong> <span id="modalPoints">0</span></div>
-          <div><strong>Minutos:</strong> <span id="modalMinutes">0</span></div>
-          <div><strong>Goles:</strong> <span id="modalGoals">0</span></div>
-          <div><strong>Asistencias:</strong> <span id="modalAssists">0</span></div>
-          <div><strong>Tarjetas:</strong> <span id="modalCards">0</span></div>
-          <div><strong>Partidos:</strong> <span id="modalMatches">0</span></div>
-        </div>
-        <div class="mt-4 text-sm text-slate-400">Últimas actuaciones</div>
-        <div id="modalPerformances" class="mt-2 space-y-2 text-slate-300 text-xs"></div>
+        <select id="statusFilter" class="w-full p-2 bg-slate-800 rounded">
+          <option value="all">Todos los estados</option>
+          <option value="available">Disponible</option>
+          <option value="injured">Lesionado</option>
+          <option value="doubt">Duda</option>
+        </select>
       </div>
+
+      <hr class="my-4 border-slate-700"/>
+      <h3 class="font-semibold mb-2">Noticias / Lesiones</h3>
+      <div id="injuryFeed" class="space-y-3 text-sm text-slate-300">
+        <div class="p-2 bg-slate-800 rounded text-sm">
+          <div class="font-medium">Jugador de prueba — Lesión</div>
+          <div class="text-slate-400 text-xs">Rotura muscular, 3 semanas</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="lg:col-span-2">
+      <div id="playerList" class="glass p-3 rounded-lg overflow-hidden">
+        <div id="gridView" class="grid gap-3 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 mt-3"></div>
+      </div>
+    </section>
+  </main>
+
+  <div id="statModal" class="fixed inset-0 hidden items-center justify-center bg-black/50">
+    <div class="bg-slate-800 rounded-lg w-11/12 max-w-2xl p-4">
+      <div class="flex items-start justify-between">
+        <h3 id="modalName" class="text-xl font-bold">Nombre jugador</h3>
+        <button id="closeModal" class="text-slate-400">Cerrar ✕</button>
+      </div>
+      <div class="mt-3 text-sm text-slate-300 grid grid-cols-3 gap-3">
+        <div><strong>Puntos:</strong> <span id="modalPoints">0</span></div>
+        <div><strong>Minutos:</strong> <span id="modalMinutes">0</span></div>
+        <div><strong>Media Puntos:</strong> <span id="modalAvgPoints">0</span></div>
+        <div><strong>Goles:</strong> <span id="modalGoals">0</span></div>
+        <div><strong>Asistencias:</strong> <span id="modalAssists">0</span></div>
+        <div><strong>Tarjetas:</strong> <span id="modalCards">0</span></div>
+        <div><strong>Partidos:</strong> <span id="modalMatches">0</span></div>
+      </div>
+      <div class="mt-4 text-sm text-slate-400">Últimas actuaciones</div>
+      <div id="modalPerformances" class="mt-2 space-y-2 text-slate-300 text-xs"></div>
     </div>
   </div>
+</div>
 
-  <script>
-    const players = [
-      { id:1, name:'Iker Martínez', pos:'Portero', status:'available', performances:[
-        {points:10, minutes:90, goals:0, assists:0, cards:0, comment:'Buen partido'},
-        {points:12, minutes:90, goals:0, assists:0, cards:0, comment:''},
-        {points:10, minutes:90, goals:0, assists:0, cards:0, comment:'Excelente'}
-      ]},
-      { id:2, name:'Carlos Vega', pos:'Defensa', status:'doubt', performances:[
-        {points:6, minutes:90, goals:0, assists:0, cards:0, comment:''},
-        {points:5, minutes:90, goals:0, assists:0, cards:0, comment:''},
-        {points:7, minutes:90, goals:0, assists:0, cards:1, comment:''}
-      ]},
-      { id:3, name:'Luis Romero', pos:'Centrocampista', status:'available', performances:[
-        {points:14, minutes:90, goals:1, assists:1, cards:0, comment:'Muy activo'},
-        {points:15, minutes:90, goals:1, assists:2, cards:0, comment:'Gran asistencia'},
-        {points:16, minutes:90, goals:1, assists:1, cards:0, comment:''}
-      ]},
-      { id:4, name:'Jugador 4', pos:'Delantero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:5, name:'Jugador 5', pos:'Defensa', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:6, name:'Jugador 6', pos:'Centrocampista', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:7, name:'Jugador 7', pos:'Portero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:8, name:'Jugador 8', pos:'Delantero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:9, name:'Jugador 9', pos:'Defensa', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:10, name:'Jugador 10', pos:'Centrocampista', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:11, name:'Jugador 11', pos:'Delantero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:12, name:'Jugador 12', pos:'Defensa', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:13, name:'Jugador 13', pos:'Centrocampista', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:14, name:'Jugador 14', pos:'Portero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:15, name:'Jugador 15', pos:'Delantero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:16, name:'Jugador 16', pos:'Defensa', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:17, name:'Jugador 17', pos:'Centrocampista', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:18, name:'Jugador 18', pos:'Delantero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:19, name:'Jugador 19', pos:'Defensa', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:20, name:'Jugador 20', pos:'Centrocampista', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:21, name:'Jugador 21', pos:'Portero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:22, name:'Jugador 22', pos:'Delantero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:23, name:'Jugador 23', pos:'Defensa', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:24, name:'Jugador 24', pos:'Centrocampista', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
-      { id:25, name:'Jugador 25', pos:'Delantero', status:'available', performances:[
-        {points:0, minutes:0, goals:0, assists:0, cards:0, comment:''}]}
-    ];
+<script>
+const players = [
+  { id:1, name:'Jorge Agudo', pos:'Portero', status:'available', performances:[
+    {points:2, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:0, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
+    {points:5, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'}
+    {points:3, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
+  { id:2, name:'Carlos Vega', pos:'Defensa', status:'doubt', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:3, name:'Luis Romero', pos:'Centrocampista', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:4, name:'Jugador 4', pos:'Delantero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:5, name:'Jugador 5', pos:'Defensa', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:6, name:'Jugador 6', pos:'Centrocampista', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:7, name:'Jugador 7', pos:'Portero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:8, name:'Jugador 8', pos:'Delantero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:9, name:'Jugador 9', pos:'Defensa', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:10, name:'Jugador 10', pos:'Centrocampista', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:11, name:'Jugador 11', pos:'Delantero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:12, name:'Jugador 12', pos:'Defensa', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:13, name:'Jugador 13', pos:'Centrocampista', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:14, name:'Jugador 14', pos:'Portero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:15, name:'Jugador 15', pos:'Delantero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:16, name:'Jugador 16', pos:'Defensa', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:17, name:'Jugador 17', pos:'Centrocampista', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:18, name:'Jugador 18', pos:'Delantero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:19, name:'Jugador 19', pos:'Defensa', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:20, name:'Jugador 20', pos:'Centrocampista', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:21, name:'Jugador 21', pos:'Portero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:22, name:'Jugador 22', pos:'Delantero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:23, name:'Jugador 23', pos:'Defensa', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:24, name:'Jugador 24', pos:'Centrocampista', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]},
+  { id:25, name:'Jugador 25', pos:'Delantero', status:'available', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:''}]}
+];
 
-    function renderScoreBadge(score){
-      if(score<0) return `<span class='score-badge score-red'>${score}</span>`;
-      if(score===0) return `<span class='score-badge score-gray'>${score}</span>`;
-      if(score>=1 && score<=4) return `<span class='score-badge score-yellow'>${score}</span>`;
-      if(score>=5 && score<=9) return `<span class='score-badge score-green'>${score}</span>`;
-      return `<span class='score-badge score-blue'>${score}</span>`;
-    }
+// Funciones de render y modal como antes
+function renderScoreBadge(score){
+  if(score===null) return `<span class='score-badge score-null'>-</span>`;
+  if(score<0) return `<span class='score-badge score-red'>${score}</span>`;
+  if(score===0) return `<span class='score-badge score-gray'>${score}</span>`;
+  if(score>=1 && score<=4) return `<span class='score-badge score-yellow'>${score}</span>`;
+  if(score>=5 && score<=9) return `<span class='score-badge score-green'>${score}</span>`;
+  return `<span class='score-badge score-blue'>${score}</span>`;
+}
 
-    function renderStatusBadge(p){
-      if(p.status==='injured') return `<span class='injury'>Lesionado</span>`;
-      if(p.status==='doubt') return `<span class='doubt'>Duda</span>`;
-      return `<span class='available'>Disponible</span>`;
-    }
+function renderStatusBadge(p){
+  if(p.status==='injured') return `<span class='injury'>Lesionado</span>`;
+  if(p.status==='doubt') return `<span class='doubt'>Duda</span>`;
+  return `<span class='available'>Disponible</span>`;
+}
 
-    function calculateTotals(perfs){
-      return perfs.reduce((acc, p) => {
-        acc.points += p.points;
-        acc.minutes += p.minutes;
-        acc.goals += p.goals;
-        acc.assists += p.assists;
-        acc.cards += p.cards;
-        return acc;
-      }, {points:0, minutes:0, goals:0, assists:0, cards:0});
-    }
+function calculateTotals(perfs){
+  return perfs.reduce((acc,p)=>{
+    if(p.points!==null) acc.points+=p.points;
+    acc.minutes+=p.minutes;
+    acc.goals+=p.goals;
+    acc.assists+=p.assists;
+    acc.cards+=p.cards;
+    return acc;
+  }, {points:0, minutes:0, goals:0, assists:0, cards:0});
+}
 
-    function render(){
-      const grid=document.getElementById('gridView');
-      const posFilter=document.getElementById('positionFilter').value;
-      const statusFilter=document.getElementById('statusFilter').value;
-      const filtered=players.filter(p=>(posFilter==='all'||p.pos===posFilter)&&(statusFilter==='all'||(statusFilter==='available'?p.status==='available':statusFilter===p.status)));
-      grid.innerHTML='';
-      filtered.forEach(p=>{
-        const totalPoints = calculateTotals(p.performances).points;
-        const lastThree = p.performances.slice(-3).map(x=>x.points);
-        const card=document.createElement('div');
-        card.className='p-3 bg-slate-800 rounded-lg cursor-pointer';
-        card.setAttribute('data-id',p.id);
-        card.innerHTML=`<div class='flex items-start justify-between'>
-          <div><div class='text-sm text-slate-400'>${p.pos}</div><div class='font-semibold'>${p.name}</div></div>
-          <div class='text-right'><div class='text-xs text-slate-400'>Puntos</div><div class='text-lg font-bold'>${totalPoints}</div></div>
+function calculateAvg(perfs){
+  const valid = perfs.filter(p=>p.points!==null).map(p=>p.points);
+  if(valid.length===0) return 0;
+  return (valid.reduce((a,b)=>a+b,0)/valid.length).toFixed(2);
+}
+
+function render(){
+  const grid=document.getElementById('gridView');
+  const posFilter=document.getElementById('positionFilter').value;
+  const statusFilter=document.getElementById('statusFilter').value;
+  const filtered=players.filter(p=>(posFilter==='all'||p.pos===posFilter)&&(statusFilter==='all'||p.status===statusFilter));
+  grid.innerHTML='';
+  filtered.forEach(p=>{
+    const lastThree = p.performances.slice(-3);
+    const totalPoints = calculateTotals(p.performances).points;
+    const card=document.createElement('div');
+    card.className='p-3 bg-slate-800 rounded-lg cursor-pointer';
+    card.innerHTML=`
+      <div class='flex items-start justify-between'>
+        <div>
+          <div class='text-sm text-slate-400'>${p.pos}</div>
+          <div class='font-semibold'>${p.name}</div>
         </div>
-        <div class='mt-3'>${lastThree.map(renderScoreBadge).join(' ')}</div>
-        <div class='mt-2'>${renderStatusBadge(p)}</div>`;
-        card.onclick=()=>openModal(p.id);
-        grid.appendChild(card);
-      });
-      document.getElementById('playerCount').textContent=players.length;
-      document.getElementById('injuredCount').textContent=players.filter(p=>p.status==='injured').length;
-    }
+        <div class='text-right'>
+          <div class='text-xs text-slate-400'>Puntos</div>
+          <div class='text-lg font-bold'>${totalPoints}</div>
+        </div>
+      </div>
+      <div class='mt-3'>
+        ${lastThree.map(l=>renderScoreBadge(l.points)).join(' ')}
+      </div>
+      <div class='mt-2'>${renderStatusBadge(p)}</div>
+    `;
+    card.onclick=()=>openModal(p.id);
+    grid.appendChild(card);
+  });
+  document.getElementById('playerCount').textContent=players.length;
+  document.getElementById('injuredCount').textContent=players.filter(p=>p.status==='injured').length;
+}
 
-    function openModal(id){
-      const p=players.find(x=>x.id===id); if(!p) return;
-      const totals = calculateTotals(p.performances);
-      document.getElementById('modalName').textContent=p.name;
-      document.getElementById('modalPoints').textContent=totals.points;
-      document.getElementById('modalMinutes').textContent=totals.minutes;
-      document.getElementById('modalGoals').textContent=totals.goals;
-      document.getElementById('modalAssists').textContent=totals.assists;
-      document.getElementById('modalCards').textContent=totals.cards;
-      document.getElementById('modalMatches').textContent=p.performances.length;
+function openModal(id){
+  const p=players.find(x=>x.id===id); if(!p) return;
+  document.getElementById('modalName').textContent=p.name;
+  const totals = calculateTotals(p.performances);
+  document.getElementById('modalPoints').textContent = totals.points;
+  document.getElementById('modalMinutes').textContent = totals.minutes;
+  document.getElementById('modalGoals').textContent = totals.goals;
+  document.getElementById('modalAssists').textContent = totals.assists;
+  document.getElementById('modalCards').textContent = totals.cards;
+  document.getElementById('modalMatches').textContent = p.performances.length;
+  document.getElementById('modalAvgPoints').textContent = calculateAvg(p.performances);
 
-      const perf=document.getElementById('modalPerformances'); perf.innerHTML='';
-      p.performances.forEach((perfItem,i)=>{
-        const div=document.createElement('div');
-        div.className='p-2 bg-slate-700 rounded flex justify-between items-center';
-        div.innerHTML=`<span>Jornada ${i+1}: ${renderScoreBadge(perfItem.points)}</span><span>${perfItem.comment}</span>`;
-        perf.appendChild(div);
-      });
-      document.getElementById('statModal').classList.remove('hidden');
-      document.getElementById('statModal').classList.add('flex');
-    }
+  const perfDiv=document.getElementById('modalPerformances'); perfDiv.innerHTML='';
+  p.performances.forEach((perf,i)=>{
+    const div=document.createElement('div');
+    div.className='p-2 bg-slate-700 rounded flex justify-between items-center';
+    div.innerHTML=`<span>Jornada ${i+1}: ${renderScoreBadge(perf.points)}</span><span>${perf.comment}</span>`;
+    perfDiv.appendChild(div);
+  });
+  document.getElementById('statModal').classList.remove('hidden');
+  document.getElementById('statModal').classList.add('flex');
+}
 
-    document.getElementById('positionFilter').addEventListener('change',render);
-    document.getElementById('statusFilter').addEventListener('change',render);
-    document.getElementById('closeModal').addEventListener('click',()=>{
-      document.getElementById('statModal').classList.add('hidden');
-      document.getElementById('statModal').classList.remove('flex');
-    });
+document.getElementById('positionFilter').addEventListener('change',render);
+document.getElementById('statusFilter').addEventListener('change',render);
+document.getElementById('closeModal').addEventListener('click',()=>{
+  document.getElementById('statModal').classList.add('hidden');
+  document.getElementById('statModal').classList.remove('flex');
+});
 
-    render();
-  </script>
+render();
+</script>
 </body>
 </html>
+
