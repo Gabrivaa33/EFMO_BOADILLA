@@ -52,7 +52,7 @@
           <option value="Portero">Portero</option>
           <option value="Defensa">Defensa</option>
           <option value="Centrocampista">Centrocampista</option>
-          <option value="Delantero">Delantero</option>
+          <option value="Atacante">Atacante</option>
         </select>
 
         <select id="statusFilter" class="w-full p-2 bg-slate-800 rounded">
@@ -92,7 +92,7 @@
         <div><strong>Media Puntos:</strong> <span id="modalAvgPoints">0</span></div>
         <div><strong>Goles:</strong> <span id="modalGoals">0</span></div>
         <div><strong>Asistencias:</strong> <span id="modalAssists">0</span></div>
-        <div><strong>Tarjetas:</strong> <span id="modalCards">0</span></div>
+        <div><strong>Tarjetas amarillas:</strong> <span id="modalCards">0</span></div>
       </div>
       <div class="mt-4 text-sm text-slate-400">Últimas actuaciones</div>
       <div id="modalPerformances" class="mt-2 space-y-2 text-slate-300 text-xs"></div>
@@ -122,8 +122,8 @@ const players = [
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
   
-  { id:5, name:'Jugador 5', pos:'Defensa', status:'OK', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+  { id:5, name:'J. Martínez', pos:'Atacante', status:'OK', performances:[
+    {points:3, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,7)'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
   
@@ -217,12 +217,12 @@ const players = [
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
   
-  { id:24, name:'Jugador 24', pos:'Delantero', status:'OK', performances:[
+  { id:24, name:'Jugador 24', pos:'Atacante', status:'OK', performances:[
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
   
-  { id:25, name:'Jugador 25', pos:'Delantero', status:'OK', performances:[
+  { id:25, name:'Jugador 25', pos:'Atacante', status:'OK', performances:[
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]}
