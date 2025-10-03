@@ -127,8 +127,8 @@ const players = [
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
   
-  { id:6, name:'Jugador 6', pos:'Centrocampista', status:'OK', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+  { id:6, name:'Rafa Crooke', pos:'Defensa', status:'OK', performances:[
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
   
@@ -239,9 +239,9 @@ function renderScoreBadge(score){
 }
 
 function renderStatusBadge(p){
-  if(p.status==='injured') return `<span class='Lesionado'>Lesionado</span>`;
-  if(p.status==='doubt') return `<span class='Duda'>Duda</span>`;
-  return `<span class='available'>Disponible</span>`;
+  if(p.status==='Lesionado') return `<span class='Lesionado'>Lesionado</span>`;
+  if(p.status==='Duda') return `<span class='Duda'>Duda</span>`;
+  return `<span class='OK'>Disponible</span>`;
 }
 
 function calculateTotals(perfs){
