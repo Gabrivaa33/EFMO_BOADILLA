@@ -279,7 +279,16 @@ function render(){
     const lastThree = p.performances.slice(-3);
     const totalPoints = calculateTotals(p.performances).points;
     const card=document.createElement('div');
-    card.className='p-3 bg-slate-800 rounded-lg cursor-pointer';
+      let baseClass='p-3 rounded-lg cursor-pointer ';
+      if(p.status==='injured') {
+        baseClass+='bg-red-800';
+      } else if(p.status==='doubt') {
+        baseClass+='bg-yellow-600';
+      } else {
+        baseClass+='bg-slate-800';
+      }
+      card.className=baseClass;
+
     card.innerHTML=`
       <div class='flex items-start justify-between'>
         <div>
