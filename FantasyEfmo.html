@@ -116,7 +116,7 @@ const players = [
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
   
   { id:2, name:'Gabri', pos:'Portero', status:'OK', performances:[
-    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
+    {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]},
   
@@ -236,7 +236,7 @@ const players = [
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]}
 ];
 
-// Funciones de render y modal como antes
+// Render helpers
 function renderScoreBadge(score){
   if(score===null) return `<span class='score-badge score-null'>-</span>`;
   if(score<0) return `<span class='score-badge score-red'>${score}</span>`;
@@ -247,7 +247,7 @@ function renderScoreBadge(score){
 }
 
 function renderStatusBadge(p){
-  if(p.status==='Lesionado') return `<span class='injured'>Lesionado</span>`;
+  if(p.status==='Lesionado') return `<span class='injury'>Lesionado</span>`;
   if(p.status==='Duda') return `<span class='doubt'>Duda</span>`;
   return `<span class='available'>Disponible</span>`;
 }
@@ -275,19 +275,19 @@ function render(){
   const statusFilter=document.getElementById('statusFilter').value;
   const filtered=players.filter(p=>(posFilter==='all'||p.pos===posFilter)&&(statusFilter==='all'||p.status===statusFilter));
   grid.innerHTML='';
+
   filtered.forEach(p=>{
     const lastThree = p.performances.slice(-3);
     const totalPoints = calculateTotals(p.performances).points;
-    const card=document.createElement('div');
-      let bgClass = '';
-      if (p.status === 'OK') bgClass = 'bg-green-800';
-      else if (p.status === 'Lesionado') bgClass = 'bg-red-800';
-      else if (p.status === 'Duda') bgClass = 'bg-yellow-600';
-      else bgClass = 'bg-slate-800'; // fallback por si acaso
 
-const card = document.createElement('div');
-card.className = `p-3 ${bgClass} rounded-lg cursor-pointer`;
+    let bgClass = '';
+    if (p.status === 'OK') bgClass = 'bg-green-800';
+    else if (p.status === 'Lesionado') bgClass = 'bg-red-800';
+    else if (p.status === 'Duda') bgClass = 'bg-yellow-600';
+    else bgClass = 'bg-slate-800';
 
+    const card = document.createElement('div');
+    card.className = `p-3 ${bgClass} rounded-lg cursor-pointer`;
 
     card.innerHTML=`
       <div class='flex items-start justify-between'>
@@ -308,10 +308,10 @@ card.className = `p-3 ${bgClass} rounded-lg cursor-pointer`;
     card.onclick=()=>openModal(p.id);
     grid.appendChild(card);
   });
+
   document.getElementById('playerCount').textContent=players.length;
   document.getElementById('injuredCount').textContent =
-  players.filter(p => renderStatusBadge(p).includes("Lesionado")).length;
-
+    players.filter(p => p.status === "Lesionado").length;
 }
 
 function openModal(id){
@@ -347,4 +347,3 @@ render();
 </script>
 </body>
 </html>
-
