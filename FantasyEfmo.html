@@ -309,7 +309,9 @@ function render(){
     grid.appendChild(card);
   });
   document.getElementById('playerCount').textContent=players.length;
-  document.getElementById('injuredCount').textContent=players.filter(p=>p.status==='injured').length;
+  document.getElementById('injuredCount').textContent =
+  players.filter(p => renderStatusBadge(p).includes("Lesionado")).length;
+
 }
 
 function openModal(id){
