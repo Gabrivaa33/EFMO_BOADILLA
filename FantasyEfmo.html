@@ -239,9 +239,9 @@ function renderScoreBadge(score){
 }
 
 function renderStatusBadge(p){
-  if(p.status==='Lesionado') return `<span class='Lesionado'>Lesionado</span>`;
-  if(p.status==='Duda') return `<span class='Duda'>Duda</span>`;
-  return `<span class='OK'>Disponible</span>`;
+  if(p.status==='Lesionado') return `<span class='injured'>Lesionado</span>`;
+  if(p.status==='Duda') return `<span class='doubt'>Duda</span>`;
+  return `<span class='available'>Disponible</span>`;
 }
 
 function calculateTotals(perfs){
