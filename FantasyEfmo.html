@@ -233,7 +233,6 @@ function openModal(id){
   document.getElementById('modalGoals').textContent = totals.goals;
   document.getElementById('modalAssists').textContent = totals.assists;
   document.getElementById('modalCards').textContent = totals.cards;
-  document.getElementById('modalMatches').textContent = p.performances.length;
   document.getElementById('modalAvgPoints').textContent = calculateAvg(p.performances);
 
   const perfDiv=document.getElementById('modalPerformances'); perfDiv.innerHTML='';
