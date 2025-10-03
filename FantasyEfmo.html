@@ -279,15 +279,15 @@ function render(){
     const lastThree = p.performances.slice(-3);
     const totalPoints = calculateTotals(p.performances).points;
     const card=document.createElement('div');
-      let baseClass='p-3 rounded-lg cursor-pointer ';
-      if(p.status==='injured') {
-        baseClass+='bg-red-800';
-      } else if(p.status==='doubt') {
-        baseClass+='bg-yellow-600';
-      } else {
-        baseClass+='bg-slate-800';
-      }
-      card.className=baseClass;
+      let bgClass = '';
+      if (p.status === 'OK') bgClass = 'bg-green-800';
+      else if (p.status === 'Lesionado') bgClass = 'bg-red-800';
+      else if (p.status === 'Duda') bgClass = 'bg-yellow-600';
+      else bgClass = 'bg-slate-800'; // fallback por si acaso
+
+const card = document.createElement('div');
+card.className = `p-3 ${bgClass} rounded-lg cursor-pointer`;
+
 
     card.innerHTML=`
       <div class='flex items-start justify-between'>
