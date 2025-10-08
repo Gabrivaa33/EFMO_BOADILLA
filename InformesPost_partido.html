@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Informes Post-Partido 25/26</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+
+  <style>
+    /* Reset básico */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: linear-gradient(to right, #e0f7fa, #ffffff);
+      color: #333;
+      padding: 30px;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 3rem;
+      color: #00796b;
+      margin-bottom: 50px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      animation: fadeIn 1.5s ease-in-out;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Grid para jornadas */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      justify-items: center;
+    }
+
+    /* Tarjetas de jornada */
+    .card {
+      background: #ffffff;
+      border-radius: 15px;
+      box-shadow: 0 6px 15px rgba(0,0,0,0.1);
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      text-align: center;
+      width: 100%;
+      max-width: 500px;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 25px rgba(0,0,0,0.2);
+    }
+
+    .card img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-bottom: 5px solid #00796b;
+    }
+
+    .card a {
+      text-decoration: none;
+      color: #00796b;
+      display: block;
+      padding: 15px;
+      font-weight: bold;
+      font-size: 1.2rem;
+    }
+
+    .card a:hover {
+      text-decoration: underline;
+    }
+
+    @media (max-width: 768px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Informes Post-Partido 25/26</h1>
+
+  <div class="grid">
+    <!-- Ejemplo de jornada -->
+    <div class="card">
+      <a href="https://docs.google.com/document/d/1hMSLiXhlGXMEVsHO0jyivQy9-d58nVq0K5ue4hCGWl8/edit?usp=sharing" target="_blank">
+        <img src="Jornada1.jpg" alt="Jornada 1">
+        Jornada 1
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://docs.google.com/document/d/1VYid3BT4yq0PUi31oBOSuoZFteSaacPbBb6GNGI_V14/edit?usp=sharing" target="_blank">
+        <img src="Jornada2.jpg" alt="Jornada 2">
+        Jornada 2
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="https://docs.google.com/document/d/1XX0JFD742j8KjX7tQ4rwxBj6aEYDFII7ecaEPn_T-CY/edit?usp=sharing" target="_blank">
+        <img src="Jornada3.jpg" alt="Jornada 3">
+        Jornada 3
+      </a>
+    </div>
+
+    <div class="card">
+      <a href="#" target="_blank">
+        <img src="Jornada4.jpg" alt="Jornada 4">
+        Jornada 4
+      </a>
+    </div>
+
+    <!-- Agrega más jornadas aquí siguiendo el mismo patrón -->
+  </div>
+</body>
+</html>
