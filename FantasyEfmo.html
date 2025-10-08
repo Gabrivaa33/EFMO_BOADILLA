@@ -256,6 +256,14 @@ const players = [
     {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}]}
 ];
 
+// 📰 Noticias del equipo
+const news = [
+  { playerId: 1, title: 'Lesión', text: 'Molestias en el gemelo, duda para la próxima jornada' },
+  { playerId: 3, title: 'Gran actuación', text: 'Autor de un gol y una asistencia la última jornada' },
+  { playerId: null, title: 'Equipo', text: 'El próximo partido será contra el C.D. Torrelodones (Jornada 6)' }
+];
+
+  
 // Render helpers
 function renderScoreBadge(score){
   if(score===null) return `<span class='score-badge score-null'>-</span>`;
@@ -288,7 +296,23 @@ function calculateAvg(perfs){
   if(valid.length===0) return 0;
   return (valid.reduce((a,b)=>a+b,0)/valid.length).toFixed(2);
 }
+  
+function renderInjuryFeed(){
+  const feed = document.getElementById('injuryFeed');
+  feed.innerHTML = '';
 
+  news.forEach(n => {
+    const playerName = n.playerId ? players.find(p => p.id === n.playerId)?.name || '' : '';
+    const div = document.createElement('div');
+    div.className = 'p-2 bg-slate-800 rounded text-sm';
+    div.innerHTML = `
+      <div class="font-medium">${n.title}${playerName ? ': ' + playerName : ''}</div>
+      <div class="text-slate-400 text-xs">${n.text}</div>
+    `;
+    feed.appendChild(div);
+  });
+}
+  
 function render(){
   const grid=document.getElementById('gridView');
   const posFilter=document.getElementById('positionFilter').value;
@@ -332,6 +356,9 @@ function render(){
   document.getElementById('playerCount').textContent=players.length;
   document.getElementById('injuredCount').textContent =
     players.filter(p => p.status === "Lesionado").length;
+
+renderInjuryFeed(); // 🔔 Actualiza las noticias
+  
 }
 
 function openModal(id){
