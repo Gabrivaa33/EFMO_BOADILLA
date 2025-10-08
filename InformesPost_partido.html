@@ -7,62 +7,71 @@
 <style>
   body {
     margin: 0;
-    font-family: 'Segoe UI', sans-serif;
-    background: #f0f4f8;
-    color: #fff;
-    overflow-x: hidden;
+    font-family: 'Poppins', sans-serif;
+    background: #f2f2f2;
+    color: #333;
   }
 
   h1 {
     text-align: center;
     font-size: 2.5rem;
-    margin: 20px 0;
-    color: #0d47a1;
-    letter-spacing: 1px;
+    margin: 30px 0;
+    color: #1b5e20;
+    letter-spacing: 2px;
   }
 
   .cards-container {
     display: flex;
     flex-direction: column;
-    gap: 40px;
+    gap: 25px;
     padding: 20px;
   }
 
   .card {
     position: relative;
-    border-radius: 20px;
+    border-radius: 15px;
     overflow: hidden;
-    height: 60vh;
-    min-height: 300px;
-    display: flex;
-    align-items: flex-end;
+    height: 250px;
+    min-height: 200px;
     background-size: cover;
     background-position: center;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-    transition: transform 0.3s;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    display: flex;
+    align-items: flex-end;
+    transition: transform 0.3s ease;
+  }
+
+  .card::after {
+    content: '';
+    position: absolute;
+    left: 0; bottom: 0; right: 0; top: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
   }
 
   .card-content {
+    position: relative;
     width: 100%;
-    padding: 20px;
-    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     text-align: center;
+    padding: 15px;
+    z-index: 2;
   }
 
   .card-content a {
-    color: #ffeb3b;
-    font-weight: bold;
-    font-size: 1.5rem;
-    text-decoration: none;
     display: inline-block;
-    margin-top: 10px;
+    text-decoration: none;
+    color: #ffeb3b;
+    font-weight: 700;
+    font-size: 1.5rem;
+    padding: 5px 10px;
+    border-radius: 5px;
+    background: rgba(0,0,0,0.3);
   }
 
   .card-content a:hover {
-    text-decoration: underline;
+    background: rgba(0,0,0,0.5);
   }
 
-  @media (min-width: 600px) {
+  @media(min-width: 600px) {
     .cards-container {
       flex-direction: row;
       flex-wrap: wrap;
@@ -71,14 +80,14 @@
     }
     .card {
       width: 45%;
-      height: 300px;
+      height: 250px;
     }
   }
 
-  @media (min-width: 900px) {
+  @media(min-width: 900px) {
     .card {
       width: 30%;
-      height: 350px;
+      height: 300px;
     }
   }
 </style>
@@ -91,19 +100,25 @@
 
   <div class="card" style="background-image: url('Jornada1.jpg')">
     <div class="card-content">
-      <a href="https://docs.google.com/document/d/1hMSLiXhlGXMEVsHO0jyivQy9-d58nVq0K5ue4hCGWl8/edit?usp=sharing" target="_blank">Jornada 1</a>
+      <a href="https://docs.google.com/document/d/1hMSLiXhlGXMEVsHO0jyivQy9-d58nVq0K5ue4hCGWl8/edit?usp=sharing" target="_blank">
+        Jornada 1
+      </a>
     </div>
   </div>
 
   <div class="card" style="background-image: url('Jornada2.jpg')">
     <div class="card-content">
-      <a href="https://docs.google.com/document/d/1VYid3BT4yq0PUi31oBOSuoZFteSaacPbBb6GNGI_V14/edit?usp=sharing" target="_blank">Jornada 2</a>
+      <a href="https://docs.google.com/document/d/1VYid3BT4yq0PUi31oBOSuoZFteSaacPbBb6GNGI_V14/edit?usp=sharing" target="_blank">
+        Jornada 2
+      </a>
     </div>
   </div>
 
   <div class="card" style="background-image: url('Jornada3.jpg')">
     <div class="card-content">
-      <a href="https://docs.google.com/document/d/1XX0JFD742j8KjX7tQ4rwxBj6aEYDFII7ecaEPn_T-CY/edit?usp=sharing" target="_blank">Jornada 3</a>
+      <a href="https://docs.google.com/document/d/1XX0JFD742j8KjX7tQ4rwxBj6aEYDFII7ecaEPn_T-CY/edit?usp=sharing" target="_blank">
+        Jornada 3
+      </a>
     </div>
   </div>
 
@@ -113,7 +128,7 @@
     </div>
   </div>
 
-  <!-- Continúa con todas las jornadas -->
+  <!-- Repite para todas las jornadas -->
 </div>
 
 </body>
