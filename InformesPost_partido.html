@@ -6,109 +6,80 @@
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <style>
   body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(180deg, #e0f7fa, #ffffff);
     margin: 0;
-    padding: 0;
-    color: #333;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f0f4f8;
+    color: #fff;
+    overflow-x: hidden;
   }
 
   h1 {
     text-align: center;
     font-size: 2.5rem;
-    color: #00796b;
     margin: 20px 0;
+    color: #0d47a1;
     letter-spacing: 1px;
   }
 
-  .timeline {
-    position: relative;
-    max-width: 800px;
-    margin: 0 auto;
-    padding: 40px 10px;
-  }
-
-  /* Línea central */
-  .timeline::after {
-    content: '';
-    position: absolute;
-    width: 4px;
-    background-color: #00796b;
-    top: 0;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
-  }
-
-  .entry {
-    position: relative;
-    width: 90%;
+  .cards-container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
     padding: 20px;
-    background: #fff;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    margin: 20px 0;
-    animation: slideIn 0.8s ease forwards;
   }
 
-  .entry img {
+  .card {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    height: 60vh;
+    min-height: 300px;
+    display: flex;
+    align-items: flex-end;
+    background-size: cover;
+    background-position: center;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+    transition: transform 0.3s;
+  }
+
+  .card-content {
     width: 100%;
-    border-radius: 8px;
-    display: block;
-    margin-bottom: 10px;
-    border-bottom: 4px solid #00796b;
-  }
-
-  .entry a {
-    display: block;
-    text-decoration: none;
-    color: #00796b;
-    font-weight: bold;
+    padding: 20px;
+    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
     text-align: center;
-    font-size: 1.1rem;
-    padding: 10px 0;
   }
 
-  /* Alternar lados */
-  .entry.left {
-    left: 0;
-    transform: translateX(-50px);
+  .card-content a {
+    color: #ffeb3b;
+    font-weight: bold;
+    font-size: 1.5rem;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 10px;
   }
 
-  .entry.right {
-    left: 50%;
-    transform: translateX(50px);
+  .card-content a:hover {
+    text-decoration: underline;
   }
 
-  @keyframes slideIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-  }
-
-  /* Punto en la línea */
-  .entry::before {
-    content: '';
-    position: absolute;
-    width: 16px;
-    height: 16px;
-    background-color: #00796b;
-    border-radius: 50%;
-    top: 20px;
-    left: -8px;
-  }
-
-  .entry.right::before {
-    left: -8px; /* se ajusta para lado derecho */
-  }
-
-  @media (max-width: 768px) {
-    .entry, .entry.right, .entry.left {
-      left: 0 !important;
-      transform: translateX(0);
-      width: 90%;
+  @media (min-width: 600px) {
+    .cards-container {
+      flex-direction: row;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 20px;
     }
-    .timeline::after { left: 20px; }
-    .entry::before { left: -12px; }
+    .card {
+      width: 45%;
+      height: 300px;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .card {
+      width: 30%;
+      height: 350px;
+    }
   }
 </style>
 </head>
@@ -116,38 +87,33 @@
 
 <h1>Informes Post-Partido 25/26</h1>
 
-<div class="timeline">
+<div class="cards-container">
 
-  <div class="entry left">
-    <a href="https://docs.google.com/document/d/1hMSLiXhlGXMEVsHO0jyivQy9-d58nVq0K5ue4hCGWl8/edit?usp=sharing" target="_blank">
-      <img src="Jornada1.jpg" alt="Jornada 1">
-      Jornada 1
-    </a>
+  <div class="card" style="background-image: url('Jornada1.jpg')">
+    <div class="card-content">
+      <a href="https://docs.google.com/document/d/1hMSLiXhlGXMEVsHO0jyivQy9-d58nVq0K5ue4hCGWl8/edit?usp=sharing" target="_blank">Jornada 1</a>
+    </div>
   </div>
 
-  <div class="entry right">
-    <a href="https://docs.google.com/document/d/1VYid3BT4yq0PUi31oBOSuoZFteSaacPbBb6GNGI_V14/edit?usp=sharing" target="_blank">
-      <img src="Jornada2.jpg" alt="Jornada 2">
-      Jornada 2
-    </a>
+  <div class="card" style="background-image: url('Jornada2.jpg')">
+    <div class="card-content">
+      <a href="https://docs.google.com/document/d/1VYid3BT4yq0PUi31oBOSuoZFteSaacPbBb6GNGI_V14/edit?usp=sharing" target="_blank">Jornada 2</a>
+    </div>
   </div>
 
-  <div class="entry left">
-    <a href="https://docs.google.com/document/d/1XX0JFD742j8KjX7tQ4rwxBj6aEYDFII7ecaEPn_T-CY/edit?usp=sharing" target="_blank">
-      <img src="Jornada3.jpg" alt="Jornada 3">
-      Jornada 3
-    </a>
+  <div class="card" style="background-image: url('Jornada3.jpg')">
+    <div class="card-content">
+      <a href="https://docs.google.com/document/d/1XX0JFD742j8KjX7tQ4rwxBj6aEYDFII7ecaEPn_T-CY/edit?usp=sharing" target="_blank">Jornada 3</a>
+    </div>
   </div>
 
-  <div class="entry right">
-    <a href="#" target="_blank">
-      <img src="Jornada4.jpg" alt="Jornada 4">
-      Jornada 4
-    </a>
+  <div class="card" style="background-image: url('Jornada4.jpg')">
+    <div class="card-content">
+      <a href="#" target="_blank">Jornada 4</a>
+    </div>
   </div>
 
   <!-- Continúa con todas las jornadas -->
-  
 </div>
 
 </body>
