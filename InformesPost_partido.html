@@ -5,131 +5,100 @@
 <title>Informes Post-Partido 25/26</title>
 <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
 <style>
-  body {
+  html, body {
     margin: 0;
+    padding: 0;
+    height: 100%;
     font-family: 'Poppins', sans-serif;
-    background: #f2f2f2;
-    color: #333;
+    overflow-x: hidden;
   }
 
-  h1 {
-    text-align: center;
-    font-size: 2.5rem;
-    margin: 30px 0;
-    color: #1b5e20;
-    letter-spacing: 2px;
+  body {
+    scroll-snap-type: y mandatory;
+    overflow-y: scroll;
   }
 
-  .cards-container {
+  .slide {
+    position: relative;
+    height: 100vh;
+    width: 100%;
+    scroll-snap-align: start;
     display: flex;
-    flex-direction: column;
-    gap: 25px;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+  }
+
+  .overlay {
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: linear-gradient(to top, rgba(0,0,0,0.6), transparent 60%);
+  }
+
+  .content {
+    position: relative;
+    text-align: center;
+    color: #fff;
+    z-index: 2;
     padding: 20px;
   }
 
-  .card {
-    position: relative;
-    border-radius: 15px;
-    overflow: hidden;
-    height: 250px;
-    min-height: 200px;
-    background-size: cover;
-    background-position: center;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
-    display: flex;
-    align-items: flex-end;
-    transition: transform 0.3s ease;
+  .content h2 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 10px rgba(0,0,0,0.7);
   }
 
-  .card::after {
-    content: '';
-    position: absolute;
-    left: 0; bottom: 0; right: 0; top: 0;
-    background: linear-gradient(to top, rgba(0,0,0,0.5), transparent 60%);
-  }
-
-  .card-content {
-    position: relative;
-    width: 100%;
-    text-align: center;
-    padding: 15px;
-    z-index: 2;
-  }
-
-  .card-content a {
-    display: inline-block;
+  .content a {
     text-decoration: none;
-    color: #ffeb3b;
-    font-weight: 700;
-    font-size: 1.5rem;
-    padding: 5px 10px;
-    border-radius: 5px;
-    background: rgba(0,0,0,0.3);
+    padding: 12px 25px;
+    background-color: #ffeb3b;
+    color: #000;
+    font-weight: bold;
+    font-size: 1.3rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transition: background 0.3s;
   }
 
-  .card-content a:hover {
-    background: rgba(0,0,0,0.5);
+  .content a:hover {
+    background-color: #fdd835;
   }
 
-  @media(min-width: 600px) {
-    .cards-container {
-      flex-direction: row;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 20px;
-    }
-    .card {
-      width: 45%;
-      height: 250px;
-    }
-  }
-
-  @media(min-width: 900px) {
-    .card {
-      width: 30%;
-      height: 300px;
-    }
+  /* Para scroll suave */
+  html {
+    scroll-behavior: smooth;
   }
 </style>
 </head>
 <body>
 
-<h1>Informes Post-Partido 25/26</h1>
-
-<div class="cards-container">
-
-  <div class="card" style="background-image: url('Jornada1.jpg')">
-    <div class="card-content">
-      <a href="https://docs.google.com/document/d/1hMSLiXhlGXMEVsHO0jyivQy9-d58nVq0K5ue4hCGWl8/edit?usp=sharing" target="_blank">
-        Jornada 1
-      </a>
-    </div>
+<div class="slide" style="background-image:url('Jornada1.jpg')">
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>Jornada 1</h2>
+    <a href="https://docs.google.com/document/d/1hMSLiXhlGXMEVsHO0jyivQy9-d58nVq0K5ue4hCGWl8/edit?usp=sharing" target="_blank">Ver Informe</a>
   </div>
-
-  <div class="card" style="background-image: url('Jornada2.jpg')">
-    <div class="card-content">
-      <a href="https://docs.google.com/document/d/1VYid3BT4yq0PUi31oBOSuoZFteSaacPbBb6GNGI_V14/edit?usp=sharing" target="_blank">
-        Jornada 2
-      </a>
-    </div>
-  </div>
-
-  <div class="card" style="background-image: url('Jornada3.jpg')">
-    <div class="card-content">
-      <a href="https://docs.google.com/document/d/1XX0JFD742j8KjX7tQ4rwxBj6aEYDFII7ecaEPn_T-CY/edit?usp=sharing" target="_blank">
-        Jornada 3
-      </a>
-    </div>
-  </div>
-
-  <div class="card" style="background-image: url('Jornada4.jpg')">
-    <div class="card-content">
-      <a href="#" target="_blank">Jornada 4</a>
-    </div>
-  </div>
-
-  <!-- Repite para todas las jornadas -->
 </div>
+
+<div class="slide" style="background-image:url('Jornada2.jpg')">
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>Jornada 2</h2>
+    <a href="https://docs.google.com/document/d/1VYid3BT4yq0PUi31oBOSuoZFteSaacPbBb6GNGI_V14/edit?usp=sharing" target="_blank">Ver Informe</a>
+  </div>
+</div>
+
+<div class="slide" style="background-image:url('Jornada3.jpg')">
+  <div class="overlay"></div>
+  <div class="content">
+    <h2>Jornada 3</h2>
+    <a href="https://docs.google.com/document/d/1XX0JFD742j8KjX7tQ4rwxBj6aEYDFII7ecaEPn_T-CY/edit?usp=sharing" target="_blank">Ver Informe</a>
+  </div>
+</div>
+
+<!-- Repite para todas las jornadas -->
 
 </body>
 </html>
