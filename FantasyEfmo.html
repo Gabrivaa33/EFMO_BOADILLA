@@ -258,11 +258,15 @@ const players = [
 
 // 📰 Noticias del equipo
 const news = [
-  { playerId: 1, title: 'Lesión', text: 'Molestias en el gemelo, duda para la próxima jornada' },
-  { playerId: 3, title: 'Gran actuación', text: 'Autor de un gol y una asistencia la última jornada' },
-  { playerId: null, title: 'Equipo', text: 'El próximo partido será contra el C.D. Torrelodones (Jornada 6)' }
+  { playerId: 9, title: 'Duda', text: 'Golpe en el talón, 2-4 días' },
+  { playerId: 1, title: 'Lesión', text: 'Rotura fibrilar en el cuádriceps, 2-4 semanas' },
+  { playerId: null, title: 'Jornada 2', text: 'E.F.M.O. Boadilla 'B' 1-3 CDE F.B. Dptvo. Torrelodones' },
+  { playerId: 17, title: 'Lesión', text: 'Fractura de muñeca, 3-6 semanas' },
+  { playerId: 2, title: 'Duda', text: 'Enfermedad, 2-7 días' },
+  { playerId: null, title: 'Jornada 1', text: 'Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'' },
+  { playerId: 19, title: 'Lesión', text: 'Desconocido, 2 semanas' },
+  { playerId: 21, title: 'Lesión', text: 'Desconocido, baja indeterminada' }
 ];
-
   
 // Render helpers
 function renderScoreBadge(score){
@@ -379,7 +383,7 @@ function openModal(id){
   if (playerNews) {
     const newsDiv = document.createElement('div');
     newsDiv.className = 'p-2 bg-slate-700 rounded text-xs text-red-300 italic mb-2';
-    newsDiv.innerHTML = `🩺 <strong>${playerNews.title}:</strong> ${playerNews.text}`;
+    newsDiv.innerHTML = `<strong>${playerNews.title}:</strong> ${playerNews.text}`;
     perfDiv.appendChild(newsDiv);
   }
 
