@@ -273,12 +273,14 @@ function renderInjuryFeed(){
   const feed = document.getElementById('injuryFeed');
   feed.innerHTML = '';
 
-  news.forEach(n => {
-    const playerName = n.playerId ? players.find(p => p.id === n.playerId)?.name || '' : '';
+  // Solo mostrar noticias generales (sin jugador vinculado)
+  const generalNews = news.filter(n => n.playerId === null);
+
+  generalNews.forEach(n => {
     const div = document.createElement('div');
     div.className = 'p-2 bg-slate-800 rounded text-sm';
     div.innerHTML = `
-      <div class="font-medium">${n.title}${playerName ? ': ' + playerName : ''}</div>
+      <div class="font-medium">${n.title}</div>
       <div class="text-slate-400 text-xs">${n.text}</div>
     `;
     feed.appendChild(div);
