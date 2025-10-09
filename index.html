@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>E.F.M.O. Boadilla 'B'</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Trebuchet MS", sans-serif;
+      background: linear-gradient(160deg, #0d0d1a, #1a1a33);
+      color: #00fff7;
+    }
+
+    .title-container {
+      width: fit-content;
+      margin: 30px auto;
+      padding: 20px 40px;
+      border-radius: 20px;
+      /* Nuevo degradado azul-cian → morado */
+      background: linear-gradient(90deg, #00d4ff, #a200ff);
+      box-shadow: 0 0 20px rgba(0,212,255,0.6), 0 0 30px rgba(162,0,255,0.4);
+    }
+
+    .title {
+      font-size: 3em;
+      font-family: Oswald, fantasy;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    /* Colores de las letras originales */
+    .title span:nth-child(odd) { color: hsl(0,90%,55%); }
+    .title span:nth-child(even) { color: white; }
+
+    .panel-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .panel {
+      background: linear-gradient(145deg, #11112a, #1b1b4d);
+      border-radius: 25px;
+      padding: 30px 20px;
+      text-align: center;
+      box-shadow: 0 10px 25px rgba(0,255,255,0.2);
+      text-decoration: none;
+    }
+
+    .panel-icon {
+      font-size: 60px;
+      margin-bottom: 15px;
+      color: #00ff99;
+    }
+
+    .panel-title {
+      font-size: 1.2em;
+      font-weight: bold;
+      color: #00fff7;
+      text-shadow: 0 0 5px #00fff7;
+      font-family: "Trebuchet MS", sans-serif;
+    }
+
+    footer {
+      text-align: center;
+      padding: 30px 20px;
+      color: #00fff7;
+      font-size: 1.2em;          /* mismo tamaño que paneles */
+      font-weight: bold;          /* negrita como paneles */
+      font-family: "Trebuchet MS", sans-serif; /* igual que paneles */
+    }
+
+    @media(max-width: 500px){
+      .panel { padding: 25px 10px; }
+      .panel-icon { font-size: 50px; }
+    }
+  </style>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+<div class="title-container">
+  <h1 class="title">
+    <span>E.</span><span>F.</span><span>M.</span><span>O.</span>
+    <span>B</span><span>o</span><span>a</span><span>d</span><span>i</span><span>l</span><span>l</span><span>a</span>
+    <span>'</span><span>B</span><span>'</span>
+  </h1>
+</div>
+
+<div class="panel-container">
+  <a href="FantasyEfmo.html" target="_blank" class="panel">
+    <div class="panel-icon"><i class="fas fa-futbol"></i></div>
+    <div class="panel-title">Fantasy EFMO</div>
+  </a>
+
+  <a href="InformesPost_partido.html" target="_blank" class="panel">
+    <div class="panel-icon"><i class="fas fa-file-alt"></i></div>
+    <div class="panel-title">Informes post-partido</div>
+  </a>
+
+  <a href="StatsTemp25-26.html" target="_blank" class="panel">
+    <div class="panel-icon"><i class="fas fa-chart-line"></i></div>
+    <div class="panel-title">Stats Temp. 25/26</div>
+  </a>
+
+  <a href="Encuestas_MVP2526.html" target="_blank" class="panel">
+    <div class="panel-icon"><i class="fas fa-star"></i></div>
+    <div class="panel-title">Encuestas MVP 25/26</div>
+  </a>
+
+  <a href="https://sofifa.com/user/36295111/players" target="_blank" class="panel">
+    <div class="panel-icon"><i class="fas fa-users"></i></div>
+    <div class="panel-title">Jugadores EA Sports FC 26</div>
+  </a>
+
+  <a href="Simbolog%C3%ADaYSistemaDePuntuaci%C3%B3n.html" target="_blank" class="panel">
+    <div class="panel-icon"><i class="fas fa-clipboard-list"></i></div>
+    <div class="panel-title">Simbología y sistema de puntuación</div>
+  </a>
+</div>
+
+<footer>
+  Creador de la página web: <br> Gabriel Veiga Álvarez
+</footer>
+</body>
+</html>
