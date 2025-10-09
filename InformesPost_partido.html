@@ -11,7 +11,6 @@
   :root {
     --azul: #00b4d8;
     --azul-oscuro: #03045e;
-    --gris: #f2f2f2;
   }
 
   * { box-sizing: border-box; }
@@ -30,7 +29,7 @@
   }
 
   header h1 {
-    font-size: 2.6rem;
+    font-size: 2.4rem;
     letter-spacing: 2px;
     text-transform: uppercase;
     font-weight: 900;
@@ -67,7 +66,7 @@
     display: flex;
     align-items: center;
     justify-content: flex-start;
-    background: rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.08);
     border-radius: 20px;
     backdrop-filter: blur(6px);
     box-shadow: 0 10px 40px rgba(0,0,0,0.4);
@@ -95,14 +94,8 @@
   .info h2 {
     font-size: 1.8rem;
     font-weight: 900;
-    margin-bottom: 10px;
-    color: var(--azul);
-  }
-
-  .info p {
-    font-size: 1rem;
-    color: #e0e0e0;
     margin-bottom: 15px;
+    color: var(--azul);
   }
 
   .info a {
@@ -120,17 +113,36 @@
     color: var(--azul-oscuro);
   }
 
+  /* ==== RESPONSIVE ==== */
   @media (max-width: 750px) {
+    .timeline::before {
+      display: none;
+    }
+
     .card {
       flex-direction: column;
       transform: none;
+      width: 100%;
+      max-width: 100%;
+      border-radius: 16px;
     }
-    .card img, .info {
+
+    .card img {
+      width: 100%;
+      height: auto;
+      transform: none;
+      border-radius: 16px 16px 0 0;
+    }
+
+    .info {
       width: 100%;
       transform: none;
+      text-align: center;
+      padding: 20px;
     }
-    .timeline::before {
-      left: 20px;
+
+    .info h2 {
+      font-size: 1.5rem;
     }
   }
 </style>
@@ -179,3 +191,4 @@
 
 </body>
 </html>
+
