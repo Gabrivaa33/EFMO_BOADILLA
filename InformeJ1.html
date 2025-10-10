@@ -503,14 +503,14 @@
   <a href="InformesPost_partido.html" class="btn-volver">← Volver a Todos los Informes</a>
 
   <div class="header-informe">
-    <h1>Jornada 4 - Análisis Completo</h1>
-    <div class="resultado-principal">3 - 1</div>
+    <h1>Informe Jornada 1</h1>
+    <div class="resultado-principal">Rayo Majadahonda-Internacional 'B' 1-0 EFMO Boadilla 'B'</div>
   </div>
 
   <!-- Alineación Probable -->
   <div class="seccion">
-    <h3>⚽ Alineación Probable</h3>
-    <div class="formacion-titulo">Formación: 4-3-3</div>
+    <h3>Alineación Probable</h3>
+    <div class="formacion-titulo">4-3-3</div>
 
     <div class="field-container-responsive">
       <div class="field-responsive">
@@ -526,29 +526,29 @@
       // Datos de los jugadores organizados por posición - ALINEACIÓN PROBABLE
       const playersProbable = {
         'portero': [
-          { number: '1', name: 'David López' }
+          { number: '13', name: 'Álvaro' }
         ],
         'defensas': [
-          { number: '2', name: 'Carlos Martínez' },
-          { number: '3', name: 'Alejandro Gómez' },
-          { number: '4', name: 'Miguel Torres' },
-          { number: '5', name: 'Javier Ruiz' }
+          { number: '16', name: 'Luisja' },
+          { number: '5', name: 'Adriano' },
+          { number: '25', name: 'Rodri' },
+          { number: '17', name: 'J. Zarcero' }
         ],
         'mediocentros': [
-          { number: '6', name: 'Sergio Díaz' },
-          { number: '8', name: 'Juan Pérez' },
-          { number: '10', name: 'Roberto Sánchez' }
+          { number: '2', name: 'Á. Brito' },
+          { number: '19', name: 'Pablo' },
+          { number: '23', name: 'Javi Pardo' }
         ],
         'delanteros': [
-          { number: '7', name: 'Adrián López' },
-          { number: '9', name: 'Marco Silva' },
-          { number: '11', name: 'Daniel García' }
+          { number: '7', name: 'J. Martínez' },
+          { number: '18', name: 'Manu de V.' },
+          { number: '24', name: 'H. Panizo' }
         ]
       };
 
       // Configuraciones de formaciones
       const formations = {
-        '4-3-3': [
+        '4-2-3-1': [
           playersProbable.delanteros,
           playersProbable.mediocentros,
           playersProbable.defensas,
@@ -583,8 +583,8 @@
         });
       }
 
-      // Renderizar formación 4-3-3 para alineación probable
-      renderFormationProbable('4-3-3');
+      // Renderizar formación para alineación probable
+      renderFormationProbable('4-2-3-1');
     </script>
   </div>
 
@@ -594,7 +594,7 @@
 
     <div class="container-responsive">
       <div class="header-responsive">
-        <div class="team-name-responsive">FC Barcelona</div>
+        <div class="team-name-responsive">E.F.M.O. Boadilla</div>
         <div class="formation-responsive">4-3-3</div>
       </div>
 
@@ -622,36 +622,35 @@
       // Datos de los jugadores organizados por posición - ALINEACIÓN CONFIRMADA
       const playersConfirmada = {
         'portero': [
-          { number: '1', name: 'Ter Stegen', rating: 9.2 }
+          { number: '13', name: 'Álvaro', rating: 6.5 }
         ],
         'defensas': [
-          { number: '2', name: 'Dest', rating: 6.8 },
-          { number: '3', name: 'Piqué', rating: 7.1 },
-          { number: '15', name: 'Lenglet', rating: 6.9 },
-          { number: '18', name: 'Alba', rating: 8.5 }
+          { number: '16', name: 'Luisja', rating: 7.2 },
+          { number: '5', name: 'Adriano', rating: 7.8 },
+          { number: '25', name: 'Rodri', rating: 6.4 },
+          { number: '17', name: 'J. Zarcero', rating: 7.0 }
         ],
         'mediocentros': [
-          { number: '5', name: 'Busquets', rating: 7.0 },
-          { number: '21', name: 'De Jong', rating: 8.0 },
-          { number: '16', name: 'Pedri', rating: 9.3 }
+          { number: '2', name: 'Á. Brito', rating: 7.5 },
+          { number: '10', name: 'Kito', rating: 7.3 },
+          { number: '19', name: 'Pablo', rating: 6.9 }
         ],
         'delanteros': [
-          { number: '11', name: 'Dembélé', rating: 7.2 },
-          { number: '9', name: 'Depay', rating: 8.9 },
-          { number: '10', name: 'Ansu Fati', rating: 8.1 }
+          { number: '7', name: 'J. Martínez', rating: 6.7 },
+          { number: '18', name: 'Manu de V.', rating: 6.3 },
+          { number: '24', name: 'H. Panizo', rating: 6.9 }
         ]
       };
 
       // Datos del banquillo
       const benchPlayers = [
-        { number: '13', name: 'Neto', rating: 6.5 },
-        { number: '22', name: 'Mingueza', rating: 6.7 },
-        { number: '20', name: 'Roberto', rating: 5.9 },
-        { number: '6', name: 'Riqui Puig', rating: 6.8 },
-        { number: '14', name: 'Coutinho', rating: 6.9 },
-        { number: '17', name: 'Braithwaite', rating: 6.6 },
-        { number: '7', name: 'Messi', rating: 9.5 },
-        { number: '19', name: 'Gavi', rating: '-' }
+        { number: '1', name: 'Gabri', rating: '-' },
+        { number: '6', name: 'Rafa Crooke', rating: '-' },
+        { number: '15', name: 'Jacobo', rating: '-' },
+        { number: '14', name: 'J. Ogayar', rating: 6.3 },
+        { number: '21', name: 'Víctor Jaén', rating: 6.4 },
+        { number: '20', name: 'A. Molina', rating: 6.8 },
+        { number: '9', name: 'S. Griñán', rating: 6.6 }
       ];
 
       // Configuraciones de formaciones
@@ -756,9 +755,10 @@
     </script>
   </div>
 
+  <!--
   <!-- Goles -->
   <div class="seccion">
-    <h3>🥅 Goles a Favor</h3>
+    <h3>Goles a Favor</h3>
     <div class="goles-lista">
       <div class="gol">
         <span class="minuto">23'</span> - Juan Pérez (Asistencia: Roberto Sánchez)
@@ -771,33 +771,42 @@
       </div>
     </div>
   </div>
+  -->
 
   <!-- Cambios -->
   <div class="seccion">
-    <h3>🔄 Cambios Realizados</h3>
+    <h3>Cambios Realizados</h3>
     <div class="cambios-lista">
+      <div class="cambio">
+        <span class="minuto">45'</span>
+        <div class="jugadores-cambio">
+          <span>H. Panizo</span>
+          <span class="flecha">→</span>
+          <span>A. Molina</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">45'</span>
+        <div class="jugadores-cambio">
+          <span>Manu de V.</span>
+          <span class="flecha">→</span>
+          <span>S. Griñán</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">69'</span>
+        <div class="jugadores-cambio">
+          <span>Pablo</span>
+          <span class="flecha">→</span>
+          <span>Víctor Jaén</span>
+        </div>
+      </div>
       <div class="cambio">
         <span class="minuto">72'</span>
         <div class="jugadores-cambio">
-          <span>Daniel García</span>
+          <span>Á. Brito</span>
           <span class="flecha">→</span>
-          <span>Luis Fernández</span>
-        </div>
-      </div>
-      <div class="cambio">
-        <span class="minuto">78'</span>
-        <div class="jugadores-cambio">
-          <span>Roberto Sánchez</span>
-          <span class="flecha">→</span>
-          <span>Pablo Hernández</span>
-        </div>
-      </div>
-      <div class="cambio">
-        <span class="minuto">85'</span>
-        <div class="jugadores-cambio">
-          <span>Marco Silva</span>
-          <span class="flecha">→</span>
-          <span>José Ramírez</span>
+          <span>J. Ogayar</span>
         </div>
       </div>
     </div>
@@ -805,8 +814,8 @@
 
   <!-- Once Final -->
   <div class="seccion">
-    <h3>🎯 Once Final</h3>
-    <div class="formacion-titulo">Formación: 4-4-2</div>
+    <h3>Once Final</h3>
+    <div class="formacion-titulo">4-3-3</div>
 
     <div class="field-container-responsive">
       <div class="field-responsive">
@@ -822,29 +831,29 @@
       // Datos de los jugadores organizados por posición - ONCE FINAL
       const playersFinal = {
         'portero': [
-          { number: '1', name: 'David López' }
+          { number: '13', name: 'Álvaro' }
         ],
         'defensas': [
-          { number: '2', name: 'Carlos Martínez' },
-          { number: '3', name: 'Alejandro Gómez' },
-          { number: '4', name: 'Miguel Torres' },
-          { number: '5', name: 'Javier Ruiz' }
+          { number: '16', name: 'Luisja' },
+          { number: '5', name: 'Adriano' },
+          { number: '25', name: 'Rodri' },
+          { number: '17', name: 'J. Zarcero' }
         ],
         'mediocentros': [
-          { number: '7', name: 'Adrián López' },
-          { number: '8', name: 'Juan Pérez' },
-          { number: '10', name: 'Roberto Sánchez' },
-          { number: '6', name: 'Sergio Díaz' }
+          { number: '21', name: 'Víctor Jaén' },
+          { number: '10', name: 'Kito' },
+          { number: '14', name: 'J. Ogayar' }
         ],
         'delanteros': [
-          { number: '11', name: 'Daniel García' },
-          { number: '9', name: 'Marco Silva' }
+          { number: '7', name: 'J. Martínez' },
+          { number: '9', name: 'S. Griñán' },
+          { number: '20', name: 'A. Molina' }
         ]
       };
 
       // Configuraciones de formaciones
       const formationsFinal = {
-        '4-4-2': [
+        '4-3-3': [
           playersFinal.delanteros,
           playersFinal.mediocentros,
           playersFinal.defensas,
@@ -879,8 +888,8 @@
         });
       }
 
-      // Renderizar formación 4-4-2 para once final
-      renderFormationFinal('4-4-2');
+      // Renderizar formación para once final
+      renderFormationFinal('4-3-3');
     </script>
   </div>
 
@@ -888,4 +897,5 @@
 
 </body>
 </html>
+
 
