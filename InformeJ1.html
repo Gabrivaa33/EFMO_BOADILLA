@@ -223,7 +223,7 @@
       align-items: center;
       position: relative;
       flex-shrink: 0;
-      min-width: 60px; /* Ancho mínimo para evitar compresión */
+      min-width: 70px; /* Un poco más ancho para nombres largos */
     }
 
     .player-circle-responsive {
@@ -247,13 +247,20 @@
       font-size: 0.7rem; /* Más pequeño en móviles */
       color: white;
       text-align: center;
-      max-width: 65px; /* Más estrecho */
-      overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      max-width: 80px; /* Un poco más ancho */
+      overflow: visible; /* Cambiado de hidden a visible */
+      text-overflow: unset; /* Eliminado el text-overflow */
+      white-space: normal; /* Cambiado de nowrap a normal */
       z-index: 1;
       font-weight: 600;
       text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      line-height: 1.2; /* Mejor interlineado para dos líneas */
+      word-wrap: break-word; /* Permite romper palabras largas */
+      hyphens: auto; /* Agrega guiones automáticamente si es necesario */
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* Máximo 2 líneas */
+      -webkit-box-orient: vertical;
+      min-height: 1.8em; /* Altura mínima para dos líneas */
     }
 
     .player-rating-responsive {
@@ -354,6 +361,8 @@
     .bench-player-name-responsive {
       font-size: 0.8rem;
       color: #333 !important;
+      white-space: normal; /* Permite múltiples líneas */
+      line-height: 1.2;
     }
 
     .bench-player-rating-responsive {
@@ -400,7 +409,7 @@
       /* Ajustes adicionales para móviles muy pequeños */
       @media (max-width: 480px) {
         .field-responsive {
-          height: 350px;
+          height: 420px; /* Un poco más alto para nombres en dos líneas */
         }
 
         .player-circle-responsive {
@@ -411,11 +420,16 @@
 
         .player-name-responsive {
           font-size: 0.65rem;
-          max-width: 55px;
+          max-width: 70px;
+          min-height: 1.6em;
         }
 
         .players-formation-responsive {
-          padding: 15px 5px;
+          padding: 15px 8px;
+        }
+
+        .player-responsive {
+          min-width: 65px;
         }
 
         .content-responsive {
@@ -435,6 +449,11 @@
 
         .field-responsive {
           height: 450px;
+        }
+
+        .player-name-responsive {
+          font-size: 0.75rem;
+          max-width: 90px;
         }
 
         .bench-responsive {
@@ -457,11 +476,15 @@
 
         .player-name-responsive {
           font-size: 0.8rem;
-          max-width: 80px;
+          max-width: 100px;
         }
 
         .players-formation-responsive {
           padding: 30px 20px;
+        }
+
+        .player-responsive {
+          min-width: 80px;
         }
       }
     }
