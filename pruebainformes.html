@@ -161,7 +161,220 @@
       font-weight: bold;
     }
 
-    /* RESPONSIVE */
+    /* ESTILOS RESPONSIVE PARA CAMPOS DE FÚTBOL */
+    .field-container-responsive {
+      width: 100%;
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+
+    .field-responsive {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      margin: 0 auto;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Altura del campo responsive */
+    .field-responsive {
+      height: 400px; /* Reducida para móviles */
+    }
+
+    .grass-pattern-responsive {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 30px 30px; /* Más pequeño para móviles */
+      opacity: 0.3;
+    }
+
+    .players-formation-responsive {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 10px; /* Menos padding en móviles */
+    }
+
+    .player-row-responsive {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      flex-wrap: nowrap;
+    }
+
+    .player-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      flex-shrink: 0;
+      min-width: 60px; /* Ancho mínimo para evitar compresión */
+    }
+
+    .player-circle-responsive {
+      width: 40px; /* Más pequeño en móviles */
+      height: 40px;
+      border-radius: 50%;
+      background-color: #d32f2f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 3px;
+      z-index: 2;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.8rem; /* Texto más pequeño */
+    }
+
+    .player-name-responsive {
+      font-size: 0.7rem; /* Más pequeño en móviles */
+      color: white;
+      text-align: center;
+      max-width: 65px; /* Más estrecho */
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      z-index: 1;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+    }
+
+    .player-rating-responsive {
+      position: relative;
+      color: #000;
+      padding: 1px 4px;
+      border-radius: 8px;
+      font-size: 0.7rem; /* Más pequeño */
+      font-weight: bold;
+      margin-bottom: 3px;
+      z-index: 3;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* Estilos para la alineación con banquillo */
+    .container-responsive {
+      width: 100%;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .header-responsive {
+      background-color: #d32f2f;
+      color: white;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .team-name-responsive {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .formation-responsive {
+      font-size: 0.9rem;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 4px 8px;
+      border-radius: 15px;
+    }
+
+    .content-responsive {
+      display: flex;
+      flex-direction: column; /* En móvil, campo arriba, banquillo abajo */
+    }
+
+    .bench-responsive {
+      width: 100%;
+      padding: 15px;
+      background-color: #f8f8f8;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .bench-title-responsive {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #333;
+      text-align: center;
+    }
+
+    .bench-player-responsive {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .bench-player-responsive:last-child {
+      border-bottom: none;
+    }
+
+    .bench-player-info-responsive {
+      display: flex;
+      align-items: center;
+    }
+
+    .bench-player-number-responsive {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: #d32f2f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    .bench-player-name-responsive {
+      font-size: 0.8rem;
+      color: #333 !important;
+    }
+
+    .bench-player-rating-responsive {
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      min-width: 30px;
+      text-align: center;
+      color: #000 !important;
+    }
+
+    /* Colores de puntuación */
+    .score-red { background-color: #ff4444 !important; }
+    .score-gray { background-color: #cccccc !important; }
+    .score-yellow { background-color: #ffdd00 !important; }
+    .score-green { background-color: #44ff44 !important; }
+    .score-blue { background-color: #44ddff !important; }
+    .score-darkblue { background-color: #374df5 !important; }
+
+    /* MEDIA QUERIES PARA RESPONSIVE */
     @media (max-width: 768px) {
       .container-informe {
         padding: 20px 15px;
@@ -173,6 +386,90 @@
 
       .resultado-principal {
         font-size: 1.8rem;
+      }
+
+      .seccion {
+        padding: 20px 15px;
+        margin-bottom: 30px;
+      }
+
+      .seccion h3 {
+        font-size: 1.3rem;
+      }
+
+      /* Ajustes adicionales para móviles muy pequeños */
+      @media (max-width: 480px) {
+        .field-responsive {
+          height: 350px;
+        }
+
+        .player-circle-responsive {
+          width: 35px;
+          height: 35px;
+          font-size: 0.7rem;
+        }
+
+        .player-name-responsive {
+          font-size: 0.65rem;
+          max-width: 55px;
+        }
+
+        .players-formation-responsive {
+          padding: 15px 5px;
+        }
+
+        .content-responsive {
+          flex-direction: column;
+        }
+
+        .bench-responsive {
+          width: 100%;
+        }
+      }
+
+      /* Para tablets y pantallas más grandes */
+      @media (min-width: 769px) {
+        .content-responsive {
+          flex-direction: row; /* En desktop, campo y banquillo lado a lado */
+        }
+
+        .field-responsive {
+          height: 450px;
+        }
+
+        .bench-responsive {
+          width: 250px;
+          border-top: none;
+          border-left: 1px solid #e0e0e0;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .field-responsive {
+          height: 500px;
+        }
+
+        .player-circle-responsive {
+          width: 50px;
+          height: 50px;
+          font-size: 0.9rem;
+        }
+
+        .player-name-responsive {
+          font-size: 0.8rem;
+          max-width: 80px;
+        }
+
+        .players-formation-responsive {
+          padding: 30px 20px;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      .btn-volver {
+        padding: 8px 16px;
+        font-size: 0.9rem;
       }
     }
   </style>
@@ -192,11 +489,11 @@
     <h3>⚽ Alineación Probable</h3>
     <div class="formacion-titulo">Formación: 4-3-3</div>
 
-    <div class="field-container">
-      <div class="field">
-        <div class="grass-pattern"></div>
+    <div class="field-container-responsive">
+      <div class="field-responsive">
+        <div class="grass-pattern-responsive"></div>
 
-        <div class="players-formation" id="formation-container-probable">
+        <div class="players-formation-responsive" id="formation-container-probable">
           <!-- La formación se genera automáticamente -->
         </div>
       </div>
@@ -245,16 +542,16 @@
 
         formation.forEach(rowPlayers => {
           const row = document.createElement('div');
-          row.className = 'player-row';
+          row.className = 'player-row-responsive';
 
           rowPlayers.forEach(player => {
             const playerElement = document.createElement('div');
-            playerElement.className = 'player';
+            playerElement.className = 'player-responsive';
 
             playerElement.innerHTML = `
-          <div class="player-circle">${player.number}</div>
-          <div class="player-name">${player.name}</div>
-        `;
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
 
             row.appendChild(playerElement);
           });
@@ -266,120 +563,31 @@
       // Renderizar formación 4-3-3 para alineación probable
       renderFormationProbable('4-3-3');
     </script>
-
-    <style>
-      .field-container {
-        width: 100%;
-        max-width: 600px;
-        background-color: #f0f0f0;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 0 auto;
-      }
-
-      .field {
-        background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
-        position: relative;
-        width: 100%;
-        height: 500px;
-        overflow: hidden;
-        border-radius: 8px;
-        margin: 0 auto;
-        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .grass-pattern {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        background-size: 40px 40px;
-        opacity: 0.3;
-      }
-
-      .players-formation {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 30px 20px;
-      }
-
-      .player-row {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-      }
-
-      .player {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-      }
-
-      .player-circle {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #d32f2f;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        margin-bottom: 5px;
-        z-index: 2;
-        border: 2px solid white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
-      .player-name {
-        font-size: 0.8rem;
-        color: white;
-        text-align: center;
-        max-width: 80px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        z-index: 1;
-        font-weight: 600;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      }
-    </style>
   </div>
 
   <!-- Alineación Confirmada -->
   <div class="seccion">
     <h3>✅ Alineación Confirmada</h3>
 
-    <div class="container">
-      <div class="header">
-        <div class="team-name">FC Barcelona</div>
-        <div class="formation">4-3-3</div>
+    <div class="container-responsive">
+      <div class="header-responsive">
+        <div class="team-name-responsive">FC Barcelona</div>
+        <div class="formation-responsive">4-3-3</div>
       </div>
 
-      <div class="content">
-        <div class="field-container">
-          <div class="field">
-            <div class="grass-pattern"></div>
+      <div class="content-responsive">
+        <div class="field-container-responsive">
+          <div class="field-responsive">
+            <div class="grass-pattern-responsive"></div>
 
-            <div class="players-formation" id="formation-container-confirmada">
+            <div class="players-formation-responsive" id="formation-container-confirmada">
               <!-- La formación se genera automáticamente -->
             </div>
           </div>
         </div>
 
-        <div class="bench">
-          <div class="bench-title">Banquillo</div>
+        <div class="bench-responsive">
+          <div class="bench-title-responsive">Banquillo</div>
           <div id="bench-container">
             <!-- El banquillo se genera automáticamente -->
           </div>
@@ -466,17 +674,17 @@
 
         formation.forEach(rowPlayers => {
           const row = document.createElement('div');
-          row.className = 'player-row';
+          row.className = 'player-row-responsive';
 
           rowPlayers.forEach(player => {
             const playerElement = document.createElement('div');
-            playerElement.className = 'player';
+            playerElement.className = 'player-responsive';
 
             playerElement.innerHTML = `
-          <div class="player-circle">${player.number}</div>
-          <div class="player-rating">${player.rating}</div>
-          <div class="player-name">${player.name}</div>
-        `;
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-rating-responsive">${player.rating}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
 
             row.appendChild(playerElement);
           });
@@ -485,12 +693,12 @@
         });
 
         // Aplicar colores a los ratings
-        document.querySelectorAll('.player-rating').forEach(ratingElement => {
+        document.querySelectorAll('.player-rating-responsive').forEach(ratingElement => {
           const rating = ratingElement.textContent;
           applyRatingColor(ratingElement, rating);
         });
 
-        document.querySelector('.formation').textContent = formationKey;
+        document.querySelector('.formation-responsive').textContent = formationKey;
       }
 
       // Función para renderizar el banquillo
@@ -500,21 +708,21 @@
 
         benchPlayers.forEach(player => {
           const benchPlayerElement = document.createElement('div');
-          benchPlayerElement.className = 'bench-player';
+          benchPlayerElement.className = 'bench-player-responsive';
 
           benchPlayerElement.innerHTML = `
-        <div class="bench-player-info">
-          <div class="bench-player-number">${player.number}</div>
-          <div class="bench-player-name">${player.name}</div>
-        </div>
-        <div class="bench-player-rating">${player.rating}</div>
-      `;
+            <div class="bench-player-info-responsive">
+              <div class="bench-player-number-responsive">${player.number}</div>
+              <div class="bench-player-name-responsive">${player.name}</div>
+            </div>
+            <div class="bench-player-rating-responsive">${player.rating}</div>
+          `;
 
           benchContainer.appendChild(benchPlayerElement);
         });
 
         // Aplicar colores a los ratings del banquillo
-        document.querySelectorAll('.bench-player-rating').forEach(ratingElement => {
+        document.querySelectorAll('.bench-player-rating-responsive').forEach(ratingElement => {
           const rating = ratingElement.textContent;
           applyRatingColor(ratingElement, rating);
         });
@@ -523,207 +731,6 @@
       renderFormationConfirmada('4-3-3');
       renderBench();
     </script>
-
-    <style>
-      .container {
-        width: 100%;
-        max-width: 800px;
-        background-color: white;
-        border-radius: 10px;
-        box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-        overflow: hidden;
-        margin: 0 auto;
-      }
-
-      .header {
-        background-color: #d32f2f;
-        color: white;
-        padding: 15px 20px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-      }
-
-      .team-name {
-        font-size: 1.5rem;
-        font-weight: bold;
-      }
-
-      .formation {
-        font-size: 1rem;
-        background-color: rgba(255, 255, 255, 0.2);
-        padding: 5px 10px;
-        border-radius: 20px;
-      }
-
-      .content {
-        display: flex;
-      }
-
-      .field-container {
-        flex: 1;
-        padding: 20px;
-        background-color: #f0f0f0;
-      }
-
-      .field {
-        background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
-        position: relative;
-        width: 100%;
-        height: 500px;
-        overflow: hidden;
-        border-radius: 8px;
-        margin: 0 auto;
-        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .grass-pattern {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        background-size: 40px 40px;
-        opacity: 0.3;
-      }
-
-      .players-formation {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 30px 20px;
-      }
-
-      .player-row {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-      }
-
-      .player {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-      }
-
-      .player-circle {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #d32f2f;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        margin-bottom: 5px;
-        z-index: 2;
-        border: 2px solid white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
-      .player-rating {
-        position: relative;
-        color: #000;
-        padding: 2px 6px;
-        border-radius: 10px;
-        font-size: 0.8rem;
-        font-weight: bold;
-        margin-bottom: 5px;
-        z-index: 3;
-        min-width: 35px;
-        text-align: center;
-      }
-
-      .player-name {
-        font-size: 0.8rem;
-        color: white;
-        text-align: center;
-        max-width: 80px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        z-index: 1;
-        font-weight: 600;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      }
-
-      .score-red { background-color: #ff4444 !important; }
-      .score-gray { background-color: #cccccc !important; }
-      .score-yellow { background-color: #ffdd00 !important; }
-      .score-green { background-color: #44ff44 !important; }
-      .score-blue { background-color: #44ddff !important; }
-      .score-darkblue { background-color: #374df5 !important; }
-
-      .bench {
-        width: 250px;
-        padding: 20px;
-        background-color: #f8f8f8;
-        border-left: 1px solid #e0e0e0;
-      }
-
-      .bench-title {
-        font-size: 1.2rem;
-        font-weight: bold;
-        margin-bottom: 15px;
-        color: #333;
-      }
-
-      .bench-player {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        padding: 10px 15px;
-        border-bottom: 1px solid #e0e0e0;
-      }
-
-      .bench-player:last-child {
-        border-bottom: none;
-      }
-
-      .bench-player-info {
-        display: flex;
-        align-items: center;
-      }
-
-      .bench-player-number {
-        width: 25px;
-        height: 25px;
-        border-radius: 50%;
-        background-color: #d32f2f;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 0.8rem;
-        margin-right: 10px;
-        font-weight: bold;
-      }
-
-      .bench-player-name {
-        font-size: 0.9rem;
-        color: #333 !important;
-      }
-
-      .bench-player-rating {
-        padding: 3px 8px;
-        border-radius: 10px;
-        font-size: 0.8rem;
-        font-weight: bold;
-        min-width: 35px;
-        text-align: center;
-        color: #000 !important;
-      }
-    </style>
   </div>
 
   <!-- Goles -->
@@ -778,11 +785,11 @@
     <h3>🎯 Once Final</h3>
     <div class="formacion-titulo">Formación: 4-4-2</div>
 
-    <div class="field-container">
-      <div class="field">
-        <div class="grass-pattern"></div>
+    <div class="field-container-responsive">
+      <div class="field-responsive">
+        <div class="grass-pattern-responsive"></div>
 
-        <div class="players-formation" id="formation-container-final">
+        <div class="players-formation-responsive" id="formation-container-final">
           <!-- La formación se genera automáticamente -->
         </div>
       </div>
@@ -831,16 +838,16 @@
 
         formation.forEach(rowPlayers => {
           const row = document.createElement('div');
-          row.className = 'player-row';
+          row.className = 'player-row-responsive';
 
           rowPlayers.forEach(player => {
             const playerElement = document.createElement('div');
-            playerElement.className = 'player';
+            playerElement.className = 'player-responsive';
 
             playerElement.innerHTML = `
-          <div class="player-circle">${player.number}</div>
-          <div class="player-name">${player.name}</div>
-        `;
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
 
             row.appendChild(playerElement);
           });
@@ -852,95 +859,6 @@
       // Renderizar formación 4-4-2 para once final
       renderFormationFinal('4-4-2');
     </script>
-
-    <style>
-      .field-container {
-        width: 100%;
-        max-width: 600px;
-        background-color: #f0f0f0;
-        padding: 20px;
-        border-radius: 10px;
-        margin: 0 auto;
-      }
-
-      .field {
-        background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
-        position: relative;
-        width: 100%;
-        height: 500px;
-        overflow: hidden;
-        border-radius: 8px;
-        margin: 0 auto;
-        box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
-      }
-
-      .grass-pattern {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-image:
-          linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-        background-size: 40px 40px;
-        opacity: 0.3;
-      }
-
-      .players-formation {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        padding: 30px 20px;
-      }
-
-      .player-row {
-        display: flex;
-        justify-content: space-around;
-        width: 100%;
-      }
-
-      .player {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        position: relative;
-      }
-
-      .player-circle {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        background-color: #d32f2f;
-        color: white;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-weight: bold;
-        margin-bottom: 5px;
-        z-index: 2;
-        border: 2px solid white;
-        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
-      }
-
-      .player-name {
-        font-size: 0.8rem;
-        color: white;
-        text-align: center;
-        max-width: 80px;
-        overflow: hidden;
-        text-overflow: ellipsis;
-        white-space: nowrap;
-        z-index: 1;
-        font-weight: 600;
-        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
-      }
-    </style>
   </div>
 
 </div>
