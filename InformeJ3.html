@@ -741,4 +741,168 @@
           `;
 
           benchContainer.appendChild(benchPlayerElement);
+
+          // Aplicar colores a los ratings del banquillo
+        document.querySelectorAll('.bench-player-rating-responsive').forEach(ratingElement => {
+          const rating = ratingElement.textContent;
+          applyRatingColor(ratingElement, rating);
+        });
+      }
+
+      renderFormationConfirmada('4-3-3');
+      renderBench();
+    </script>
+  </div>
+
+  
+  <!-- Goles  -->
+  <div class="seccion">
+    <h3>Goles a Favor</h3>
+    <div class="goles-lista">
+      <div class="gol">
+        <span class="minuto">89'</span> - S. Griñán
+      </div>
+    </div>
+  </div>
+
+  <!-- Cambios -->
+  <div class="seccion">
+    <h3>Cambios Realizados</h3>
+    <div class="cambios-lista">
+      <div class="cambio">
+        <span class="minuto">54'</span>
+        <div class="jugadores-cambio">
+          <span>J. Agudo</span>
+          <span class="flecha">→</span>
+          <span>Álvaro</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">64'</span>
+        <div class="jugadores-cambio">
+          <span>Adriano</span>
+          <span class="flecha">→</span>
+          <span>Rafa Crooke</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">64'</span>
+        <div class="jugadores-cambio">
+          <span>H. Panizo</span>
+          <span class="flecha">→</span>
+          <span>Manu de V.</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">75'</span>
+        <div class="jugadores-cambio">
+          <span>A. Molina</span>
+          <span class="flecha">→</span>
+          <span>L. Lausín</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">75'</span>
+        <div class="jugadores-cambio">
+          <span>Kito</span>
+          <span class="flecha">→</span>
+          <span>Víctor Jaén</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">75'</span>
+        <div class="jugadores-cambio">
+          <span>Á. Brito</span>
+          <span class="flecha">→</span>
+          <span>J. Ogayar</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Once Final -->
+  <div class="seccion">
+    <h3>Once Final</h3>
+    <div class="formacion-titulo">4-4-2</div>
+
+    <div class="field-container-responsive">
+      <div class="field-responsive">
+        <div class="grass-pattern-responsive"></div>
+
+        <div class="players-formation-responsive" id="formation-container-final">
+          <!-- La formación se genera automáticamente -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ONCE FINAL
+      const playersFinal = {
+        'portero': [
+          { number: '13', name: 'Álvaro' }
+        ],
+        'defensas': [
+          { number: '16', name: 'Luisja' },
+          { number: '6', name: 'Rafa Crooke' },
+          { number: '25', name: 'Rodri' },
+          { number: '12', name: 'L. Lausín' }
+        ],
+        'mediocentros': [
+          { number: '7', name: 'J. Martínez' },
+          { number: '23', name: 'Javi Pardo' },
+          { number: '21', name: 'Víctor Jaén' },
+          { number: '14', name: 'J. Ogayar' }
+        ],
+        'delanteros': [
+          { number: '18', name: 'Manu de V.' },
+          { number: '9', name: 'S. Griñán' },
+        ]
+      };
+
+      // Configuraciones de formaciones
+      const formationsFinal = {
+        '4-4-2': [
+          playersFinal.delanteros,
+          playersFinal.mediocentros,
+          playersFinal.defensas,
+          playersFinal.portero
+        ]
+      };
+
+      // Función para renderizar una formación
+      function renderFormationFinal(formationKey) {
+        const formationContainer = document.getElementById('formation-container-final');
+        formationContainer.innerHTML = '';
+
+        const formation = formationsFinal[formationKey];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            playerElement.innerHTML = `
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+      }
+
+      // Renderizar formación para once final
+      renderFormationFinal('4-4-2');
+    </script>
+  </div>
+
+</div>
+
+</body>
+</html>
        
