@@ -1,0 +1,744 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe Jornada 2</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+    :root {
+      --azul: #00b4d8;
+      --azul-oscuro: #03045e;
+      --verde: #38b000;
+      --naranja: #ff9100;
+      --rojo: #ff4444;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(120deg, var(--azul-oscuro), #001233 70%);
+      color: white;
+      line-height: 1.6;
+    }
+
+    .container-informe {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .btn-volver {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: var(--azul);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: 2px solid var(--azul);
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .btn-volver:hover {
+      background: var(--azul);
+      color: var(--azul-oscuro);
+    }
+
+    .header-informe {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 3px solid var(--azul);
+    }
+
+    .header-informe h1 {
+      font-size: 2.5rem;
+      color: var(--azul);
+      margin-bottom: 10px;
+    }
+
+    .resultado-principal {
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-align: center;
+      margin: 20px 0;
+      background: linear-gradient(90deg, var(--azul), #caf0f8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* SECCIONES */
+    .seccion {
+      margin-bottom: 40px;
+      padding: 25px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      border-left: 4px solid var(--azul);
+    }
+
+    .seccion h3 {
+      color: var(--azul);
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .seccion h3::before {
+      content: "•";
+      color: var(--naranja);
+      font-size: 2rem;
+    }
+
+    .formacion-titulo {
+      text-align: center;
+      font-size: 1.4rem;
+      color: var(--naranja);
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    /* GOLES */
+    .goles-lista {
+      background: rgba(56,176,0,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--verde);
+    }
+
+    .gol {
+      padding: 10px;
+      margin: 8px 0;
+      background: rgba(56,176,0,0.2);
+      border-radius: 6px;
+      border-left: 4px solid var(--verde);
+    }
+
+    .gol .minuto {
+      font-weight: bold;
+      color: var(--verde);
+    }
+
+    /* CAMBIOS */
+    .cambios-lista {
+      background: rgba(255,145,0,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--naranja);
+    }
+
+    .cambio {
+      padding: 10px;
+      margin: 8px 0;
+      background: rgba(255,145,0,0.2);
+      border-radius: 6px;
+      border-left: 4px solid var(--naranja);
+      display: block;
+    }
+
+    .cambio .minuto {
+      font-weight: bold;
+      color: var(--naranja);
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .jugadores-cambio {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flecha {
+      color: var(--naranja);
+      font-weight: bold;
+    }
+
+    /* ESTILOS RESPONSIVE PARA CAMPOS DE FÚTBOL */
+    .field-container-responsive {
+      width: 100%;
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+
+    .field-responsive {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      margin: 0 auto;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Altura del campo responsive */
+    .field-responsive {
+      height: 400px; /* Reducida para móviles */
+    }
+
+    .grass-pattern-responsive {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 30px 30px; /* Más pequeño para móviles */
+      opacity: 0.3;
+    }
+
+    .players-formation-responsive {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 20px 10px; /* Menos padding en móviles */
+    }
+
+    .player-row-responsive {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      flex-wrap: nowrap;
+    }
+
+    .player-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      flex-shrink: 0;
+      min-width: 70px; /* Un poco más ancho para nombres largos */
+    }
+
+    .player-circle-responsive {
+      width: 40px; /* Más pequeño en móviles */
+      height: 40px;
+      border-radius: 50%;
+      background-color: #d32f2f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 3px;
+      z-index: 2;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.8rem; /* Texto más pequeño */
+    }
+
+    .player-name-responsive {
+      font-size: 0.7rem; /* Más pequeño en móviles */
+      color: white;
+      text-align: center;
+      max-width: 80px; /* Un poco más ancho */
+      overflow: visible; /* Cambiado de hidden a visible */
+      text-overflow: unset; /* Eliminado el text-overflow */
+      white-space: normal; /* Cambiado de nowrap a normal */
+      z-index: 1;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      line-height: 1.2; /* Mejor interlineado para dos líneas */
+      word-wrap: break-word; /* Permite romper palabras largas */
+      hyphens: auto; /* Agrega guiones automáticamente si es necesario */
+      display: -webkit-box;
+      -webkit-line-clamp: 2; /* Máximo 2 líneas */
+      -webkit-box-orient: vertical;
+      min-height: 1.8em; /* Altura mínima para dos líneas */
+    }
+
+    .player-rating-responsive {
+      position: relative;
+      color: #000;
+      padding: 1px 4px;
+      border-radius: 8px;
+      font-size: 0.7rem; /* Más pequeño */
+      font-weight: bold;
+      margin-bottom: 3px;
+      z-index: 3;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    /* Estilos para la alineación con banquillo */
+    .container-responsive {
+      width: 100%;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .header-responsive {
+      background-color: #d32f2f;
+      color: white;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .team-name-responsive {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .formation-responsive {
+      font-size: 0.9rem;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 4px 8px;
+      border-radius: 15px;
+    }
+
+    .content-responsive {
+      display: flex;
+      flex-direction: column; /* En móvil, campo arriba, banquillo abajo */
+    }
+
+    .bench-responsive {
+      width: 100%;
+      padding: 15px;
+      background-color: #f8f8f8;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .bench-title-responsive {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #333;
+      text-align: center;
+    }
+
+    .bench-player-responsive {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .bench-player-responsive:last-child {
+      border-bottom: none;
+    }
+
+    .bench-player-info-responsive {
+      display: flex;
+      align-items: center;
+    }
+
+    .bench-player-number-responsive {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: #d32f2f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    .bench-player-name-responsive {
+      font-size: 0.8rem;
+      color: #333 !important;
+      white-space: normal; /* Permite múltiples líneas */
+      line-height: 1.2;
+    }
+
+    .bench-player-rating-responsive {
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      min-width: 30px;
+      text-align: center;
+      color: #000 !important;
+    }
+
+    /* Colores de puntuación */
+    .score-red { background-color: #ff4444 !important; }
+    .score-gray { background-color: #cccccc !important; }
+    .score-yellow { background-color: #ffdd00 !important; }
+    .score-green { background-color: #44ff44 !important; }
+    .score-blue { background-color: #44ddff !important; }
+    .score-darkblue { background-color: #374df5 !important; }
+
+    /* MEDIA QUERIES PARA RESPONSIVE */
+    @media (max-width: 768px) {
+      .container-informe {
+        padding: 20px 15px;
+      }
+
+      .header-informe h1 {
+        font-size: 2rem;
+      }
+
+      .resultado-principal {
+        font-size: 1.8rem;
+      }
+
+      .seccion {
+        padding: 20px 15px;
+        margin-bottom: 30px;
+      }
+
+      .seccion h3 {
+        font-size: 1.3rem;
+      }
+
+      /* Ajustes adicionales para móviles muy pequeños */
+      @media (max-width: 480px) {
+        .field-responsive {
+          height: 420px; /* Un poco más alto para nombres en dos líneas */
+        }
+
+        .player-circle-responsive {
+          width: 35px;
+          height: 35px;
+          font-size: 0.7rem;
+        }
+
+        .player-name-responsive {
+          font-size: 0.65rem;
+          max-width: 70px;
+          min-height: 1.6em;
+        }
+
+        .players-formation-responsive {
+          padding: 15px 8px;
+        }
+
+        .player-responsive {
+          min-width: 65px;
+        }
+
+        .content-responsive {
+          flex-direction: column;
+        }
+
+        .bench-responsive {
+          width: 100%;
+        }
+      }
+
+      /* Para tablets y pantallas más grandes */
+      @media (min-width: 769px) {
+        .content-responsive {
+          flex-direction: row; /* En desktop, campo y banquillo lado a lado */
+        }
+
+        .field-responsive {
+          height: 450px;
+        }
+
+        .player-name-responsive {
+          font-size: 0.75rem;
+          max-width: 90px;
+        }
+
+        .bench-responsive {
+          width: 250px;
+          border-top: none;
+          border-left: 1px solid #e0e0e0;
+        }
+      }
+
+      @media (min-width: 1024px) {
+        .field-responsive {
+          height: 500px;
+        }
+
+        .player-circle-responsive {
+          width: 50px;
+          height: 50px;
+          font-size: 0.9rem;
+        }
+
+        .player-name-responsive {
+          font-size: 0.8rem;
+          max-width: 100px;
+        }
+
+        .players-formation-responsive {
+          padding: 30px 20px;
+        }
+
+        .player-responsive {
+          min-width: 80px;
+        }
+      }
+    }
+
+    @media (max-width: 768px) {
+      .btn-volver {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-informe">
+  <a href="InformesPost_partido.html" class="btn-volver">← Volver a Todos los Informes</a>
+
+  <div class="header-informe">
+    <h1>Informe Jornada 3</h1>
+    <div class="resultado-principal">Gimnástica Colmenarejo 4-2 EFMO Boadilla 'B'</div>
+  </div>
+
+  <!-- Alineación Probable -->
+  <div class="seccion">
+    <h3>Alineación Probable</h3>
+    <div class="formacion-titulo">4-3-3</div>
+
+    <div class="field-container-responsive">
+      <div class="field-responsive">
+        <div class="grass-pattern-responsive"></div>
+
+        <div class="players-formation-responsive" id="formation-container-probable">
+          <!-- La formación se genera automáticamente -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ALINEACIÓN PROBABLE
+      const playersProbable = {
+        'portero': [
+          { number: '13', name: 'Álvaro' }
+        ],
+        'defensas': [
+          { number: '16', name: 'Luisja' },
+          { number: '5', name: 'Adriano' },
+          { number: '25', name: 'Rodri' },
+          { number: '17', name: 'J. Zarcero' }
+        ],
+        'mediocentros': [
+          { number: '2', name: 'Á. Brito' },
+          { number: '10', name: 'Kito' },
+          { number: '23', name: 'Javi Pardo' }
+        ],
+        'delanteros': [
+          { number: '7', name: 'J. Martínez' },
+          { number: '9', name: 'S. Griñán' },
+          { number: '24', name: 'H. Panizo' }
+        ]
+      };
+
+      // Configuraciones de formaciones
+      const formations = {
+        '4-3-3': [
+          playersProbable.delanteros,
+          playersProbable.mediocentros,
+          playersProbable.defensas,
+          playersProbable.portero
+        ]
+      };
+
+      // Función para renderizar una formación
+      function renderFormationProbable(formationKey) {
+        const formationContainer = document.getElementById('formation-container-probable');
+        formationContainer.innerHTML = '';
+
+        const formation = formations[formationKey];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            playerElement.innerHTML = `
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+      }
+
+      // Renderizar formación para alineación probable
+      renderFormationProbable('4-3-3');
+    </script>
+  </div>
+
+  <!-- Alineación Confirmada -->
+  <div class="seccion">
+    <h3>Alineación Confirmada</h3>
+
+    <div class="container-responsive">
+      <div class="header-responsive">
+        <div class="team-name-responsive">E.F.M.O. Boadilla</div>
+        <div class="formation-responsive">4-3-3</div>
+      </div>
+
+      <div class="content-responsive">
+        <div class="field-container-responsive">
+          <div class="field-responsive">
+            <div class="grass-pattern-responsive"></div>
+
+            <div class="players-formation-responsive" id="formation-container-confirmada">
+              <!-- La formación se genera automáticamente -->
+            </div>
+          </div>
+        </div>
+
+        <div class="bench-responsive">
+          <div class="bench-title-responsive">Banquillo</div>
+          <div id="bench-container">
+            <!-- El banquillo se genera automáticamente -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ALINEACIÓN CONFIRMADA
+      const playersConfirmada = {
+        'portero': [
+          { number: '1', name: 'Gabri', rating: '6,2' }
+        ],
+        'defensas': [
+          { number: '16', name: 'Luisja', rating: '6,8' },
+          { number: '15', name: 'Jacobo', rating: '7,0' },
+          { number: '25', name: 'Rodri', rating: '6,4' },
+          { number: '17', name: 'J. Zarcero', rating: '6,8' }
+        ],
+        'mediocentros': [
+          { number: '21', name: 'Víctor Jaén', rating: '6,9' },
+          { number: '2', name: 'Á. Brito', rating: '7,1' },
+          { number: '10', name: 'Kito', rating: '7,2' }
+        ],
+        'delanteros': [
+          { number: '7', name: 'J. Martínez', rating: '7,3' },
+          { number: '9', name: 'S. Griñán', rating: '6,8' },
+          { number: '23', name: 'J. Pardo', rating: '7,3' }
+        ]
+      };
+
+      // Datos del banquillo
+      const benchPlayers = [
+        { number: '13', name: 'Álvaro', rating: '-' },
+        { number: '5', name: 'Adriano', rating: '-' },
+        { number: '20', name: 'A. Molina', rating: '-' },
+        { number: '12', name: 'L. Lausín', rating: '-' },
+        { number: '14', name: 'J. Ogayar', rating: '-' },
+        { number: '24', name: 'H. Panizo', rating: '-' },
+        { number: '18', name: 'Manu de V.', rating: '-' }
+      ];
+
+      // Configuraciones de formaciones
+      const formationsConfirmada = {
+        '4-3-3': [
+          playersConfirmada.delanteros,
+          playersConfirmada.mediocentros,
+          playersConfirmada.defensas,
+          playersConfirmada.portero
+        ]
+      };
+
+      // Función para aplicar el color correcto según la puntuación
+      function applyRatingColor(element, rating) {
+        if (rating === '-') {
+          element.classList.add('score-gray');
+          return;
+        }
+
+        const numericRating = parseFloat(rating);
+
+        if (numericRating >= 9.0) {
+          element.classList.add('score-darkblue');
+        } else if (numericRating >= 8.0) {
+          element.classList.add('score-blue');
+        } else if (numericRating >= 7.0) {
+          element.classList.add('score-green');
+        } else if (numericRating >= 6.0) {
+          element.classList.add('score-yellow');
+        } else if (numericRating >= 3.0) {
+          element.classList.add('score-red');
+        } else {
+          element.classList.add('score-gray');
+        }
+      }
+
+      // Función para renderizar una formación
+      function renderFormationConfirmada(formationKey) {
+        const formationContainer = document.getElementById('formation-container-confirmada');
+        formationContainer.innerHTML = '';
+
+        const formation = formationsConfirmada[formationKey];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            playerElement.innerHTML = `
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-rating-responsive">${player.rating}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+
+        // Aplicar colores a los ratings
+        document.querySelectorAll('.player-rating-responsive').forEach(ratingElement => {
+          const rating = ratingElement.textContent;
+          applyRatingColor(ratingElement, rating);
+        });
+
+        document.querySelector('.formation-responsive').textContent = formationKey;
+      }
+
+      // Función para renderizar el banquillo
+      function renderBench() {
+        const benchContainer = document.getElementById('bench-container');
+        benchContainer.innerHTML = '';
+
+        benchPlayers.forEach(player => {
+          const benchPlayerElement = document.createElement('div');
+          benchPlayerElement.className = 'bench-player-responsive';
+
+          benchPlayerElement.innerHTML = `
+            <div class="bench-player-info-responsive">
+              <div class="bench-player-number-responsive">${player.number}</div>
+              <div class="bench-player-name-responsive">${player.name}</div>
+            </div>
+            <div class="bench-player-rating-responsive">${player.rating}</div>
+          `;
+
+          benchContainer.appendChild(benchPlayerElement);
+       
