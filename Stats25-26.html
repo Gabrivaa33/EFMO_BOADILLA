@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stats Temp. 25/26</title>
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* Variables CSS para colores y estilos */
+    :root {
+      --card-bg: linear-gradient(145deg, #0d7a6f 0%, #11998e 100%);
+      --body-bg: linear-gradient(-45deg, #0d7a6f, #11998e, #38ef7d, #43e97b, #4facfe, #f093fb);
+      --body-bg-size: 400% 400%;
+      --text-color: #ffffff;
+      --light-text: #e8f5e8;
+      --shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
+      --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      --gradient-header: linear-gradient(135deg, #0d7a6f 0%, #38ef7d 100%);
+      --gradient-button: linear-gradient(135deg, #0d7a6f 0%, #38ef7d 100%);
+      --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-warning: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      --gradient-danger: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      --gradient-card: linear-gradient(135deg, #0d7a6f 0%, #38ef7d 100%);
+    }
+
+    /* Reset y estilos base */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--body-bg);
+      background-size: var(--body-bg-size);
+      animation: gradient 12s ease infinite;
+      color: var(--text-color);
+      line-height: 1.6;
+      padding: 20px;
+      min-height: 100vh;
+    }
+
+    @keyframes gradient {
+      0% {
+        background-position: 0% 50%;
+      }
+      25% {
+        background-position: 50% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+      75% {
+        background-position: 50% 50%;
+      }
+      100% {
+        background-position: 0% 50%;
+      }
+    }
+
+    /* Encabezado */
+    .header {
+      text-align: center;
+      margin-bottom: 40px;
+      padding: 20px 0;
+      animation: fadeInDown 1s ease-out;
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .title {
+      font-size: 2.8rem;
+      font-weight: 700;
+      color: white;
+      margin-bottom: 10px;
+      position: relative;
+      display: inline-block;
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.4);
+    }
+
+    .title::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 100px;
+      height: 4px;
+      background: var(--gradient-header);
+      border-radius: 2px;
+      transition: width 0.5s ease;
+    }
+
+    .title:hover::after {
+      width: 150px;
+    }
+
+    .subtitle {
+      color: rgba(255, 255, 255, 0.95);
+      font-weight: 400;
+      font-size: 1.2rem;
+      margin-top: 20px;
+      text-shadow: 0 1px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    /* Contenedor de tarjetas */
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 25px;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+
+    /* Tarjetas de jugadores */
+    .card {
+      background: var(--gradient-card);
+      border-radius: 20px;
+      box-shadow: var(--shadow);
+      overflow: hidden;
+      transition: var(--transition);
+      position: relative;
+      cursor: pointer;
+      border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .card:hover {
+      transform: translateY(-10px) scale(1.02);
+      box-shadow: 0 25px 50px rgba(0, 0, 0, 0.5);
+    }
+
+    .card-header {
+      background: var(--gradient-header);
+      color: white;
+      padding: 25px;
+      position: relative;
+      overflow: hidden;
+      transition: var(--transition);
+    }
+
+    .card:hover .card-header {
+      background: linear-gradient(135deg, #0b695f 0%, #2dd47a 100%);
+    }
+
+    .card-header::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+      transform: rotate(30deg);
+      transition: var(--transition);
+    }
+
+    .card:hover .card-header::before {
+      transform: rotate(45deg);
+    }
+
+    .player-name {
+      font-size: 1.6rem;
+      font-weight: 600;
+      margin-bottom: 5px;
+      position: relative;
+      z-index: 1;
+      transition: var(--transition);
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .card:hover .player-name {
+      transform: translateX(5px);
+    }
+
+    .player-position {
+      font-size: 0.9rem;
+      opacity: 0.95;
+      position: relative;
+      z-index: 1;
+      transition: var(--transition);
+    }
+
+    .player-stats {
+      display: flex;
+      justify-content: space-around;
+      padding: 20px 0;
+      background-color: rgba(255, 255, 255, 0.2);
+      margin-top: 15px;
+      border-radius: 12px;
+      position: relative;
+      z-index: 1;
+      backdrop-filter: blur(8px);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card:hover .player-stats {
+      background-color: rgba(255, 255, 255, 0.25);
+      transform: scale(1.02);
+    }
+
+    .stat-item {
+      text-align: center;
+      padding: 0 10px;
+      transition: var(--transition);
+    }
+
+    .card:hover .stat-item {
+      transform: translateY(-3px);
+    }
+
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 700;
+      display: block;
+      color: white;
+      transition: var(--transition);
+      text-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    }
+
+    .stat-label {
+      font-size: 0.85rem;
+      opacity: 0.95;
+      margin-top: 5px;
+      transition: var(--transition);
+    }
+
+    .card-body {
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.15);
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+      border-top: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .card:hover .card-body {
+      background: rgba(255, 255, 255, 0.2);
+    }
+
+    .toggle-details {
+      background: var(--gradient-button);
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: var(--transition);
+      margin-top: 10px;
+      width: 100%;
+      font-size: 1rem;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .toggle-details::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+      transition: var(--transition);
+    }
+
+    .toggle-details:hover::before {
+      left: 100%;
+    }
+
+    .toggle-details:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(135deg, #0b695f 0%, #2dd47a 100%);
+    }
+
+    .matches-list {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+      margin-top: 20px;
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .matches-list.expanded {
+      max-height: 200px;
+    }
+
+    .match-item {
+      text-align: center;
+      padding: 12px 8px;
+      background: var(--gradient-success);
+      border-radius: 12px;
+      transition: var(--transition);
+      color: white;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .match-item:nth-child(2n) {
+      background: var(--gradient-warning);
+    }
+
+    .match-item:nth-child(3n) {
+      background: var(--gradient-danger);
+    }
+
+    .match-item:hover {
+      transform: scale(1.05);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+    }
+
+    .match-journey {
+      font-size: 0.85rem;
+      font-weight: 600;
+      transition: var(--transition);
+    }
+
+    .match-minutes {
+      font-size: 1.2rem;
+      font-weight: 700;
+      margin-top: 5px;
+      transition: var(--transition);
+    }
+
+    /* Nota al pie */
+    .note {
+      max-width: 800px;
+      margin: 50px auto 20px;
+      padding: 25px;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 15px;
+      box-shadow: var(--shadow);
+      font-size: 0.95rem;
+      color: white;
+      text-align: center;
+      border-left: 5px solid var(--gradient-header);
+      backdrop-filter: blur(12px);
+      transition: var(--transition);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .note:hover {
+      transform: translateY(-5px);
+      background: rgba(255, 255, 255, 0.25);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .card-container {
+        grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      }
+      
+      .title {
+        font-size: 2.2rem;
+      }
+      
+      .player-stats {
+        padding: 15px 0;
+      }
+      
+      .stat-value {
+        font-size: 1.7rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .card-container {
+        grid-template-columns: 1fr;
+      }
+      
+      .title {
+        font-size: 1.9rem;
+      }
+      
+      .matches-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
+      
+      body {
+        padding: 15px;
+      }
+    }
+
+    /* Animaciones */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .card {
+      animation: fadeIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <h1 class="title">Estadísticas Temp. 25/26</h1>
+    <p class="subtitle">Seguimiento de rendimiento del equipo</p>
+  </div>
+
+  <div class="card-container" id="tabla-jugadores">
+    <!-- Las tarjetas con los datos de los jugadores se generarán aquí -->
+  </div>
+
+  <div class="note">
+    <strong>Nota:</strong> Los minutos jugados son aproximados. Se supone en estas estadísticas que todos los partidos duraron 90 minutos (los minutos de descuento no se han añadido).
+  </div>
+
+  <script>
+    // Datos de los jugadores con los minutos jugados en cada partido
+    const jugadores = [
+      {nombre: "Agudo", goles: 0, asistencias: 0, minutos: [0, 54, 0]},
+      {nombre: "Gabri", goles: 0, asistencias: 0, minutos: [0, 0, 90]},
+      {nombre: "Álvaro", goles: 0, asistencias: 0, minutos: [90, 36, 0]},
+      {nombre: "Luisja", goles: 0, asistencias: 0, minutos: [90, 90, 90]},
+      {nombre: "Martínez", goles: 1, asistencias: 0, minutos: [90, 90, 63]},
+      {nombre: "Rafa Crooke", goles: 0, asistencias: 0, minutos: [0, 26, 0]},
+      {nombre: "Jacobo", goles: 0, asistencias: 0, minutos: [0, 0, 63]},
+      {nombre: "Rodri", goles: 0, asistencias: 0, minutos: [90, 90, 90]},
+      {nombre: "Adriano", goles: 0, asistencias: 0, minutos: [90, 64, 27]},
+      {nombre: "Infante", goles: 0, asistencias: 0, minutos: [0, 0, 0]},
+      {nombre: "Molina", goles: 0, asistencias: 0, minutos: [45, 75, 0]},
+      {nombre: "Lucas Lausín", goles: 0, asistencias: 0, minutos: [0, 15, 20]},
+      {nombre: "Zarcero", goles: 0, asistencias: 0, minutos: [90, 0, 90]},
+      {nombre: "Kito", goles: 0, asistencias: 1, minutos: [90, 75, 70]},
+      {nombre: "Víctor Jaén", goles: 0, asistencias: 0, minutos: [21, 15, 63]},
+      {nombre: "Brito", goles: 0, asistencias: 0, minutos: [72, 75, 90]},
+      {nombre: "Pablo", goles: 0, asistencias: 0, minutos: [69, 0, 0]},
+      {nombre: "Javi Pardo", goles: 0, asistencias: 0, minutos: [0, 90, 90]},
+      {nombre: "Mario", goles: 0, asistencias: 0, minutos: [0, 0, 0]},
+      {nombre: "Ogayar", goles: 0, asistencias: 0, minutos: [18, 15, 27]},
+      {nombre: "Rodri de Castro", goles: 0, asistencias: 0, minutos: [0, 0, 0]},
+      {nombre: "H. Panizo", goles: 0, asistencias: 0, minutos: [45, 64, 27]},
+      {nombre: "Manu Medina", goles: 0, asistencias: 0, minutos: [0, 0, 0]},
+      {nombre: "Manu de V.", goles: 0, asistencias: 0, minutos: [45, 26, 27]},
+      {nombre: "S. Griñán", goles: 2, asistencias: 0, minutos: [45, 90, 63]}
+    ];
+
+    // Generar las tarjetas de los jugadores
+    function generarTarjetas() {
+      const contenedor = document.getElementById("tabla-jugadores");
+      contenedor.innerHTML = '';
+
+      jugadores.forEach((jugador, index) => {
+        const totalMinutos = calcularTotalMinutos(jugador.minutos);
+
+        const tarjeta = document.createElement("div");
+        tarjeta.classList.add("card");
+
+        // Añadir animación escalonada
+        tarjeta.style.animationDelay = `${index * 0.05}s`;
+
+        tarjeta.innerHTML = `
+          <div class="card-header">
+            <div class="player-name">${jugador.nombre}</div>
+            <div class="player-position">Jugador</div>
+            <div class="player-stats">
+              <div class="stat-item">
+                <span class="stat-value">${jugador.goles}</span>
+                <span class="stat-label">Goles</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">${jugador.asistencias}</span>
+                <span class="stat-label">Asistencias</span>
+              </div>
+              <div class="stat-item">
+                <span class="stat-value">${totalMinutos}</span>
+                <span class="stat-label">Minutos</span>
+              </div>
+            </div>
+          </div>
+          <div class="card-body">
+            <button class="toggle-details">Desglose por jornadas</button>
+            <div class="matches-list">
+              ${jugador.minutos.map((minuto, i) => `
+                <div class="match-item">
+                  <div class="match-journey">J${i + 1}</div>
+                  <div class="match-minutes">${minuto}'</div>
+                </div>
+              `).join('')}
+            </div>
+          </div>
+        `;
+
+        // Añadir el evento de clic para mostrar/ocultar detalles
+        const toggleBtn = tarjeta.querySelector('.toggle-details');
+        const matchesList = tarjeta.querySelector('.matches-list');
+        
+        toggleBtn.addEventListener('click', function(e) {
+          e.stopPropagation();
+          const isExpanded = matchesList.classList.contains('expanded');
+          matchesList.classList.toggle('expanded');
+          toggleBtn.textContent = isExpanded ? 'Desglose por jornadas' : 'Ocultar desglose';
+        });
+
+        contenedor.appendChild(tarjeta);
+      });
+    }
+
+    // Función para calcular el total de minutos jugados de un jugador
+    function calcularTotalMinutos(minutos) {
+      return minutos.reduce((acc, minuto) => acc + minuto, 0);
+    }
+
+    // Ejecutar la función para generar las tarjetas de los jugadores al cargar la página
+    window.onload = generarTarjetas;
+  </script>
+</body>
+</html>
