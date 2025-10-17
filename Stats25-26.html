@@ -298,7 +298,7 @@
     }
 
     .matches-list.expanded {
-      max-height: 200px;
+      max-height: 500px; /* Aumentado para mostrar todas las jornadas */
     }
 
     .match-item {
@@ -308,7 +308,6 @@
       border-radius: 12px;
       transition: var(--transition);
       color: white;
-      /* QUITADA LA SOMBRA */
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
@@ -322,7 +321,6 @@
 
     .match-item:hover {
       transform: scale(1.05);
-      /* QUITADA LA SOMBRA EN HOVER TAMBIÉN */
     }
 
     .match-journey {
@@ -377,6 +375,10 @@
       .stat-value {
         font-size: 1.7rem;
       }
+      
+      .matches-list {
+        grid-template-columns: repeat(2, 1fr);
+      }
     }
 
     @media (max-width: 480px) {
@@ -411,6 +413,7 @@
 <body>
   <div class="header">
     <h1 class="title">Estadísticas Temp. 25/26</h1>
+    <p class="subtitle">Seguimiento de rendimiento del equipo</p>
   </div>
 
   <div class="card-container" id="tabla-jugadores">
