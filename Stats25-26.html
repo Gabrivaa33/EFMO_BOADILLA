@@ -18,9 +18,13 @@
       --transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
       --gradient-header: linear-gradient(135deg, #0d7a6f 0%, #38ef7d 100%);
       --gradient-button: linear-gradient(135deg, #0d7a6f 0%, #38ef7d 100%);
-      --gradient-success: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-      --gradient-warning: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
-      --gradient-danger: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      
+      /* Nuevos gradientes para el patrón de 4 colores - mejor contraste */
+      --gradient-color-1: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+      --gradient-color-2: linear-gradient(135deg, #43e97b 0%, #38f9d7 100%);
+      --gradient-color-3: linear-gradient(135deg, #fa709a 0%, #fee140 100%);
+      --gradient-color-4: linear-gradient(135deg, #667eea 0%, #764ba2 100%); /* Cambiado a púrpura oscuro */
+      
       --gradient-card: linear-gradient(135deg, #0d7a6f 0%, #38ef7d 100%);
     }
 
@@ -305,20 +309,17 @@
     .match-item {
       text-align: center;
       padding: 12px 8px;
-      background: var(--gradient-success);
       border-radius: 12px;
       transition: var(--transition);
       color: white;
       border: 1px solid rgba(255, 255, 255, 0.2);
     }
 
-    .match-item:nth-child(2n) {
-      background: var(--gradient-warning);
-    }
-
-    .match-item:nth-child(3n) {
-      background: var(--gradient-danger);
-    }
+    /* Patrón de colores cada 4 jornadas */
+    .match-item.color-1 { background: var(--gradient-color-1); }
+    .match-item.color-2 { background: var(--gradient-color-2); }
+    .match-item.color-3 { background: var(--gradient-color-3); }
+    .match-item.color-4 { background: var(--gradient-color-4); }
 
     .match-item:hover {
       transform: scale(1.05);
@@ -455,6 +456,12 @@
       {nombre: "S. Griñán", goles: 2, asistencias: 0, minutos: [45, 90, 63]}
     ];
 
+    // Función para obtener la clase de color según el índice de la jornada
+    function obtenerClaseColor(indiceJornada) {
+      const patronColores = ['color-1', 'color-2', 'color-3', 'color-4'];
+      return patronColores[indiceJornada % 4];
+    }
+
     // Generar las tarjetas de los jugadores
     function generarTarjetas() {
       const contenedor = document.getElementById("tabla-jugadores");
@@ -492,7 +499,7 @@
             <button class="toggle-details">Desglose por jornadas</button>
             <div class="matches-list">
               ${jugador.minutos.map((minuto, i) => `
-                <div class="match-item">
+                <div class="match-item ${obtenerClaseColor(i)}">
                   <div class="match-journey">J${i + 1}</div>
                   <div class="match-minutes">${minuto}'</div>
                 </div>
