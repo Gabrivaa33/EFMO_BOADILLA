@@ -292,13 +292,14 @@
       grid-template-columns: repeat(3, 1fr);
       gap: 12px;
       margin-top: 20px;
-      max-height: 0;
+      height: 0;
       overflow: hidden;
-      transition: max-height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+      transition: height 0.8s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     .matches-list.expanded {
-      max-height: 500px; /* Aumentado para mostrar todas las jornadas */
+      height: auto;
+      min-height: 0;
     }
 
     .match-item {
