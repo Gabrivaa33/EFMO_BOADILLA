@@ -971,9 +971,10 @@
       { playerId: 1, title: 'Lesión', text: "Rotura fibrilar en el cuádriceps, 2-4 semanas" },
       { playerId: null, title: 'Jornada 2', text: "E.F.M.O. Boadilla 'B' 1-3 CDE F.B. Dptvo. Torrelodones", link: 'InformeJ2.html' },
       { playerId: 17, title: 'Lesión', text: "Fractura de muñeca, 6-8 semanas" },
-      { playerId: null, title: 'Jornada 1', text: "Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'", link: 'InformeJ1.html' },
+      //{ playerId: null, title: 'Jornada 1', text: "Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'" },
       { playerId: 19, title: 'Duda', text: "Lesión en los isquios, 4-6 semanas" },
       { playerId: 21, title: 'Duda', text: "Lesión de ingle, 5 meses" },
+      { playerId: null, title: 'Jornada 1', text: '<a href="InformeJ1.html">Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'</a>' }
       { playerId: null, title: 'Lesiones', text: "Para ver las lesiones o dudas, clica en el jugador y verás la información sobre su estado" }
     ];
 
@@ -1052,22 +1053,25 @@
     }
     
     function renderInjuryFeed(){
-      const feed = document.getElementById('injuryFeed');
-      feed.innerHTML = '';
+  const feed = document.getElementById('injuryFeed');
+  feed.innerHTML = '';
 
-      // Solo mostrar noticias generales (sin jugador vinculado)
-      const generalNews = news.filter(n => n.playerId === null);
+  news.forEach(n => {
+    const playerName = n.playerId ? players.find(p => p.id === n.playerId)?.name || '' : '';
+    const div = document.createElement('div');
+    div.className = 'p-2 bg-slate-800 rounded text-sm';
 
-      generalNews.forEach(n => {
-        const div = document.createElement('div');
-        div.className = 'news-item';
-        div.innerHTML = `
-          <div class="news-title">${n.title}</div>
-          <div class="news-text">${n.text}</div>
-        `;
-        feed.appendChild(div);
-      });
-    }
+    // Permite que el texto incluya <a> y se abra en nueva pestaña
+    const safeText = n.text.replace(/<a /g, '<a target="_blank" rel="noopener noreferrer" ');
+
+    div.innerHTML = `
+      <div class="font-medium">${n.title}${playerName ? ': ' + playerName : ''}</div>
+      <div class="text-slate-400 text-xs">${safeText}</div>
+    `;
+    feed.appendChild(div);
+  });
+}
+
     
     function render(){
       const grid = document.getElementById('gridView');
