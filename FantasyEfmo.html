@@ -870,7 +870,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'}
       ]},
       
-      { id:12, name:'L. Lausín', pos:'Defensa', status:'OK', performances:[
+      { id:12, name:'L. Lausín', pos:'Defensa', status:'Lesionado', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:2, minutes:20, goals:0, assists:0, cards:0, comment:'↩️ (6,5)'},
@@ -927,7 +927,7 @@
         {points:null, minutes:69, goals:0, assists:0, cards:0, comment:'↪️ -'}
       ]},
       
-      { id:19, name:'Mario', pos:'Centrocampista', status:'Duda', performances:[
+      { id:19, name:'Mario', pos:'Centrocampista', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -986,6 +986,7 @@
 
     // 📰 Noticias del equipo
     const news = [
+      { playerId: 12, title: 'Lesión', text: "Luxación de rodilla, 6-8 semanas" },
       { playerId: null, title: 'Jornada 5', text: "CD Retamar 3-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ5.html' },
       { playerId: null, title: 'Jornada 4', text: "E.F.M.O. Boadilla 'B' 0-1 CD Puerta de Madrid 'B'", url: 'InformeJ4.html' },
       { playerId: 8, title: 'Lesión', text: "Pubalgia, 2-3 semanas" },
@@ -997,8 +998,8 @@
       { playerId: null, title: 'Jornada 2', text: "E.F.M.O. Boadilla 'B' 1-3 CDE F.B. Dptvo. Torrelodones", url: 'InformeJ2.html' },
       { playerId: 17, title: 'Lesión', text: "Fractura de muñeca, 6-8 semanas" },
       { playerId: null, title: 'Jornada 1', text: "CF Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'", url: 'InformeJ1.html' },
-      { playerId: 19, title: 'Duda', text: "Lesión en los isquios, 4-6 semanas" },
-      { playerId: 21, title: 'Duda', text: "Lesión de ingle, 5 meses" },
+      //{ playerId: 19, title: 'Duda', text: "Lesión en los isquios, 4-6 semanas" },
+      { playerId: 21, title: 'Duda', text: "Lesión de abductor, 5 meses" },
       { playerId: null, title: 'Lesiones', text: "Para ver las lesiones o dudas, clica en el jugador y verás la información sobre su estado" }
     ];
 
