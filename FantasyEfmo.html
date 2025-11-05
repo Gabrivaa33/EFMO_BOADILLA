@@ -782,7 +782,7 @@
   <script>
     // Datos de jugadores y noticias (igual que en tu código original)
     const players = [
-      { id:1, name:'J. Agudo', pos:'Portero', status:'Lesionado', performances:[
+      { id:1, name:'J. Agudo', pos:'Portero', status:'Duda', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:54, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -830,7 +830,7 @@
         {points:11, minutes:90, goals:0, assists:1, cards:0, comment:'🅰️ (8,2+🅰️)'}
       ]},
       
-      { id:7, name:'Jacobo', pos:'Defensa', status:'Duda', performances:[
+      { id:7, name:'Jacobo', pos:'Defensa', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:4, minutes:63, goals:0, assists:0, cards:0, comment:'↪️ (6,9)'},
@@ -854,7 +854,7 @@
         {points:8, minutes:68, goals:0, assists:0, cards:0, comment:'↪️ (7,6)'}
       ]},
       
-      { id:10, name:'Á. Infante', pos:'Defensa', status:'OK', performances:[
+      { id:10, name:'Á. Infante', pos:'Defensa', status:'Duda', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -986,15 +986,16 @@
 
     // 📰 Noticias del equipo
     const news = [
+      { playerId: 10, title: 'Duda', text: "Molestias en el pie, desconocido" },
+      { playerId: null, title: 'Jornada 6', text: "E.F.M.O. Boadilla 'B' 2-1 CD Prodet Pozuelo", url: 'InformeJ6.html' },
       { playerId: 12, title: 'Lesión', text: "Luxación de rodilla, 6-8 semanas" },
       { playerId: null, title: 'Jornada 5', text: "CD Retamar 3-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ5.html' },
       { playerId: null, title: 'Jornada 4', text: "E.F.M.O. Boadilla 'B' 0-1 CD Puerta de Madrid 'B'", url: 'InformeJ4.html' },
-      { playerId: 8, title: 'Lesión', text: "Pubalgia, 2-3 semanas" },
-      { playerId: 7, title: 'Duda', text: "Molestias en los hombros, 2 semanas" },
+      { playerId: 8, title: 'Lesión', text: "Pubalgia, 3-4 semanas" },
       { playerId: 24, title: 'Lesión', text: "Edema óseo, 3-4 semanas" },
       { playerId: 9, title: 'Duda', text: "Molestias en el talón, 20-30 días" },
       { playerId: null, title: 'Jornada 3', text: "Gimnástica Colmenarejo CD 'B' 4-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ3.html' },
-      { playerId: 1, title: 'Lesión', text: "Rotura fibrilar en el cuádriceps, 3-5 semanas" },
+      { playerId: 1, title: 'Duda', text: "Rotura fibrilar en el cuádriceps, 3-5 semanas" },
       { playerId: null, title: 'Jornada 2', text: "E.F.M.O. Boadilla 'B' 1-3 CDE F.B. Dptvo. Torrelodones", url: 'InformeJ2.html' },
       { playerId: 17, title: 'Lesión', text: "Fractura de muñeca, 6-8 semanas" },
       { playerId: null, title: 'Jornada 1', text: "CF Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'", url: 'InformeJ1.html' },
