@@ -192,8 +192,8 @@
       width: 100%;
       height: 100%;
       background-image:
-        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+              linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+              linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
       background-size: 30px 30px; /* Más pequeño para móviles */
       opacity: 0.3;
     }
@@ -276,6 +276,37 @@
       text-align: center;
     }
 
+    /* Nuevos estilos para emojis de goles y asistencias en once confirmado */
+    .player-with-stats-responsive {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .player-main-info-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .player-stats-side-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      position: absolute;
+      left: 45px; /* Separado un poco más del círculo */
+      top: -8px; /* Posicionado encima del círculo */
+      z-index: 4; /* Para que esté por encima de otros elementos */
+    }
+
+    .player-goals-row-responsive, .player-assists-row-responsive {
+      font-size: 0.9rem;
+      line-height: 1;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra para mejor legibilidad */
+      white-space: nowrap; /* Evita que se rompa en varias líneas */
+    }
+
     /* Estilos para la alineación con banquillo */
     .container-responsive {
       width: 100%;
@@ -342,6 +373,7 @@
     .bench-player-info-responsive {
       display: flex;
       align-items: center;
+      flex-grow: 1;
     }
 
     .bench-player-number-responsive {
@@ -356,6 +388,7 @@
       font-size: 0.7rem;
       margin-right: 8px;
       font-weight: bold;
+      flex-shrink: 0;
     }
 
     .bench-player-name-responsive {
@@ -363,6 +396,16 @@
       color: #333 !important;
       white-space: normal; /* Permite múltiples líneas */
       line-height: 1.2;
+      flex-grow: 1;
+    }
+
+    .bench-player-stats-responsive {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 8px;
+      font-size: 0.9rem;
+      white-space: nowrap; /* Evita que se rompa en varias líneas */
     }
 
     .bench-player-rating-responsive {
@@ -373,6 +416,7 @@
       min-width: 30px;
       text-align: center;
       color: #000 !important;
+      flex-shrink: 0;
     }
 
     /* Colores de puntuación */
@@ -404,6 +448,16 @@
 
       .seccion h3 {
         font-size: 1.3rem;
+      }
+
+      /* Ajustes para emojis en móviles */
+      .player-stats-side-responsive {
+        left: 38px; /* Ajustado para móviles */
+        top: -6px; /* Ajustado para móviles */
+      }
+
+      .player-goals-row-responsive, .player-assists-row-responsive {
+        font-size: 0.8rem;
       }
 
       /* Ajustes adicionales para móviles muy pequeños */
@@ -439,6 +493,15 @@
         .bench-responsive {
           width: 100%;
         }
+
+        .bench-player-stats-responsive {
+          margin-right: 5px;
+        }
+
+        .player-stats-side-responsive {
+          left: 35px; /* Ajustado para móviles pequeños */
+          top: -5px; /* Ajustado para móviles pequeños */
+        }
       }
 
       /* Para tablets y pantallas más grandes */
@@ -460,6 +523,11 @@
           width: 250px;
           border-top: none;
           border-left: 1px solid #e0e0e0;
+        }
+
+        .player-stats-side-responsive {
+          left: 48px; /* Ajustado para tablets */
+          top: -10px; /* Ajustado para tablets */
         }
       }
 
@@ -485,6 +553,11 @@
 
         .player-responsive {
           min-width: 80px;
+        }
+
+        .player-stats-side-responsive {
+          left: 55px; /* Ajustado para desktop */
+          top: -12px; /* Ajustado para desktop */
         }
       }
     }
@@ -587,7 +660,7 @@
       renderFormationProbable('4-3-3');
     </script>
   </div>
-<!-- Alineación Confirmada -->
+  <!-- Alineación Confirmada -->
   <div class="seccion">
     <h3>Alineación Confirmada</h3>
 
@@ -621,35 +694,35 @@
       // Datos de los jugadores organizados por posición - ALINEACIÓN CONFIRMADA
       const playersConfirmada = {
         'portero': [
-          { number: '13', name: 'Álvaro', rating: '7,1' }
+          { number: '13', name: 'Álvaro', rating: '7,1', goals: 0, assists: 0 }
         ],
         'defensas': [
-          { number: '16', name: 'Luisja', rating: '6,9' },
-          { number: '5', name: 'Adriano', rating: '7,0' },
-          { number: '6', name: 'Rafa', rating: '6,0' },
-          { number: '17', name: 'J. Zarcero', rating: '7,4' }
+          { number: '16', name: 'Luisja', rating: '6,9', goals: 0, assists: 0 },
+          { number: '5', name: 'Adriano', rating: '7,0', goals: 0, assists: 0 },
+          { number: '6', name: 'Rafa', rating: '6,0', goals: 0, assists: 0 },
+          { number: '17', name: 'J. Zarcero', rating: '7,4', goals: 0, assists: 0 }
         ],
         'mediocentros': [
-          { number: '23', name: 'J. Pardo', rating: '6,9' },
-          { number: '2', name: 'Á. Brito', rating: '6,4' },
-          { number: '14', name: 'J. Ogayar', rating: '6,7' }
+          { number: '23', name: 'J. Pardo', rating: '6,9', goals: 0, assists: 0 },
+          { number: '2', name: 'Á. Brito', rating: '6,4', goals: 0, assists: 0 },
+          { number: '14', name: 'J. Ogayar', rating: '6,7', goals: 0, assists: 0 }
         ],
         'delanteros': [
-          { number: '7', name: 'J. Martínez', rating: '6,6' },
-          { number: '24', name: 'H. Panizo', rating: '6,4' },
-          { number: '20', name: 'A. Molina', rating: '6,5' }
+          { number: '7', name: 'J. Martínez', rating: '6,6', goals: 0, assists: 0 },
+          { number: '24', name: 'H. Panizo', rating: '6,4', goals: 0, assists: 0 },
+          { number: '20', name: 'A. Molina', rating: '6,5', goals: 0, assists: 0 }
         ]
       };
 
       // Datos del banquillo
       const benchPlayers = [
-        { number: '1', name: 'Gabri', rating: '-' },
-        { number: '4', name: 'Á. Infante', rating: '-' },
-        { number: '12', name: 'L. Lausín', rating: '6,6' },
-        { number: '10', name: 'Kito', rating: '6,8' },
-        { number: '3', name: 'Mario', rating: '-' },
-        { number: '11', name: 'Manu Medina', rating: '6,4' },
-        { number: '9', name: 'S. Griñán', rating: '6,1' }
+        { number: '1', name: 'Gabri', rating: '-', goals: 0, assists: 0 },
+        { number: '4', name: 'Á. Infante', rating: '-', goals: 0, assists: 0 },
+        { number: '12', name: 'L. Lausín', rating: '6,6', goals: 0, assists: 0 },
+        { number: '10', name: 'Kito', rating: '6,8', goals: 0, assists: 0 },
+        { number: '3', name: 'Mario', rating: '-', goals: 0, assists: 0 },
+        { number: '11', name: 'Manu Medina', rating: '6,4', goals: 0, assists: 0 },
+        { number: '9', name: 'S. Griñán', rating: '6,1', goals: 0, assists: 0 }
       ];
 
       // Configuraciones de formaciones
@@ -686,6 +759,28 @@
         }
       }
 
+      // Función para crear HTML de estadísticas
+      function createStatsHTML(goals, assists) {
+        let statsHTML = '';
+
+        if (goals > 0 || assists > 0) {
+          const goalsHTML = goals > 0 ?
+                  `<div class="player-goals-row-responsive">${'⚽'.repeat(goals)}</div>` : '';
+
+          const assistsHTML = assists > 0 ?
+                  `<div class="player-assists-row-responsive">${'🅰️'.repeat(assists)}</div>` : '';
+
+          statsHTML = `
+            <div class="player-stats-side-responsive">
+              ${goalsHTML}
+              ${assistsHTML}
+            </div>
+          `;
+        }
+
+        return statsHTML;
+      }
+
       // Función para renderizar una formación
       function renderFormationConfirmada(formationKey) {
         const formationContainer = document.getElementById('formation-container-confirmada');
@@ -701,10 +796,17 @@
             const playerElement = document.createElement('div');
             playerElement.className = 'player-responsive';
 
+            const statsHTML = createStatsHTML(player.goals, player.assists);
+
             playerElement.innerHTML = `
-              <div class="player-circle-responsive">${player.number}</div>
-              <div class="player-rating-responsive">${player.rating}</div>
-              <div class="player-name-responsive">${player.name}</div>
+              <div class="player-with-stats-responsive">
+                <div class="player-main-info-responsive">
+                  <div class="player-circle-responsive">${player.number}</div>
+                  <div class="player-rating-responsive">${player.rating}</div>
+                  <div class="player-name-responsive">${player.name}</div>
+                </div>
+                ${statsHTML}
+              </div>
             `;
 
             row.appendChild(playerElement);
@@ -731,18 +833,32 @@
           const benchPlayerElement = document.createElement('div');
           benchPlayerElement.className = 'bench-player-responsive';
 
+          // Crear HTML para estadísticas de goles y asistencias del banquillo
+          let statsHTML = '';
+          if (player.goals > 0 || player.assists > 0) {
+            const goalsText = player.goals > 0 ? '⚽'.repeat(player.goals) : '';
+            const assistsText = player.assists > 0 ? '🅰️'.repeat(player.assists) : '';
+
+            statsHTML = `
+              <div class="bench-player-stats-responsive">
+                ${goalsText}${assistsText}
+              </div>
+            `;
+          }
+
           benchPlayerElement.innerHTML = `
             <div class="bench-player-info-responsive">
               <div class="bench-player-number-responsive">${player.number}</div>
               <div class="bench-player-name-responsive">${player.name}</div>
             </div>
+            ${statsHTML}
             <div class="bench-player-rating-responsive">${player.rating}</div>
           `;
 
           benchContainer.appendChild(benchPlayerElement);
-          });
-        
-          // Aplicar colores a los ratings del banquillo
+        });
+
+        // Aplicar colores a los ratings del banquillo
         document.querySelectorAll('.bench-player-rating-responsive').forEach(ratingElement => {
           const rating = ratingElement.textContent;
           applyRatingColor(ratingElement, rating);
@@ -754,8 +870,8 @@
     </script>
   </div>
 
-  
-  <!-- Goles  
+
+  <!-- Goles
   <div class="seccion">
     <h3>Goles a Favor</h3>
     <div class="goles-lista">
@@ -889,7 +1005,7 @@
   </div>
 
 </div>
-  
+
 </body>
 </html>
-       
+
