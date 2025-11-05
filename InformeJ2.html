@@ -276,6 +276,37 @@
       text-align: center;
     }
 
+    /* Nuevos estilos para emojis de goles y asistencias en once confirmado */
+    .player-with-stats-responsive {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .player-main-info-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .player-stats-side-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      position: absolute;
+      left: 45px; /* Separado un poco más del círculo */
+      top: -8px; /* Posicionado encima del círculo */
+      z-index: 4; /* Para que esté por encima de otros elementos */
+    }
+
+    .player-goals-row-responsive, .player-assists-row-responsive {
+      font-size: 0.9rem;
+      line-height: 1;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Sombra para mejor legibilidad */
+      white-space: nowrap; /* Evita que se rompa en varias líneas */
+    }
+
     /* Estilos para la alineación con banquillo */
     .container-responsive {
       width: 100%;
@@ -342,6 +373,7 @@
     .bench-player-info-responsive {
       display: flex;
       align-items: center;
+      flex-grow: 1;
     }
 
     .bench-player-number-responsive {
@@ -356,6 +388,7 @@
       font-size: 0.7rem;
       margin-right: 8px;
       font-weight: bold;
+      flex-shrink: 0;
     }
 
     .bench-player-name-responsive {
@@ -363,6 +396,16 @@
       color: #333 !important;
       white-space: normal; /* Permite múltiples líneas */
       line-height: 1.2;
+      flex-grow: 1;
+    }
+
+    .bench-player-stats-responsive {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 8px;
+      font-size: 0.9rem;
+      white-space: nowrap; /* Evita que se rompa en varias líneas */
     }
 
     .bench-player-rating-responsive {
@@ -373,6 +416,7 @@
       min-width: 30px;
       text-align: center;
       color: #000 !important;
+      flex-shrink: 0;
     }
 
     /* Colores de puntuación */
@@ -404,6 +448,16 @@
 
       .seccion h3 {
         font-size: 1.3rem;
+      }
+
+      /* Ajustes para emojis en móviles */
+      .player-stats-side-responsive {
+        left: 38px; /* Ajustado para móviles */
+        top: -6px; /* Ajustado para móviles */
+      }
+
+      .player-goals-row-responsive, .player-assists-row-responsive {
+        font-size: 0.8rem;
       }
 
       /* Ajustes adicionales para móviles muy pequeños */
@@ -439,6 +493,15 @@
         .bench-responsive {
           width: 100%;
         }
+
+        .bench-player-stats-responsive {
+          margin-right: 5px;
+        }
+
+        .player-stats-side-responsive {
+          left: 35px; /* Ajustado para móviles pequeños */
+          top: -5px; /* Ajustado para móviles pequeños */
+        }
       }
 
       /* Para tablets y pantallas más grandes */
@@ -460,6 +523,11 @@
           width: 250px;
           border-top: none;
           border-left: 1px solid #e0e0e0;
+        }
+
+        .player-stats-side-responsive {
+          left: 48px; /* Ajustado para tablets */
+          top: -10px; /* Ajustado para tablets */
         }
       }
 
@@ -485,6 +553,11 @@
 
         .player-responsive {
           min-width: 80px;
+        }
+
+        .player-stats-side-responsive {
+          left: 55px; /* Ajustado para desktop */
+          top: -12px; /* Ajustado para desktop */
         }
       }
     }
@@ -622,35 +695,35 @@
       // Datos de los jugadores organizados por posición - ALINEACIÓN CONFIRMADA
       const playersConfirmada = {
         'portero': [
-          { number: '22', name: 'J. Agudo', rating: '-' }
+          { number: '22', name: 'J. Agudo', rating: '-', goals: 0, assists: 0 }
         ],
         'defensas': [
-          { number: '16', name: 'Luisja', rating: '-' },
-          { number: '5', name: 'Adriano', rating: '-' },
-          { number: '25', name: 'Rodri', rating: '-' },
-          { number: '20', name: 'A. Molina', rating: '-' }
+          { number: '16', name: 'Luisja', rating: '-', goals: 0, assists: 0 },
+          { number: '5', name: 'Adriano', rating: '-', goals: 0, assists: 0 },
+          { number: '25', name: 'Rodri', rating: '-', goals: 0, assists: 0 },
+          { number: '20', name: 'A. Molina', rating: '-', goals: 0, assists: 0 }
         ],
         'mediocentros': [
-          { number: '2', name: 'Á. Brito', rating: '-' },
-          { number: '10', name: 'Kito', rating: '-' },
-          { number: '23', name: 'Javi Pardo', rating: '-' }
+          { number: '2', name: 'Á. Brito', rating: '-', goals: 0, assists: 0 },
+          { number: '10', name: 'Kito', rating: '-', goals: 0, assists: 0 },
+          { number: '23', name: 'Javi Pardo', rating: '-', goals: 0, assists: 0 }
         ],
         'delanteros': [
-          { number: '7', name: 'J. Martínez', rating: '-' },
-          { number: '9', name: 'S. Griñán', rating: '-' },
-          { number: '24', name: 'H. Panizo', rating: '-' }
+          { number: '7', name: 'J. Martínez', rating: '-', goals: 0, assists: 0 },
+          { number: '9', name: 'S. Griñán', rating: '-', goals: 1, assists: 0 },
+          { number: '24', name: 'H. Panizo', rating: '-', goals: 0, assists: 0 }
         ]
       };
 
       // Datos del banquillo
       const benchPlayers = [
-        { number: '13', name: 'Álvaro', rating: '-' },
-        { number: '6', name: 'Rafa Crooke', rating: '-' },
-        { number: '15', name: 'Jacobo', rating: '-' },
-        { number: '12', name: 'L. Lausín', rating: '-' },
-        { number: '21', name: 'Víctor Jaén', rating: '-' },
-        { number: '14', name: 'J. Ogayar', rating: '-' },
-        { number: '18', name: 'Manu de V.', rating: '-' }
+        { number: '13', name: 'Álvaro', rating: '-', goals: 0, assists: 0 },
+        { number: '6', name: 'Rafa Crooke', rating: '-', goals: 0, assists: 0 },
+        { number: '15', name: 'Jacobo', rating: '-', goals: 0, assists: 0 },
+        { number: '12', name: 'L. Lausín', rating: '-', goals: 0, assists: 0 },
+        { number: '21', name: 'Víctor Jaén', rating: '-', goals: 0, assists: 0 },
+        { number: '14', name: 'J. Ogayar', rating: '-', goals: 0, assists: 0 },
+        { number: '18', name: 'Manu de V.', rating: '-', goals: 0, assists: 0 }
       ];
 
       // Configuraciones de formaciones
@@ -687,6 +760,28 @@
         }
       }
 
+      // Función para crear HTML de estadísticas
+      function createStatsHTML(goals, assists) {
+        let statsHTML = '';
+        
+        if (goals > 0 || assists > 0) {
+          const goalsHTML = goals > 0 ? 
+            `<div class="player-goals-row-responsive">${'⚽'.repeat(goals)}</div>` : '';
+          
+          const assistsHTML = assists > 0 ? 
+            `<div class="player-assists-row-responsive">${'🅰️'.repeat(assists)}</div>` : '';
+          
+          statsHTML = `
+            <div class="player-stats-side-responsive">
+              ${goalsHTML}
+              ${assistsHTML}
+            </div>
+          `;
+        }
+        
+        return statsHTML;
+      }
+
       // Función para renderizar una formación
       function renderFormationConfirmada(formationKey) {
         const formationContainer = document.getElementById('formation-container-confirmada');
@@ -702,10 +797,17 @@
             const playerElement = document.createElement('div');
             playerElement.className = 'player-responsive';
 
+            const statsHTML = createStatsHTML(player.goals, player.assists);
+
             playerElement.innerHTML = `
-              <div class="player-circle-responsive">${player.number}</div>
-              <div class="player-rating-responsive">${player.rating}</div>
-              <div class="player-name-responsive">${player.name}</div>
+              <div class="player-with-stats-responsive">
+                <div class="player-main-info-responsive">
+                  <div class="player-circle-responsive">${player.number}</div>
+                  <div class="player-rating-responsive">${player.rating}</div>
+                  <div class="player-name-responsive">${player.name}</div>
+                </div>
+                ${statsHTML}
+              </div>
             `;
 
             row.appendChild(playerElement);
@@ -732,11 +834,25 @@
           const benchPlayerElement = document.createElement('div');
           benchPlayerElement.className = 'bench-player-responsive';
 
+          // Crear HTML para estadísticas de goles y asistencias del banquillo
+          let statsHTML = '';
+          if (player.goals > 0 || player.assists > 0) {
+            const goalsText = player.goals > 0 ? '⚽'.repeat(player.goals) : '';
+            const assistsText = player.assists > 0 ? '🅰️'.repeat(player.assists) : '';
+            
+            statsHTML = `
+              <div class="bench-player-stats-responsive">
+                ${goalsText}${assistsText}
+              </div>
+            `;
+          }
+
           benchPlayerElement.innerHTML = `
             <div class="bench-player-info-responsive">
               <div class="bench-player-number-responsive">${player.number}</div>
               <div class="bench-player-name-responsive">${player.name}</div>
             </div>
+            ${statsHTML}
             <div class="bench-player-rating-responsive">${player.rating}</div>
           `;
 
@@ -906,11 +1022,6 @@
 
 </body>
 </html>
-
-
-
-
-
 
 
 
