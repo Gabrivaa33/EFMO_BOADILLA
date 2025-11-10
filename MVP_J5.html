@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MVP Jornada 5</title>
+<link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+  :root {
+    --grad-fondo1: #ff7e5f;
+    --grad-fondo2: #feb47b;
+    --violeta: #6a11cb;
+    --azul: #2575fc;
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    font-family: 'Montserrat', sans-serif;
+    background: linear-gradient(120deg, var(--grad-fondo1), var(--grad-fondo2));
+    color: white;
+    overflow-x: hidden;
+    min-height: 100vh;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .container {
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+    padding: 30px;
+    margin-top: 40px;
+  }
+  
+  h1 {
+    text-align: center;
+    margin-bottom: 30px;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+    font-size: 2.2rem;
+    font-weight: 900;
+  }
+  
+  .result-card {
+    background: rgba(255,255,255,0.15);
+    border-radius: 12px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+  }
+  
+  .result-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .player-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .player-name {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+  
+  .vote-count {
+    background: rgba(255,255,255,0.2);
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-weight: bold;
+  }
+  
+  .progress-bar {
+    height: 12px;
+    background: rgba(255,255,255,0.2);
+    border-radius: 6px;
+    overflow: hidden;
+  }
+  
+  .progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, var(--violeta), var(--azul));
+    border-radius: 6px;
+    transition: width 1s ease;
+    width: 0%; /* Inicialmente en 0, se llenará con JS */
+  }
+  
+  .total-votes {
+    text-align: center;
+    margin-top: 30px;
+    font-size: 1.1rem;
+    opacity: 0.8;
+    background: rgba(255,255,255,0.15);
+    padding: 15px;
+    border-radius: 10px;
+  }
+  
+  .back-button {
+    display: block;
+    width: 200px;
+    margin: 30px auto 0;
+    text-align: center;
+    text-decoration: none;
+    color: white;
+    background: linear-gradient(90deg, var(--violeta), var(--azul));
+    padding: 12px 24px;
+    border-radius: 6px;
+    font-weight: 700;
+    transition: all 0.3s;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+  }
+  
+  .back-button:hover {
+    background: linear-gradient(90deg, var(--azul), var(--violeta));
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .winner-badge {
+    display: inline-block;
+    background: linear-gradient(45deg, #FFD700, #FFA500);
+    color: #333;
+    padding: 5px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.8rem;
+    margin-left: 10px;
+    animation: pulse 2s infinite;
+  }
+
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+    100% { transform: scale(1); }
+  }
+
+  @media (max-width: 750px) {
+    .container {
+      padding: 20px;
+      margin-top: 20px;
+    }
+    
+    h1 {
+      font-size: 1.8rem;
+    }
+    
+    .player-info {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 10px;
+    }
+    
+    .vote-count {
+      align-self: flex-end;
+    }
+  }
+</style>
+</head>
+<body>
+  <div class="container">
+    <h1>MVP Jornada 5</h1>
+    
+    <div id="results-container">
+      <!-- Los resultados se generarán automáticamente con JavaScript -->
+    </div>
+    
+    <div class="total-votes" id="total-votes">Total de votos: <span id="total-count">0</span></div>
+    
+    <a href="Encuestas_MVP2526.html" class="back-button">Volver a Encuestas</a>
+  </div>
+
+  <script>
+    // Datos de ejemplo - ¡MODIFICA ESTOS DATOS SEGÚN TUS RESULTADOS!
+    const resultsData = {
+      jornada: "Jornada 5",
+      totalVotes: 4, // Cambia este número por el total real de votos
+      players: [
+        { name: "S. Griñán", votes: 3 },
+        { name: "Gabri", votes: 1 }
+      ]
+    };
+
+    // Función para calcular porcentajes y mostrar resultados
+    function displayResults() {
+      const container = document.getElementById('results-container');
+      const totalElement = document.getElementById('total-count');
+      
+      // Actualizar el título con la jornada
+      document.querySelector('h1').textContent = `Resultados ${resultsData.jornada}`;
+      
+      // Actualizar el total de votos
+      totalElement.textContent = resultsData.totalVotes;
+      
+      // Encontrar el máximo de votos para identificar al ganador
+      const maxVotes = Math.max(...resultsData.players.map(player => player.votes));
+      
+      // Limpiar contenedor
+      container.innerHTML = '';
+      
+      // Crear tarjetas para cada jugador
+      resultsData.players.forEach(player => {
+        const percentage = (player.votes / resultsData.totalVotes) * 100;
+        
+        const card = document.createElement('div');
+        card.className = 'result-card';
+        
+        const isWinner = player.votes === maxVotes;
+        
+        card.innerHTML = `
+          <div class="player-info">
+            <div class="player-name">
+              ${player.name} ${isWinner ? '<span class="winner-badge">GANADOR</span>' : ''}
+            </div>
+            <div class="vote-count">${player.votes} voto${player.votes !== 1 ? 's' : ''}</div>
+          </div>
+          <div class="progress-bar">
+            <div class="progress-fill" style="width: 0%"></div>
+          </div>
+        `;
+        
+        container.appendChild(card);
+        
+        // Animar la barra después de un pequeño retraso
+        setTimeout(() => {
+          const progressFill = card.querySelector('.progress-fill');
+          progressFill.style.width = `${percentage}%`;
+        }, 300);
+      });
+    }
+
+    // Inicializar cuando la página cargue
+    document.addEventListener('DOMContentLoaded', displayResults);
+  </script>
+</body>
+</html>
