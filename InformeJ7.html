@@ -759,7 +759,7 @@
       // Datos del banquillo - MODIFICADO: Agregar campo 'cards'
       const benchPlayers = [
         { number: '13', name: 'Álvaro', rating: '-', goals: 0, assists: 0, cards: null },
-        { number: '34', name: 'Manu', rating: '6,6', goals: 0, assists: 0, cards: null },
+        { number: '34', name: 'Manu (JC)', rating: '6,6', goals: 0, assists: 0, cards: null },
         { number: '8', name: 'Rodri de Castro', rating: '6,7', goals: 0, assists: 0, cards: null },
         { number: '24', name: 'H. Panizo', rating: '7,0', goals: 0, assists: 0, cards: null },
         { number: '11', name: 'Manu Medina', rating: '-', goals: 0, assists: 0, cards: null }
@@ -928,10 +928,7 @@
     <h3>Goles a Favor</h3>
     <div class="goles-lista">
       <div class="gol">
-        <span class="minuto">65'</span> - Javi Pardo (Asistencia: S. Griñán)
-      </div>
-      <div class="gol">
-        <span class="minuto">69'</span> - S. Griñán
+        <span class="minuto">11'</span> - A. Molina (Asistencia: J. Ogayar)
       </div>
     </div>
   </div> 
@@ -941,27 +938,27 @@
     <h3>Cambios Realizados</h3>
     <div class="cambios-lista">
       <div class="cambio">
-        <span class="minuto">62'</span>
+        <span class="minuto">38'</span>
         <div class="jugadores-cambio">
-          <span>Mario</span>
+          <span>Víctor Jaén</span>
           <span class="flecha">→</span>
-          <span>J. Ogayar</span>
-        </div>
-      </div>
-      <div class="cambio">
-        <span class="minuto">62'</span>
-        <div class="jugadores-cambio">
-          <span>J. Martínez</span>
-          <span class="flecha">→</span>
-          <span>Javi Pardo</span>
-        </div>
-      </div>
-      <div class="cambio">
-        <span class="minuto">88'</span>
-        <div class="jugadores-cambio">
           <span>H. Panizo</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">61'</span>
+        <div class="jugadores-cambio">
+          <span>J. Ogayar</span>
           <span class="flecha">→</span>
+          <span>Manu (JC)</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">61'</span>
+        <div class="jugadores-cambio">
           <span>A. Molina</span>
+          <span class="flecha">→</span>
+          <span>Rodri de Castro</span>
         </div>
       </div>
     </div>
@@ -970,7 +967,7 @@
   <!-- Once Final -->
   <div class="seccion">
     <h3>Once Final</h3>
-    <div class="formacion-titulo">4-4-1</div>
+    <div class="formacion-titulo">3-5-1</div>
 
     <div class="field-container-responsive">
       <div class="field-responsive">
@@ -989,16 +986,16 @@
           { number: '1', name: 'Gabri' }
         ],
         'defensas': [
-          { number: '16', name: 'Luisja' },
-          { number: '2', name: 'Á. Brito' },
-          { number: '6', name: 'Rafa' },
+          { number: '7', name: 'J. Martínez' },
+          { number: '34', name: 'Manu (JC)' },
           { number: '17', name: 'J. Zarcero' }
         ],
         'mediocentros': [
-          { number: '20', name: 'A. Molina' },
-          { number: '21', name: 'Víctor Jaén' },
-          { number: '14', name: 'J. Ogayar' },
-          { number: '23', name: 'Javi Pardo' }
+          { number: '8', name: 'Rodri de Castro' },
+          { number: '10', name: 'Kito' },
+          { number: '2', name: 'Á. Brito' },
+          { number: '3', name: 'Mario' },
+          { number: '24', name: 'H. Panizo' }
         ],
         'delanteros': [
           { number: '9', name: 'S. Griñán' },
@@ -1007,7 +1004,7 @@
 
       // Configuraciones de formaciones
       const formationsFinal = {
-        '4-4-1': [
+        '3-5-1': [
           playersFinal.delanteros,
           playersFinal.mediocentros,
           playersFinal.defensas,
@@ -1043,7 +1040,7 @@
       }
 
       // Renderizar formación para once final
-      renderFormationFinal('4-5-1');
+      renderFormationFinal('3-5-1');
     </script>
   </div>
 
