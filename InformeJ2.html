@@ -307,6 +307,25 @@
       white-space: nowrap; /* Evita que se rompa en varias líneas */
     }
 
+    /* NUEVOS ESTILOS PARA TARJETAS */
+    .player-cards-side-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      position: absolute;
+      right: 45px;
+      top: -8px;
+      z-index: 4;
+    }
+    
+    .player-cards-row-responsive {
+      font-size: 0.9rem;
+      line-height: 1;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      white-space: nowrap;
+    }
+
     /* Estilos para la alineación con banquillo */
     .container-responsive {
       width: 100%;
@@ -460,6 +479,16 @@
         font-size: 0.8rem;
       }
 
+      /* Ajustes para tarjetas en móviles */
+      .player-cards-side-responsive {
+        right: 38px;
+        top: -6px;
+      }
+      
+      .player-cards-row-responsive {
+        font-size: 0.8rem;
+      }
+
       /* Ajustes adicionales para móviles muy pequeños */
       @media (max-width: 480px) {
         .field-responsive {
@@ -502,6 +531,11 @@
           left: 35px; /* Ajustado para móviles pequeños */
           top: -5px; /* Ajustado para móviles pequeños */
         }
+
+        .player-cards-side-responsive {
+          right: 35px;
+          top: -5px;
+        }
       }
 
       /* Para tablets y pantallas más grandes */
@@ -528,6 +562,11 @@
         .player-stats-side-responsive {
           left: 48px; /* Ajustado para tablets */
           top: -10px; /* Ajustado para tablets */
+        }
+
+        .player-cards-side-responsive {
+          right: 48px;
+          top: -10px;
         }
       }
 
@@ -558,6 +597,11 @@
         .player-stats-side-responsive {
           left: 55px; /* Ajustado para desktop */
           top: -12px; /* Ajustado para desktop */
+        }
+
+        .player-cards-side-responsive {
+          right: 55px;
+          top: -12px;
         }
       }
     }
@@ -693,37 +737,38 @@
 
     <script>
       // Datos de los jugadores organizados por posición - ALINEACIÓN CONFIRMADA
+      // MODIFICADO: Agregar campo 'cards' a cada jugador
       const playersConfirmada = {
         'portero': [
-          { number: '22', name: 'J. Agudo', rating: '-', goals: 0, assists: 0 }
+          { number: '22', name: 'J. Agudo', rating: '-', goals: 0, assists: 0, cards: null }
         ],
         'defensas': [
-          { number: '16', name: 'Luisja', rating: '-', goals: 0, assists: 0 },
-          { number: '5', name: 'Adriano', rating: '-', goals: 0, assists: 0 },
-          { number: '25', name: 'Rodri', rating: '-', goals: 0, assists: 0 },
-          { number: '20', name: 'A. Molina', rating: '-', goals: 0, assists: 0 }
+          { number: '16', name: 'Luisja', rating: '-', goals: 0, assists: 0, cards: '🟨' },
+          { number: '5', name: 'Adriano', rating: '-', goals: 0, assists: 0, cards: '🟨' },
+          { number: '25', name: 'Rodri', rating: '-', goals: 0, assists: 0, cards: null },
+          { number: '20', name: 'A. Molina', rating: '-', goals: 0, assists: 0, cards: null }
         ],
         'mediocentros': [
-          { number: '2', name: 'Á. Brito', rating: '-', goals: 0, assists: 0 },
-          { number: '10', name: 'Kito', rating: '-', goals: 0, assists: 0 },
-          { number: '23', name: 'Javi Pardo', rating: '-', goals: 0, assists: 0 }
+          { number: '2', name: 'Á. Brito', rating: '-', goals: 0, assists: 0, cards: '🟨' },
+          { number: '10', name: 'Kito', rating: '-', goals: 0, assists: 0, cards: null },
+          { number: '23', name: 'Javi Pardo', rating: '-', goals: 0, assists: 0, cards: null }
         ],
         'delanteros': [
-          { number: '7', name: 'J. Martínez', rating: '-', goals: 0, assists: 0 },
-          { number: '9', name: 'S. Griñán', rating: '-', goals: 1, assists: 0 },
-          { number: '24', name: 'H. Panizo', rating: '-', goals: 0, assists: 0 }
+          { number: '7', name: 'J. Martínez', rating: '-', goals: 0, assists: 0, cards: '🟨' },
+          { number: '9', name: 'S. Griñán', rating: '-', goals: 1, assists: 0, cards: '🟨' },
+          { number: '24', name: 'H. Panizo', rating: '-', goals: 0, assists: 0, cards: null }
         ]
       };
 
-      // Datos del banquillo
+      // Datos del banquillo - MODIFICADO: Agregar campo 'cards'
       const benchPlayers = [
-        { number: '13', name: 'Álvaro', rating: '-', goals: 0, assists: 0 },
-        { number: '6', name: 'Rafa Crooke', rating: '-', goals: 0, assists: 0 },
-        { number: '15', name: 'Jacobo', rating: '-', goals: 0, assists: 0 },
-        { number: '12', name: 'L. Lausín', rating: '-', goals: 0, assists: 0 },
-        { number: '21', name: 'Víctor Jaén', rating: '-', goals: 0, assists: 0 },
-        { number: '14', name: 'J. Ogayar', rating: '-', goals: 0, assists: 0 },
-        { number: '18', name: 'Manu de V.', rating: '-', goals: 0, assists: 0 }
+        { number: '13', name: 'Álvaro', rating: '-', goals: 0, assists: 0, cards: null },
+        { number: '6', name: 'Rafa Crooke', rating: '-', goals: 0, assists: 0, cards: null },
+        { number: '15', name: 'Jacobo', rating: '-', goals: 0, assists: 0, cards: null },
+        { number: '12', name: 'L. Lausín', rating: '-', goals: 0, assists: 0, cards: null },
+        { number: '21', name: 'Víctor Jaén', rating: '-', goals: 0, assists: 0, cards: null },
+        { number: '14', name: 'J. Ogayar', rating: '-', goals: 0, assists: 0, cards: null },
+        { number: '18', name: 'Manu de V.', rating: '-', goals: 0, assists: 0, cards: '🟨' }
       ];
 
       // Configuraciones de formaciones
@@ -760,10 +805,12 @@
         }
       }
 
-      // Función para crear HTML de estadísticas
-      function createStatsHTML(goals, assists) {
+      // MODIFICADO: Función para crear HTML de estadísticas (ahora incluye tarjetas)
+      function createStatsHTML(goals, assists, cards) {
         let statsHTML = '';
+        let cardsHTML = '';
         
+        // HTML para goles y asistencias (a la derecha)
         if (goals > 0 || assists > 0) {
           const goalsHTML = goals > 0 ? 
             `<div class="player-goals-row-responsive">${'⚽'.repeat(goals)}</div>` : '';
@@ -779,10 +826,19 @@
           `;
         }
         
-        return statsHTML;
+        // HTML para tarjetas (a la izquierda)
+        if (cards) {
+          cardsHTML = `
+            <div class="player-cards-side-responsive">
+              <div class="player-cards-row-responsive">${cards}</div>
+            </div>
+          `;
+        }
+        
+        return statsHTML + cardsHTML;
       }
 
-      // Función para renderizar una formación
+      // MODIFICADO: Función para renderizar una formación (ahora pasa cards a createStatsHTML)
       function renderFormationConfirmada(formationKey) {
         const formationContainer = document.getElementById('formation-container-confirmada');
         formationContainer.innerHTML = '';
@@ -797,7 +853,7 @@
             const playerElement = document.createElement('div');
             playerElement.className = 'player-responsive';
 
-            const statsHTML = createStatsHTML(player.goals, player.assists);
+            const statsHTML = createStatsHTML(player.goals, player.assists, player.cards);
 
             playerElement.innerHTML = `
               <div class="player-with-stats-responsive">
@@ -825,7 +881,7 @@
         document.querySelector('.formation-responsive').textContent = formationKey;
       }
 
-      // Función para renderizar el banquillo
+      // MODIFICADO: Función para renderizar el banquillo (ahora incluye tarjetas)
       function renderBench() {
         const benchContainer = document.getElementById('bench-container');
         benchContainer.innerHTML = '';
@@ -834,15 +890,16 @@
           const benchPlayerElement = document.createElement('div');
           benchPlayerElement.className = 'bench-player-responsive';
 
-          // Crear HTML para estadísticas de goles y asistencias del banquillo
+          // Crear HTML para estadísticas de goles, asistencias y tarjetas del banquillo
           let statsHTML = '';
-          if (player.goals > 0 || player.assists > 0) {
+          if (player.goals > 0 || player.assists > 0 || player.cards) {
             const goalsText = player.goals > 0 ? '⚽'.repeat(player.goals) : '';
             const assistsText = player.assists > 0 ? '🅰️'.repeat(player.assists) : '';
+            const cardsText = player.cards ? player.cards : '';
             
             statsHTML = `
               <div class="bench-player-stats-responsive">
-                ${goalsText}${assistsText}
+                ${cardsText}${goalsText}${assistsText}
               </div>
             `;
           }
@@ -1022,6 +1079,3 @@
 
 </body>
 </html>
-
-
-
