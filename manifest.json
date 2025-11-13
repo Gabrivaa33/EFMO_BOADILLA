@@ -1,10 +1,11 @@
 {
-  "name": "EFMO Boadilla",
-  "short_name": "EFMO Boadilla 'B'",
+  "name": "E.F.M.O. Boadilla 'B'",
+  "short_name": "E.F.M.O. Boadilla 'B'",
   "start_url": "/EFMO_BOADILLA/",
+  "scope": "/EFMO_BOADILLA/",
   "display": "standalone",
-  "background_color": "#ffffff",
-  "theme_color": "#0066cc",
+  "background_color": "#0d0d1a",
+  "theme_color": "#0078ff",
   "icons": [
     {
       "src": "icon-192.png",
@@ -18,3 +19,4 @@
     }
   ]
 }
+
