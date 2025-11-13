@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Descargar App - EFMO Boadilla</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+
+        .container {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            max-width: 500px;
+            width: 100%;
+            text-align: center;
+        }
+
+        .logo {
+            width: 100px;
+            height: 100px;
+            margin: 0 auto 20px;
+            background: #f0f0f0;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 40px;
+            color: #667eea;
+        }
+
+        h1 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 28px;
+        }
+
+        .subtitle {
+            color: #666;
+            margin-bottom: 30px;
+            font-size: 16px;
+        }
+
+        .download-btn {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 50px;
+            cursor: pointer;
+            text-decoration: none;
+            display: inline-block;
+            margin: 20px 0;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .instructions {
+            background: #f8f9fa;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 30px;
+            text-align: left;
+        }
+
+        .instructions h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+
+        .step {
+            margin-bottom: 15px;
+            padding-left: 25px;
+            position: relative;
+        }
+
+        .step:before {
+            content: "•";
+            color: #667eea;
+            font-weight: bold;
+            position: absolute;
+            left: 10px;
+        }
+
+        .warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            border-radius: 8px;
+            padding: 15px;
+            margin-top: 20px;
+            color: #856404;
+        }
+
+        .features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+        }
+
+        .feature {
+            background: #f8f9fa;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 14px;
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 25px;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+            
+            h1 {
+                font-size: 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">⚽</div>
+        
+        <h1>EFMO Boadilla App</h1>
+        <p class="subtitle">Descarga la aplicación oficial del club</p>
+
+        <a href="app-release.apk" class="download-btn" download>
+            📲 Descargar App
+        </a>
+
+        <div class="features">
+            <div class="feature">✅ Resultados en tiempo real</div>
+            <div class="feature">✅ Calendario de partidos</div>
+            <div class="feature">✅ Noticias del club</div>
+            <div class="feature">✅ Información de equipos</div>
+        </div>
+
+        <div class="instructions">
+            <h3>📋 Instrucciones de instalación:</h3>
+            
+            <div class="step">Haz clic en "Descargar App"</div>
+            <div class="step">Abre el archivo descargado</div>
+            <div class="step">Permite "Fuentes desconocidas" si te lo pide</div>
+            <div class="step">Sigue los pasos de instalación</div>
+            <div class="step">¡Listo! Encuentra la app en tu menú</div>
+        </div>
+
+        <div class="warning">
+            ⚠️ <strong>Importante:</strong> Es normal que Android muestre una 
+            advertencia de seguridad. Esta app es 100% segura y oficial del club.
+        </div>
+    </div>
+
+    <script>
+        // Detectar si es Android y mostrar info específica
+        if (/Android/.test(navigator.userAgent)) {
+            console.log("Dispositivo Android detectado");
+        }
+
+        // Mensaje de descarga exitosa
+        document.querySelector('.download-btn').addEventListener('click', function() {
+            setTimeout(function() {
+                alert('📥 Descarga iniciada. Revisa tu bandeja de notificaciones.');
+            }, 1000);
+        });
+    </script>
+</body>
+</html>
