@@ -1,11 +1,12 @@
 self.addEventListener('install', e => {
   e.waitUntil(
-    caches.open('efmo-cache').then(cache => cache.addAll([
-      '/',
-      '/index.html',
-      '/style.css',
-      '/script.js'
-    ]))
+    caches.open('efmo-cache').then(cache => {
+      return cache.addAll([
+        '/',
+        '/EFMO_BOADILLA/',
+        '/EFMO_BOADILLA/index.html'
+      ]);
+    })
   );
 });
 
