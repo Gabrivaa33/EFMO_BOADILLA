@@ -159,6 +159,11 @@
 </head>
 <body>
 
+<button id="installButton" style="display:none; padding:10px 20px; border:none; border-radius:8px; background:#0078ff; color:white; font-size:16px;">
+  📲 Añadir a pantalla de inicio
+</button>
+
+  
 <div class="title-container">
   <h1 class="title">
     <span>E.</span><span>F.</span><span>M.</span><span>O.</span>
@@ -199,17 +204,41 @@
   </a>
 </div>
 
+<script>
+  let deferredPrompt;
+  const addBtn = document.getElementById('installButton');
 
+  // Escucha el evento que indica que se puede instalar la PWA
+  window.addEventListener('beforeinstallprompt', (e) => {
+    // Evita que el navegador muestre el banner automático
+    e.preventDefault();
+    deferredPrompt = e;
+    // Muestra el botón
+    addBtn.style.display = 'block';
+  });
+
+  // Cuando el usuario hace clic en el botón
+  addBtn.addEventListener('click', async () => {
+    addBtn.style.display = 'none';
+    if (deferredPrompt) {
+      deferredPrompt.prompt();
+      const { outcome } = await deferredPrompt.userChoice;
+      console.log(`Instalación: ${outcome}`);
+      deferredPrompt = null;
+    }
+  });
+
+  // Si ya está instalada, ocultamos el botón
+  window.addEventListener('appinstalled', () => {
+    console.log('PWA instalada');
+    addBtn.style.display = 'none';
+  });
+</script>
+
+  
 <footer>
   Creador de la página web:<br>Gabriel Veiga Álvarez
 </footer>
 
-<link rel="manifest" href="manifest.json">
-<script>
-  if ('serviceWorker' in navigator) {
-    navigator.serviceWorker.register('/EFMO_BOADILLA/service-worker.js');
-  }
-</script>
-  
 </body>
 </html>
