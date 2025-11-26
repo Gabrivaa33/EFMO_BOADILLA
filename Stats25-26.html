@@ -426,31 +426,31 @@
   <script>
     // Datos de los jugadores con los minutos jugados en cada partido
     const jugadores = [
-    {nombre: "J. Agudo", goles: 0, asistencias: 0, minutos: [0, 54, 0, 0, 0, 0, 0, 0]},
-    {nombre: "Gabri", goles: 0, asistencias: 0, minutos: [0, 0, 90, 0, 90, 0, 90, 0]},
-    {nombre: "Álvaro", goles: 0, asistencias: 0, minutos: [90, 36, 0, 90, 0, 90, 0, 90]},
-    {nombre: "Luisja", goles: 0, asistencias: 1, minutos: [90, 90, 90, 90, 90, 90, 0, 90]}, //1 asistencia?
-    {nombre: "J. Martínez", goles: 1, asistencias: 1, minutos: [90, 90, 63, 90, 90, 62, 90, 57]}, //1 asistencia?
-    {nombre: "Rafa Crooke", goles: 0, asistencias: 0, minutos: [0, 26, 0, 90, 90, 90, 0, 0]},
-    {nombre: "Jacobo", goles: 0, asistencias: 0, minutos: [0, 0, 63, 0, 0, 53, 0, 0]},
-    {nombre: "Rodri", goles: 0, asistencias: 0, minutos: [90, 90, 90, 0, 0, 0, 0, 0]},
-    {nombre: "Adriano", goles: 0, asistencias: 0, minutos: [90, 64, 27, 90, 68, 0, 90, 90]},
-    {nombre: "Á. Infante", goles: 0, asistencias: 0, minutos: [0, 0, 0, 0, 22, 0, 0, 0]},
-    {nombre: "A. Molina", goles: 1, asistencias: 0, minutos: [45, 75, 0, 45, 0, 2, 61, 45]},
-    {nombre: "L. Lausín", goles: 0, asistencias: 0, minutos: [0, 15, 20, 19, 21, 0, 0, 0]},
-    {nombre: "J. Zarcero", goles: 0, asistencias: 0, minutos: [90, 0, 90, 71, 45, 90, 90, 90]},
-    {nombre: "Kito", goles: 0, asistencias: 1, minutos: [90, 75, 70, 45, 68, 0, 90, 45]},
-    {nombre: "Víctor Jaén", goles: 0, asistencias: 0, minutos: [21, 15, 63, 0, 45, 90, 38, 45]},
-    {nombre: "Á. Brito", goles: 0, asistencias: 0, minutos: [72, 75, 90, 82, 45, 90, 90, 33]},
-    {nombre: "Pablo", goles: 0, asistencias: 0, minutos: [69, 0, 0, 0, 0, 0, 0, 45]},
-    {nombre: "Javi Pardo", goles: 1, asistencias: 0, minutos: [0, 90, 90, 90, 69, 28, 0, 45]},
-    {nombre: "Mario", goles: 0, asistencias: 0, minutos: [0, 0, 0, 0, 22, 62, 90, 82]},
-    {nombre: "J. Ogayar", goles: 0, asistencias: 1, minutos: [18, 15, 27, 90, 45, 28, 61, 66]},
-    {nombre: "Rodri de Castro", goles: 0, asistencias: 0, minutos: [0, 0, 0, 0, 0, 0, 29, 24]},
-    {nombre: "H. Panizo", goles: 0, asistencias: 0, minutos: [45, 64, 27, 45, 68, 88, 52, 45]},
-    {nombre: "Manu Medina", goles: 0, asistencias: 0, minutos: [0, 0, 0, 8, 22, 0, 0, 8]},
-    {nombre: "Manu de V.", goles: 0, asistencias: 0, minutos: [45, 26, 27, 0, 0, 0, 0, 0]},
-    {nombre: "S. Griñán", goles: 7, asistencias: 0, minutos: [45, 90, 63, 45, 90, 90, 90, 90]},
+    {nombre: "J. Agudo", goles: 0, asistencias: 0, minutos: [0, 54, 0, 0, 0, 0, 0, 0, 0]},
+    {nombre: "Gabri", goles: 0, asistencias: 0, minutos: [0, 0, 90, 0, 90, 0, 90, 0, 90]},
+    {nombre: "Álvaro", goles: 0, asistencias: 0, minutos: [90, 36, 0, 90, 0, 90, 0, 90, 0]},
+    {nombre: "Luisja", goles: 0, asistencias: 1, minutos: [90, 90, 90, 90, 90, 90, 0, 90, 90]}, //1 asistencia?
+    {nombre: "J. Martínez", goles: 1, asistencias: 1, minutos: [90, 90, 63, 90, 90, 62, 90, 57, 0]}, //1 asistencia?
+    {nombre: "Rafa Crooke", goles: 0, asistencias: 0, minutos: [0, 26, 0, 90, 90, 90, 0, 0, 0]},
+    {nombre: "Jacobo", goles: 0, asistencias: 0, minutos: [0, 0, 63, 0, 0, 53, 0, 0, 0]},
+    {nombre: "Rodri", goles: 0, asistencias: 0, minutos: [90, 90, 90, 0, 0, 0, 0, 0, 70]}, // minutos no oficiales (J9)
+    {nombre: "Adriano", goles: 0, asistencias: 1, minutos: [90, 64, 27, 90, 68, 0, 90, 90, 90]},
+    {nombre: "Á. Infante", goles: 0, asistencias: 0, minutos: [0, 0, 0, 0, 22, 0, 0, 0, 20]}, // minutos no oficiales (J9)
+    {nombre: "A. Molina", goles: 1, asistencias: 0, minutos: [45, 75, 0, 45, 0, 2, 61, 45, 20]}, // minutos no oficiales (J9)
+    {nombre: "L. Lausín", goles: 0, asistencias: 0, minutos: [0, 15, 20, 19, 21, 0, 0, 0, 0]},
+    {nombre: "J. Zarcero", goles: 0, asistencias: 1, minutos: [90, 0, 90, 71, 45, 90, 90, 90, 90]},
+    {nombre: "Kito", goles: 0, asistencias: 1, minutos: [90, 75, 70, 45, 68, 0, 90, 45, 80]}, // minutos no oficiales (J9)
+    {nombre: "Víctor Jaén", goles: 0, asistencias: 0, minutos: [21, 15, 63, 0, 45, 90, 38, 45, 10]}, // minutos no oficiales (J9)
+    {nombre: "Á. Brito", goles: 0, asistencias: 0, minutos: [72, 75, 90, 82, 45, 90, 90, 33, 0]},
+    {nombre: "Pablo", goles: 1, asistencias: 0, minutos: [69, 0, 0, 0, 0, 0, 0, 45, 80]}, // minutos no oficiales (J9)
+    {nombre: "Javi Pardo", goles: 1, asistencias: 0, minutos: [0, 90, 90, 90, 69, 28, 0, 45, 0]},
+    {nombre: "Mario", goles: 0, asistencias: 0, minutos: [0, 0, 0, 0, 22, 62, 90, 82, 90]},
+    {nombre: "J. Ogayar", goles: 0, asistencias: 1, minutos: [18, 15, 27, 90, 45, 28, 61, 66, 90]},
+    {nombre: "Rodri de Castro", goles: 0, asistencias: 0, minutos: [0, 0, 0, 0, 0, 0, 29, 24, 70]}, // minutos no oficiales (J9)
+    {nombre: "H. Panizo", goles: 0, asistencias: 0, minutos: [45, 64, 27, 45, 68, 88, 52, 45, 0]},
+    {nombre: "Manu Medina", goles: 0, asistencias: 0, minutos: [0, 0, 0, 8, 22, 0, 0, 8, 10]}, // minutos no oficiales (J9)
+    {nombre: "Manu de V.", goles: 0, asistencias: 0, minutos: [45, 26, 27, 0, 0, 0, 0, 0, 0]},
+    {nombre: "S. Griñán", goles: 8, asistencias: 0, minutos: [45, 90, 63, 45, 90, 90, 90, 90, 90]},
     {nombre: "Manu (JB)", goles: 0, asistencias: 0, minutos: [0, 0, 0, 0, 0, 0, 29, 0]}
     ];
 
