@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-    
+
     :root {
       --primary: #0f172a;
       --secondary: #1e293b;
@@ -24,26 +24,26 @@
       --midfielder: #10b981;
       --attacker: #ef4444;
     }
-    
+
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
-    
+
     body {
       font-family: 'Inter', sans-serif;
       background: linear-gradient(135deg, #0c4a6e 0%, #1e3a8a 50%, #1e1b4b 100%);
       color: var(--text);
       min-height: 100vh;
     }
-    
+
     .app-container {
       max-width: 1400px;
       margin: 0 auto;
       padding: 1rem;
     }
-    
+
     .header {
       text-align: center;
       margin-bottom: 2rem;
@@ -54,7 +54,7 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.3);
     }
-    
+
     .header h1 {
       font-size: 2.5rem;
       font-weight: 800;
@@ -64,25 +64,25 @@
       color: transparent;
       margin-bottom: 0.5rem;
     }
-    
+
     .dashboard {
       display: grid;
       grid-template-columns: 1fr;
       gap: 1.5rem;
     }
-    
+
     @media (min-width: 1024px) {
       .dashboard {
         grid-template-columns: 320px 1fr;
       }
     }
-    
+
     .sidebar {
       display: flex;
       flex-direction: column;
       gap: 1.5rem;
     }
-    
+
     .card {
       background: rgba(30, 41, 59, 0.7);
       border-radius: 16px;
@@ -91,30 +91,30 @@
       border: 1px solid rgba(255, 255, 255, 0.1);
       box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
     }
-    
+
     .card-header {
       display: flex;
       align-items: center;
       margin-bottom: 1.25rem;
     }
-    
+
     .card-header i {
       margin-right: 0.75rem;
       font-size: 1.25rem;
       color: var(--accent);
     }
-    
+
     .card-header h2 {
       font-size: 1.25rem;
       font-weight: 600;
     }
-    
+
     .stats-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 1rem;
     }
-    
+
     .stat-item {
       text-align: center;
       padding: 1rem 0.5rem;
@@ -125,34 +125,34 @@
       align-items: center;
       justify-content: center;
     }
-    
+
     .stat-icon {
       font-size: 1.5rem;
       margin-bottom: 0.5rem;
     }
-    
+
     .stat-value {
       font-size: 1.75rem;
       font-weight: 700;
       margin-bottom: 0.25rem;
     }
-    
+
     .stat-label {
       font-size: 0.75rem;
       color: var(--text-light);
     }
-    
+
     .filter-group {
       margin-bottom: 1rem;
     }
-    
+
     .filter-label {
       display: block;
       margin-bottom: 0.5rem;
       font-size: 0.875rem;
       color: var(--text-light);
     }
-    
+
     .filter-select {
       width: 100%;
       padding: 0.75rem;
@@ -163,19 +163,19 @@
       font-size: 0.875rem;
       transition: all 0.2s;
     }
-    
+
     .filter-select:focus {
       outline: none;
       border-color: var(--accent);
       box-shadow: 0 0 0 2px rgba(245, 158, 11, 0.2);
     }
-    
+
     .news-container {
       max-height: 300px;
       overflow-y: auto;
       padding-right: 0.5rem;
     }
-    
+
     .news-item {
       padding: 0.875rem;
       margin-bottom: 0.75rem;
@@ -184,52 +184,52 @@
       border-left: 3px solid transparent;
       transition: all 0.2s;
     }
-    
+
     .news-item:hover {
       background: rgba(15, 23, 42, 0.7);
       border-left-color: var(--accent);
     }
-    
+
     .news-title {
       font-weight: 600;
       font-size: 0.875rem;
       margin-bottom: 0.25rem;
       color: var(--accent);
     }
-    
+
     .news-text {
       font-size: 0.75rem;
       color: var(--text-light);
     }
-    
+
     .players-section {
       display: flex;
       flex-direction: column;
     }
-    
+
     .players-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
       margin-bottom: 1.5rem;
     }
-    
+
     .players-title {
       font-size: 1.5rem;
       font-weight: 700;
     }
-    
+
     .players-count {
       font-size: 0.875rem;
       color: var(--text-light);
     }
-    
+
     .players-grid {
       display: grid;
       grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
       gap: 1.25rem;
     }
-    
+
     .player-card {
       background: rgba(30, 41, 59, 0.7);
       border-radius: 16px;
@@ -241,41 +241,41 @@
       position: relative;
       overflow: hidden;
     }
-    
+
     .player-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.3);
     }
-    
+
     .player-card.available {
       border: 4px solid var(--success);
     }
-    
+
     .player-card.injured {
       border: 4px solid var(--danger);
     }
-    
+
     .player-card.doubt {
       border: 4px solid var(--warning);
     }
-    
+
     .player-header {
       display: flex;
       justify-content: space-between;
       align-items: flex-start;
       margin-bottom: 1rem;
     }
-    
+
     .player-info {
       flex: 1;
     }
-    
+
     .player-name {
       font-size: 1.25rem;
       font-weight: 700;
       margin-bottom: 0.25rem;
     }
-    
+
     .player-position {
       display: inline-block;
       padding: 0.25rem 0.75rem;
@@ -283,68 +283,68 @@
       font-size: 0.75rem;
       font-weight: 600;
     }
-    
+
     .position-goalkeeper {
       background: rgba(249, 115, 22, 0.2);
       color: #fdba74;
       border: 1px solid rgba(249, 115, 22, 0.3);
     }
-    
+
     .position-defender {
       background: rgba(59, 130, 246, 0.2);
       color: #93c5fd;
       border: 1px solid rgba(59, 130, 246, 0.3);
     }
-    
+
     .position-midfielder {
       background: rgba(16, 185, 129, 0.2);
       color: #86efac;
       border: 1px solid rgba(16, 185, 129, 0.3);
     }
-    
+
     .position-attacker {
       background: rgba(239, 68, 68, 0.2);
       color: #fca5a5;
       border: 1px solid rgba(239, 68, 68, 0.3);
     }
-    
+
     .player-points {
       text-align: right;
     }
-    
+
     .points-label {
       font-size: 1rem;
       color: var(--text-light);
       margin-bottom: 0.25rem;
       font-weight: 600;
     }
-    
+
     .points-value {
       font-size: 1.75rem;
       font-weight: 800;
     }
-    
+
     .points-avg {
       font-size: 1rem;
       color: var(--text-light);
       font-weight: 500;
     }
-    
+
     .player-performance {
       margin-bottom: 1rem;
     }
-    
+
     .performance-label {
       font-size: 0.75rem;
       color: var(--text-light);
       margin-bottom: 0.5rem;
     }
-    
+
     .performance-badges {
       display: flex;
       gap: 0.5rem;
     }
-    
+
     .score-badge {
       display: flex;
       align-items: center;
@@ -355,37 +355,37 @@
       font-size: 0.75rem;
       font-weight: 700;
     }
-    
+
     .score-red {
       background: linear-gradient(135deg, #ff3200, #dc2626);
       color: white;
     }
-    
+
     .score-gray {
       background: linear-gradient(135deg, #d6d6d6, #a3a3a3);
       color: #000;
     }
-    
+
     .score-yellow {
       background: linear-gradient(135deg, #ffff42, #eab308);
       color: #000;
     }
-    
+
     .score-green {
       background: linear-gradient(135deg, #23d750, #16a34a);
       color: #000;
     }
-    
+
     .score-blue {
       background: linear-gradient(135deg, #4bffff, #0ea5e9);
       color: #000;
     }
-    
+
     .score-null {
       background: linear-gradient(135deg, #d6d6d6, #a3a3a3);
       color: #000;
     }
-    
+
     .player-status {
       display: inline-flex;
       align-items: center;
@@ -394,22 +394,22 @@
       font-size: 0.75rem;
       font-weight: 600;
     }
-    
+
     .status-available {
       background: linear-gradient(135deg, var(--success), #059669);
       color: white;
     }
-    
+
     .status-injured {
       background: linear-gradient(135deg, var(--danger), #b91c1c);
       color: white;
     }
-    
+
     .status-doubt {
       background: linear-gradient(135deg, var(--warning), #d97706);
       color: #000;
     }
-    
+
     .modal-overlay {
       position: fixed;
       top: 0;
@@ -426,12 +426,12 @@
       visibility: hidden;
       transition: all 0.3s ease;
     }
-    
+
     .modal-overlay.active {
       opacity: 1;
       visibility: visible;
     }
-    
+
     .modal {
       background: rgba(30, 41, 59, 0.95);
       border-radius: 20px;
@@ -445,11 +445,11 @@
       transform: scale(0.9);
       transition: all 0.3s ease;
     }
-    
+
     .modal-overlay.active .modal {
       transform: scale(1);
     }
-    
+
     .modal-header {
       display: flex;
       justify-content: space-between;
@@ -457,17 +457,17 @@
       padding: 1.5rem 1.5rem 0;
       margin-bottom: 1.5rem;
     }
-    
+
     .modal-player-info {
       flex: 1;
     }
-    
+
     .modal-player-name {
       font-size: 1.75rem;
       font-weight: 800;
       margin-bottom: 0.5rem;
     }
-    
+
     .modal-player-position {
       display: inline-block;
       padding: 0.5rem 1rem;
@@ -476,31 +476,31 @@
       font-weight: 600;
       margin-bottom: 0.5rem;
     }
-    
+
     .modal-goalkeeper {
       background: rgba(249, 115, 22, 0.2);
       color: #fdba74;
       border: 1px solid rgba(249, 115, 22, 0.3);
     }
-    
+
     .modal-defender {
       background: rgba(59, 130, 246, 0.2);
       color: #93c5fd;
       border: 1px solid rgba(59, 130, 246, 0.3);
     }
-    
+
     .modal-midfielder {
       background: rgba(16, 185, 129, 0.2);
       color: #86efac;
       border: 1px solid rgba(16, 185, 129, 0.3);
     }
-    
+
     .modal-attacker {
       background: rgba(239, 68, 68, 0.2);
       color: #fca5a5;
       border: 1px solid rgba(239, 68, 68, 0.3);
     }
-    
+
     .modal-close {
       background: none;
       border: none;
@@ -509,11 +509,11 @@
       cursor: pointer;
       transition: color 0.2s;
     }
-    
+
     .modal-close:hover {
       color: var(--text);
     }
-    
+
     .modal-stats {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
@@ -521,74 +521,74 @@
       padding: 0 1.5rem;
       margin-bottom: 1.5rem;
     }
-    
+
     .modal-stat {
       background: rgba(15, 23, 42, 0.7);
       border-radius: 12px;
       padding: 1rem;
       text-align: center;
     }
-    
+
     .modal-stat-value {
       font-size: 1.5rem;
       font-weight: 800;
       margin-bottom: 0.25rem;
     }
-    
+
     .modal-stat-label {
       font-size: 0.75rem;
       color: var(--text-light);
     }
-    
+
     .modal-news {
       padding: 0 1.5rem;
       margin-bottom: 1.5rem;
     }
-    
+
     .modal-news-item {
       border-radius: 10px;
       padding: 1rem;
       margin-bottom: 1rem;
     }
-    
+
     .modal-news-doubt {
       background: rgba(245, 158, 11, 0.1);
       border: 1px solid rgba(245, 158, 11, 0.2);
     }
-    
+
     .modal-news-injury {
       background: rgba(220, 38, 38, 0.1);
       border: 1px solid rgba(220, 38, 38, 0.2);
     }
-    
+
     .modal-news-title {
       font-weight: 700;
       margin-bottom: 0.5rem;
       display: flex;
       align-items: center;
     }
-    
+
     .modal-news-doubt .modal-news-title {
       color: var(--warning);
     }
-    
+
     .modal-news-injury .modal-news-title {
       color: var(--danger);
     }
-    
+
     .modal-news-title i {
       margin-right: 0.5rem;
     }
-    
+
     .modal-news-text {
       font-size: 0.875rem;
       color: var(--text-light);
     }
-    
+
     .modal-performances {
       padding: 0 1.5rem 1.5rem;
     }
-    
+
     .modal-performances-title {
       font-size: 1rem;
       font-weight: 600;
@@ -596,12 +596,12 @@
       display: flex;
       align-items: center;
     }
-    
+
     .modal-performances-title i {
       margin-right: 0.5rem;
       color: var(--accent);
     }
-    
+
     .performance-item {
       display: flex;
       justify-content: space-between;
@@ -611,179 +611,179 @@
       border-radius: 10px;
       margin-bottom: 0.75rem;
     }
-    
+
     .performance-match {
       font-weight: 600;
     }
-    
+
     .performance-comment {
       font-size: 0.875rem;
       color: var(--text-light);
     }
-    
+
     /* Scrollbar personalizado */
     ::-webkit-scrollbar {
       width: 6px;
     }
-    
+
     ::-webkit-scrollbar-track {
       background: rgba(15, 23, 42, 0.5);
       border-radius: 10px;
     }
-    
+
     ::-webkit-scrollbar-thumb {
       background: rgba(100, 116, 139, 0.5);
       border-radius: 10px;
     }
-    
+
     ::-webkit-scrollbar-thumb:hover {
       background: rgba(100, 116, 139, 0.8);
     }
   </style>
 </head>
 <body>
-  <div class="app-container">
-    <header class="header">
-      <h1>Fantasy EFMO</h1>
-    </header>
-    
-    <div class="dashboard">
-      <div class="sidebar">
-        <div class="card">
-          <div class="card-header">
-            <i class="fas fa-chart-pie"></i>
-            <h2>Resumen del Equipo</h2>
-          </div>
-          <div class="stats-grid">
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-users"></i></div>
-              <div class="stat-value" id="playerCount">25</div>
-              <div class="stat-label">Jugadores</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-user-injured"></i></div>
-              <div class="stat-value" id="injuredCount">0</div>
-              <div class="stat-label">Lesionados</div>
-            </div>
-            <div class="stat-item">
-              <div class="stat-icon"><i class="fas fa-question-circle"></i></div>
-              <div class="stat-value" id="doubtCount">0</div>
-              <div class="stat-label">Con Duda</div>
-            </div>
-          </div>
-        </div>
-        
-        <div class="card">
-          <div class="card-header">
-            <i class="fas fa-filter"></i>
-            <h2>Filtros</h2>
-          </div>
-          <div class="filter-group">
-            <label class="filter-label">Posición</label>
-            <select id="positionFilter" class="filter-select">
-              <option value="all">Todas las posiciones</option>
-              <option value="Portero">Portero</option>
-              <option value="Defensa">Defensa</option>
-              <option value="Centrocampista">Centrocampista</option>
-              <option value="Atacante">Atacante</option>
-            </select>
-          </div>
-          <div class="filter-group">
-            <label class="filter-label">Estado</label>
-            <select id="statusFilter" class="filter-select">
-              <option value="all">Todos los estados</option>
-              <option value="OK">Disponible</option>
-              <option value="Lesionado">Lesionado</option>
-              <option value="Duda">Duda</option>
-            </select>
-          </div>
-        </div>
-        
-        <div class="card">
-          <div class="card-header">
-            <i class="fas fa-newspaper"></i>
-            <h2>Noticias del Equipo</h2>
-          </div>
-          <div id="injuryFeed" class="news-container">
-            <!-- Las noticias se cargarán aquí -->
-          </div>
-        </div>
-      </div>
-      
-      <div class="players-section">
-        <div class="players-header">
-          <h2 class="players-title">Plantilla del Equipo</h2>
-          <div class="players-count">Mostrando <span id="showingCount">26</span> de 26 jugadores</div>
-        </div>
-        <div id="gridView" class="players-grid">
-          <!-- Las tarjetas de jugadores se cargarán aquí -->
-        </div>
-      </div>
-    </div>
-  </div>
-  
-  <!-- Modal de estadísticas -->
-  <div id="statModal" class="modal-overlay">
-    <div class="modal">
-      <div class="modal-header">
-        <div class="modal-player-info">
-          <h3 id="modalName" class="modal-player-name">Nombre del Jugador</h3>
-          <div id="modalPosition" class="modal-player-position modal-goalkeeper">Portero</div>
-          <div id="modalStatus" class="player-status status-available">Disponible</div>
-        </div>
-        <button id="closeModal" class="modal-close">
-          <i class="fas fa-times"></i>
-        </button>
-      </div>
-      
-      <div class="modal-stats">
-        <div class="modal-stat">
-          <div id="modalPoints" class="modal-stat-value">0</div>
-          <div class="modal-stat-label">Puntos Totales</div>
-        </div>
-        <div class="modal-stat">
-          <div id="modalMinutes" class="modal-stat-value">0</div>
-          <div class="modal-stat-label">Minutos</div>
-        </div>
-        <div class="modal-stat">
-          <div id="modalAvgPoints" class="modal-stat-value">0</div>
-          <div class="modal-stat-label">Media Puntos</div>
-        </div>
-        <div class="modal-stat">
-          <div id="modalGoals" class="modal-stat-value">0</div>
-          <div class="modal-stat-label">Goles</div>
-        </div>
-        <div class="modal-stat">
-          <div id="modalAssists" class="modal-stat-value">0</div>
-          <div class="modal-stat-label">Asistencias</div>
-        </div>
-        <div class="modal-stat">
-          <div id="modalCards" class="modal-stat-value">0</div>
-          <div class="modal-stat-label">Tarjetas</div>
-        </div>
-      </div>
-      
-      <div id="modalNews" class="modal-news">
-        <!-- Noticias específicas del jugador se cargarán aquí -->
-      </div>
-      
-      <div class="modal-performances">
-        <h4 class="modal-performances-title">
-          <i class="fas fa-chart-line"></i>
-          Últimas actuaciones
-        </h4>
-        <div id="modalPerformances">
-          <!-- Las actuaciones se cargarán aquí -->
-        </div>
-      </div>
-    </div>
-  </div>
+<div class="app-container">
+  <header class="header">
+    <h1>Fantasy EFMO</h1>
+  </header>
 
-  <script>
-    // Datos de jugadores y noticias (igual que en tu código original)
-    // Minutos (de algunos) no oficiales (J9)
-    const players = [
-      { id:1, name:'J. Agudo', pos:'Portero', status:'Duda', performances:[
+  <div class="dashboard">
+    <div class="sidebar">
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-chart-pie"></i>
+          <h2>Resumen del Equipo</h2>
+        </div>
+        <div class="stats-grid">
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-users"></i></div>
+            <div class="stat-value" id="playerCount">25</div>
+            <div class="stat-label">Jugadores</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-user-injured"></i></div>
+            <div class="stat-value" id="injuredCount">0</div>
+            <div class="stat-label">Lesionados</div>
+          </div>
+          <div class="stat-item">
+            <div class="stat-icon"><i class="fas fa-question-circle"></i></div>
+            <div class="stat-value" id="doubtCount">0</div>
+            <div class="stat-label">Con Duda</div>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-filter"></i>
+          <h2>Filtros</h2>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Posición</label>
+          <select id="positionFilter" class="filter-select">
+            <option value="all">Todas las posiciones</option>
+            <option value="Portero">Portero</option>
+            <option value="Defensa">Defensa</option>
+            <option value="Centrocampista">Centrocampista</option>
+            <option value="Atacante">Atacante</option>
+          </select>
+        </div>
+        <div class="filter-group">
+          <label class="filter-label">Estado</label>
+          <select id="statusFilter" class="filter-select">
+            <option value="all">Todos los estados</option>
+            <option value="OK">Disponible</option>
+            <option value="Lesionado">Lesionado</option>
+            <option value="Duda">Duda</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">
+          <i class="fas fa-newspaper"></i>
+          <h2>Noticias del Equipo</h2>
+        </div>
+        <div id="injuryFeed" class="news-container">
+          <!-- Las noticias se cargarán aquí -->
+        </div>
+      </div>
+    </div>
+
+    <div class="players-section">
+      <div class="players-header">
+        <h2 class="players-title">Plantilla del Equipo</h2>
+        <div class="players-count">Mostrando <span id="showingCount">26</span> de 26 jugadores</div>
+      </div>
+      <div id="gridView" class="players-grid">
+        <!-- Las tarjetas de jugadores se cargarán aquí -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Modal de estadísticas -->
+<div id="statModal" class="modal-overlay">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-player-info">
+        <h3 id="modalName" class="modal-player-name">Nombre del Jugador</h3>
+        <div id="modalPosition" class="modal-player-position modal-goalkeeper">Portero</div>
+        <div id="modalStatus" class="player-status status-available">Disponible</div>
+      </div>
+      <button id="closeModal" class="modal-close">
+        <i class="fas fa-times"></i>
+      </button>
+    </div>
+
+    <div class="modal-stats">
+      <div class="modal-stat">
+        <div id="modalPoints" class="modal-stat-value">0</div>
+        <div class="modal-stat-label">Puntos Totales</div>
+      </div>
+      <div class="modal-stat">
+        <div id="modalMinutes" class="modal-stat-value">0</div>
+        <div class="modal-stat-label">Minutos</div>
+      </div>
+      <div class="modal-stat">
+        <div id="modalAvgPoints" class="modal-stat-value">0</div>
+        <div class="modal-stat-label">Media Puntos</div>
+      </div>
+      <div class="modal-stat">
+        <div id="modalGoals" class="modal-stat-value">0</div>
+        <div class="modal-stat-label">Goles</div>
+      </div>
+      <div class="modal-stat">
+        <div id="modalAssists" class="modal-stat-value">0</div>
+        <div class="modal-stat-label">Asistencias</div>
+      </div>
+      <div class="modal-stat">
+        <div id="modalCards" class="modal-stat-value">0</div>
+        <div class="modal-stat-label">Tarjetas</div>
+      </div>
+    </div>
+
+    <div id="modalNews" class="modal-news">
+      <!-- Noticias específicas del jugador se cargarán aquí -->
+    </div>
+
+    <div class="modal-performances">
+      <h4 class="modal-performances-title">
+        <i class="fas fa-chart-line"></i>
+        Últimas actuaciones
+      </h4>
+      <div id="modalPerformances">
+        <!-- Las actuaciones se cargarán aquí -->
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // Datos de jugadores y noticias (igual que en tu código original)
+  // Minutos (de algunos) no oficiales (J9)
+  const players = [
+    { id:1, name:'J. Agudo', pos:'Portero', status:'Duda', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:54, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -794,8 +794,8 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
-      
-      { id:2, name:'Gabri', pos:'Portero', status:'OK', performances:[
+
+    { id:2, name:'Gabri', pos:'Portero', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:1, minutes:90, goals:0, assists:0, cards:0, comment:'(6,3)'},
@@ -806,8 +806,8 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,1)'}
       ]},
-      
-      { id:3, name:'Álvaro', pos:'Portero', status:'Duda', performances:[
+
+    { id:3, name:'Álvaro', pos:'Portero', status:'Duda', performances:[
         {points:2, minutes:90, goals:0, assists:0, cards:0, comment:'(6,5)'},
         {points:null, minutes:36, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
@@ -818,8 +818,8 @@
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(-)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}
       ]},
-      
-      { id:4, name:'Luisja', pos:'Defensa', status:'OK', performances:[
+
+    { id:4, name:'Luisja', pos:'Defensa', status:'OK', performances:[
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,2)'},
         {points:null, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (Sin grabación)'},
         {points:4, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,8)'},
@@ -830,8 +830,8 @@
         {points:null, minutes:90, goals:0, assists:1, cards:0, comment:'🅰️ (0,0+🅰️)'}, //1 assist?
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,3)'}
       ]},
-      
-      { id:5, name:'J. Martínez', pos:'Atacante', status:'OK', performances:[
+
+    { id:5, name:'J. Martínez', pos:'Atacante', status:'OK', performances:[
         {points:3, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,7)'},
         {points:null, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (Sin grabación)'},
         {points:9, minutes:63, goals:1, assists:0, cards:0, comment:'↪️⚽ (7,3+⚽)'},
@@ -842,8 +842,8 @@
         {points:null, minutes:57, goals:0, assists:1, cards:1, comment:'🟨🅰️ (0,0+🅰️)'}, //1 assist?
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Sancionado'}
       ]},
-      
-      { id:6, name:'Rafa Crooke', pos:'Defensa', status:'Duda', performances:[
+
+    { id:6, name:'Rafa Crooke', pos:'Defensa', status:'Duda', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:26, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -854,8 +854,8 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
-      
-      { id:7, name:'Jacobo', pos:'Defensa', status:'OK', performances:[
+
+    { id:7, name:'Jacobo', pos:'Defensa', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:4, minutes:63, goals:0, assists:0, cards:0, comment:'↪️ (6,9)'},
@@ -866,8 +866,8 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Sancionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Sancionado'}
       ]},
-      
-      { id:8, name:'Rodri', pos:'Defensa', status:'Duda', performances:[
+
+    { id:8, name:'Rodri', pos:'Defensa', status:'Duda', performances:[
         {points:2, minutes:90, goals:0, assists:0, cards:0, comment:'(6,4)'},
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(Sin grabación)'},
         {points:1, minutes:90, goals:0, assists:0, cards:0, comment:'(6,3)'},
@@ -878,8 +878,8 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:2, minutes:65, goals:0, assists:0, cards:0, comment:'↪️ (6,4)'}
       ]},
-      
-      { id:9, name:'Adriano', pos:'Defensa', status:'Duda', performances:[
+
+    { id:9, name:'Adriano', pos:'Defensa', status:'Duda', performances:[
         {points:9, minutes:90, goals:0, assists:0, cards:0, comment:'(7,8)'},
         {points:null, minutes:64, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:2, minutes:27, goals:0, assists:0, cards:0, comment:'↩️ (6,4)'},
@@ -890,8 +890,8 @@
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(-)'},
         {points:8, minutes:90, goals:0, assists:1, cards:0, comment:'🅰️ (7,4+🅰️)'}
       ]},
-      
-      { id:10, name:'Á. Infante', pos:'Defensa', status:'OK', performances:[
+
+    { id:10, name:'Á. Infante', pos:'Defensa', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -902,8 +902,8 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:3, minutes:25, goals:0, assists:0, cards:0, comment:'↩️ (6,6)'}
       ]},
-      
-      { id:11, name:'A. Molina', pos:'Centrocampista', status:'OK', performances:[
+
+    { id:11, name:'A. Molina', pos:'Centrocampista', status:'OK', performances:[
         {points:4, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (6,8)'},
         {points:null, minutes:75, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
@@ -914,8 +914,8 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (-)'},
         {points:3, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (6,7)'}
       ]},
-      
-      { id:12, name:'L. Lausín', pos:'Defensa', status:'Lesionado', performances:[
+
+    { id:12, name:'L. Lausín', pos:'Defensa', status:'Lesionado', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:2, minutes:20, goals:0, assists:0, cards:0, comment:'↩️ (6,5)'},
@@ -926,8 +926,8 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
-      
-      { id:13, name:'J. Zarcero', pos:'Defensa', status:'OK', performances:[
+
+    { id:13, name:'J. Zarcero', pos:'Defensa', status:'OK', performances:[
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,0)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:4, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,8)'},
@@ -938,8 +938,8 @@
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(-)'},
         {points:8, minutes:90, goals:0, assists:1, cards:0, comment:'🅰️ (7,5+🅰️)'}
       ]},
-      
-      { id:14, name:'Kito', pos:'Centrocampista', status:'OK', performances:[
+
+    { id:14, name:'Kito', pos:'Centrocampista', status:'OK', performances:[
         {points:6, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (7,3)'},
         {points:null, minutes:75, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:7, minutes:70, goals:0, assists:1, cards:1, comment:'🟨↪️🅰️ (7,2+🅰️)'},
@@ -950,8 +950,8 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (-)'},
         {points:7, minutes:75, goals:0, assists:0, cards:0, comment:'↪️ (7,4)'}
       ]},
-      
-      { id:15, name:'Víctor Jaén', pos:'Centrocampista', status:'OK', performances:[
+
+    { id:15, name:'Víctor Jaén', pos:'Centrocampista', status:'OK', performances:[
         {points:2, minutes:21, goals:0, assists:0, cards:0, comment:'↩️ (6,4)'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:4, minutes:63, goals:0, assists:0, cards:1, comment:'🟨↪️ (6,8)'},
@@ -962,8 +962,8 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (-)'},
         {points:2, minutes:20, goals:0, assists:0, cards:0, comment:'↩️ (6,5)'}
       ]},
-      
-      { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Lesionado', performances:[
+
+    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Lesionado', performances:[
         {points:7, minutes:72, goals:0, assists:0, cards:0, comment:'↪️ (7,5)'},
         {points:null, minutes:75, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,1)'},
@@ -973,10 +973,10 @@
         {points:8, minutes:90, goals:0, assists:0, cards:0, comment:'(7,7)'},
         {points:null, minutes:33, goals:0, assists:0, cards:0, comment:'↪️ (-)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
-      
+
       ]},
-      
-      { id:17, name:'Pablo', pos:'Centrocampista', status:'Duda', performances:[
+
+    { id:17, name:'Pablo', pos:'Centrocampista', status:'Duda', performances:[
         {points:4, minutes:69, goals:0, assists:0, cards:1, comment:'🟨↪️ (6,9)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -987,8 +987,8 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (-)'},
         {points:11, minutes:70, goals:1, assists:0, cards:0, comment:'↪️⚽ (7,4+⚽)'}
       ]},
-      
-      { id:18, name:'Javi Pardo', pos:'Centrocampista', status:'Duda', performances:[
+
+    { id:18, name:'Javi Pardo', pos:'Centrocampista', status:'Duda', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(Sin grabación)'},
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,3)'},
@@ -999,8 +999,8 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (-)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
-      
-      { id:19, name:'Mario', pos:'Centrocampista', status:'OK', performances:[
+
+    { id:19, name:'Mario', pos:'Centrocampista', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -1011,8 +1011,8 @@
         {points:null, minutes:82, goals:0, assists:0, cards:0, comment:'↪️ (-)'},
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,3)'}
       ]},
-      
-      { id:20, name:'J. Ogayar', pos:'Centrocampista', status:'OK', performances:[
+
+    { id:20, name:'J. Ogayar', pos:'Centrocampista', status:'OK', performances:[
         {points:1, minutes:18, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:2, minutes:27, goals:0, assists:0, cards:0, comment:'↩️ (6,4)'},
@@ -1023,8 +1023,8 @@
         {points:null, minutes:66, goals:0, assists:0, cards:0, comment:'↪️ (-)'},
         {points:3, minutes:90, goals:0, assists:0, cards:0, comment:'(6,7)'}
       ]},
-      
-      { id:21, name:'Rodri de Castro', pos:'Atacante', status:'OK', performances:[
+
+    { id:21, name:'Rodri de Castro', pos:'Atacante', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -1035,8 +1035,8 @@
         {points:null, minutes:24, goals:0, assists:0, cards:0, comment:'↩️ (-)'},
         {points:5, minutes:75, goals:0, assists:0, cards:0, comment:'↪️ (7,0)'}
       ]},
-      
-      { id:22, name:'H. Panizo', pos:'Atacante', status:'Duda', performances:[
+
+    { id:22, name:'H. Panizo', pos:'Atacante', status:'Duda', performances:[
         {points:4, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (6,9)'},
         {points:null, minutes:64, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:4, minutes:27, goals:0, assists:0, cards:0, comment:'↩️ (6,9)'},
@@ -1047,8 +1047,8 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (-)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
-      
-      { id:23, name:'Manu Medina', pos:'Atacante', status:'OK', performances:[
+
+    { id:23, name:'Manu Medina', pos:'Atacante', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -1059,8 +1059,8 @@
         {points:null, minutes:8, goals:0, assists:0, cards:0, comment:'↩️ (-)'},
         {points:1, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (6,3)'}
       ]},
-      
-      { id:24, name:'Manu de Vicente', pos:'Atacante', status:'Lesionado', performances:[
+
+    { id:24, name:'Manu de Vicente', pos:'Atacante', status:'Lesionado', performances:[
         {points:1, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (6,3)'},
         {points:null, minutes:26, goals:0, assists:0, cards:1, comment:'🟨↩️ (Sin grabación)'},
         {points:1, minutes:27, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'},
@@ -1071,8 +1071,8 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
-      
-      { id:25, name:'S. Griñán', pos:'Atacante', status:'OK', performances:[
+
+    { id:25, name:'S. Griñán', pos:'Atacante', status:'OK', performances:[
         {points:3, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (6,6)'},
         {points:null, minutes:90, goals:1, assists:0, cards:1, comment:'🟨⚽ (Sin grabación)'},
         {points:7, minutes:63, goals:1, assists:0, cards:0, comment:'↪️⚽🅿️ (6,8+⚽🅿️)'},
@@ -1083,8 +1083,8 @@
         {points:null, minutes:90, goals:2, assists:0, cards:1, comment:'🟨⚽⚽ (0,0+⚽)'},
         {points:8, minutes:90, goals:1, assists:0, cards:0, comment:'⚽ (7,0+⚽)'}
       ]},
-      
-      { id:26, name:'Manu (JB)', pos:'Defensa', status:'OK', performances:[
+
+    { id:26, name:'Manu (JB)', pos:'Defensa', status:'OK', performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'},
@@ -1095,275 +1095,275 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'}
       ]}
-    ];
+  ];
 
-    // 📰 Noticias del equipo
-    const news = [
-      { playerId: 22, title: 'Duda', text: "Lesión desconocida, desconocido" },
-      { playerId: 17, title: 'Duda', text: "Golpe en la pierna, desconocido" },
-      { playerId: null, title: 'Jornada 9', text: "EE PP San Fernando Escolapios Pozuelo 4-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ9.html' },
-      { playerId: 16, title: 'Lesión', text: "Lesión en los isquios, desconocido" },
-      { playerId: null, title: 'Jornada 8', text: "E.F.M.O. Boadilla 'B' 2-2 CDE Aupa - Mentema Boadilla 'A'", url: 'InformeJ8.html' },
-      { playerId: 3, title: 'Duda', text: "Molestias en el tobillo y en el cuello, desconocido" },
-      { playerId: null, title: 'Jornada 7', text: "CDE Fútbol Club Samba-Las Rozas 1-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ7.html' },
-      { playerId: 18, title: 'Duda', text: "Molestias en el tobillo, desconocido" }, //Javi Pardo
-      { playerId: 6, title: 'Duda', text: "Lesión de tobillo, desconocido" }, //Rafa
-      { playerId: null, title: 'Jornada 6', text: "E.F.M.O. Boadilla 'B' 2-1 CD Prodet Pozuelo", url: 'InformeJ6.html' },
-      { playerId: 12, title: 'Lesión', text: "Luxación de rodilla, 6-8 semanas" },
-      { playerId: null, title: 'Jornada 5', text: "CD Retamar 3-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ5.html' },
-      { playerId: null, title: 'Jornada 4', text: "E.F.M.O. Boadilla 'B' 0-1 CD Puerta de Madrid 'B'", url: 'InformeJ4.html' },
-      { playerId: 8, title: 'Duda', text: "Pubalgia, 4-6 semanas" },
-      { playerId: 24, title: 'Lesión', text: "Edema óseo, 5-6 semanas" },
-      { playerId: 9, title: 'Duda', text: "Molestias en el talón y en la pierna, 5-7 semanas" },
-      { playerId: null, title: 'Jornada 3', text: "Gimnástica Colmenarejo CD 'B' 4-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ3.html' },
-      { playerId: 1, title: 'Duda', text: "Rotura fibrilar en el cuádriceps, 3-6 semanas" },
-      { playerId: null, title: 'Jornada 2', text: "E.F.M.O. Boadilla 'B' 1-3 CDE F.B. Dptvo. Torrelodones", url: 'InformeJ2.html' },
-      //{ playerId: 17, title: 'Duda', text: "Fractura de muñeca, 5-7 semanas" },
-      { playerId: null, title: 'Jornada 1', text: "CF Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'", url: 'InformeJ1.html' },
-      //{ playerId: 21, title: 'Duda', text: "Lesión en el abductor, 5 meses" },
-      { playerId: null, title: 'Lesiones', text: "Para ver las lesiones o dudas, clica en el jugador y verás la información sobre su estado" }
-    ];
+  // 📰 Noticias del equipo
+  const news = [
+    { playerId: 22, title: 'Duda', text: "Lesión desconocida, desconocido" },
+    { playerId: 17, title: 'Duda', text: "Golpe en la pierna, desconocido" },
+    { playerId: null, title: 'Jornada 9', text: "EE PP San Fernando Escolapios Pozuelo 4-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ9.html' },
+    { playerId: 16, title: 'Lesión', text: "Lesión en los isquios, desconocido" },
+    { playerId: null, title: 'Jornada 8', text: "E.F.M.O. Boadilla 'B' 2-2 CDE Aupa - Mentema Boadilla 'A'", url: 'InformeJ8.html' },
+    { playerId: 3, title: 'Duda', text: "Molestias en el tobillo y en el cuello, desconocido" },
+    { playerId: null, title: 'Jornada 7', text: "CDE Fútbol Club Samba-Las Rozas 1-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ7.html' },
+    { playerId: 18, title: 'Duda', text: "Molestias en el tobillo, desconocido" }, //Javi Pardo
+    { playerId: 6, title: 'Duda', text: "Lesión de tobillo, desconocido" }, //Rafa
+    { playerId: null, title: 'Jornada 6', text: "E.F.M.O. Boadilla 'B' 2-1 CD Prodet Pozuelo", url: 'InformeJ6.html' },
+    { playerId: 12, title: 'Lesión', text: "Luxación de rodilla, 6-8 semanas" },
+    { playerId: null, title: 'Jornada 5', text: "CD Retamar 3-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ5.html' },
+    { playerId: null, title: 'Jornada 4', text: "E.F.M.O. Boadilla 'B' 0-1 CD Puerta de Madrid 'B'", url: 'InformeJ4.html' },
+    { playerId: 8, title: 'Duda', text: "Pubalgia, 4-6 semanas" },
+    { playerId: 24, title: 'Lesión', text: "Edema óseo, 5-6 semanas" },
+    { playerId: 9, title: 'Duda', text: "Molestias en el talón y en la pierna, 5-7 semanas" },
+    { playerId: null, title: 'Jornada 3', text: "Gimnástica Colmenarejo CD 'B' 4-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ3.html' },
+    { playerId: 1, title: 'Duda', text: "Rotura fibrilar en el cuádriceps, 3-6 semanas" },
+    { playerId: null, title: 'Jornada 2', text: "E.F.M.O. Boadilla 'B' 1-3 CDE F.B. Dptvo. Torrelodones", url: 'InformeJ2.html' },
+    //{ playerId: 17, title: 'Duda', text: "Fractura de muñeca, 5-7 semanas" },
+    { playerId: null, title: 'Jornada 1', text: "CF Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'", url: 'InformeJ1.html' },
+    //{ playerId: 21, title: 'Duda', text: "Lesión en el abductor, 5 meses" },
+    { playerId: null, title: 'Lesiones', text: "Para ver las lesiones o dudas, clica en el jugador y verás la información sobre su estado" }
+  ];
 
-    // Render helpers
-    function renderScoreBadge(score){
-      if(score===null) return `<span class='score-badge score-null'>-</span>`;
-      if(score<0) return `<span class='score-badge score-red'>${score}</span>`;
-      if(score===0) return `<span class='score-badge score-gray'>${score}</span>`;
-      if(score>=1 && score<=4) return `<span class='score-badge score-yellow'>${score}</span>`;
-      if(score>=5 && score<=9) return `<span class='score-badge score-green'>${score}</span>`;
-      return `<span class='score-badge score-blue'>${score}</span>`;
+  // Render helpers
+  function renderScoreBadge(score){
+    if(score===null) return `<span class='score-badge score-null'>-</span>`;
+    if(score<0) return `<span class='score-badge score-red'>${score}</span>`;
+    if(score===0) return `<span class='score-badge score-gray'>${score}</span>`;
+    if(score>=1 && score<=4) return `<span class='score-badge score-yellow'>${score}</span>`;
+    if(score>=5 && score<=9) return `<span class='score-badge score-green'>${score}</span>`;
+    return `<span class='score-badge score-blue'>${score}</span>`;
+  }
+
+  function getPositionClass(pos) {
+    switch(pos) {
+      case 'Portero': return 'position-goalkeeper';
+      case 'Defensa': return 'position-defender';
+      case 'Centrocampista': return 'position-midfielder';
+      case 'Atacante': return 'position-attacker';
+      default: return '';
     }
+  }
 
-    function getPositionClass(pos) {
-      switch(pos) {
-        case 'Portero': return 'position-goalkeeper';
-        case 'Defensa': return 'position-defender';
-        case 'Centrocampista': return 'position-midfielder';
-        case 'Atacante': return 'position-attacker';
-        default: return '';
-      }
+  function getModalPositionClass(pos) {
+    switch(pos) {
+      case 'Portero': return 'modal-goalkeeper';
+      case 'Defensa': return 'modal-defender';
+      case 'Centrocampista': return 'modal-midfielder';
+      case 'Atacante': return 'modal-attacker';
+      default: return '';
     }
+  }
 
-    function getModalPositionClass(pos) {
-      switch(pos) {
-        case 'Portero': return 'modal-goalkeeper';
-        case 'Defensa': return 'modal-defender';
-        case 'Centrocampista': return 'modal-midfielder';
-        case 'Atacante': return 'modal-attacker';
-        default: return '';
-      }
+  function getStatusClass(status) {
+    switch(status) {
+      case 'OK': return 'status-available';
+      case 'Lesionado': return 'status-injured';
+      case 'Duda': return 'status-doubt';
+      default: return 'status-available';
     }
+  }
 
-    function getStatusClass(status) {
-      switch(status) {
-        case 'OK': return 'status-available';
-        case 'Lesionado': return 'status-injured';
-        case 'Duda': return 'status-doubt';
-        default: return 'status-available';
-      }
+  function getCardStatusClass(status) {
+    switch(status) {
+      case 'OK': return 'available';
+      case 'Lesionado': return 'injured';
+      case 'Duda': return 'doubt';
+      default: return 'available';
     }
+  }
 
-    function getCardStatusClass(status) {
-      switch(status) {
-        case 'OK': return 'available';
-        case 'Lesionado': return 'injured';
-        case 'Duda': return 'doubt';
-        default: return 'available';
-      }
+  function renderStatusBadge(status){
+    switch(status) {
+      case 'OK': return `<span class='player-status status-available'><i class="fas fa-check-circle mr-1"></i>Disponible</span>`;
+      case 'Lesionado': return `<span class='player-status status-injured'><i class="fas fa-user-injured mr-1"></i>Lesionado</span>`;
+      case 'Duda': return `<span class='player-status status-doubt'><i class="fas fa-question-circle mr-1"></i>Duda</span>`;
+      default: return `<span class='player-status status-available'>Disponible</span>`;
     }
+  }
 
-    function renderStatusBadge(status){
-      switch(status) {
-        case 'OK': return `<span class='player-status status-available'><i class="fas fa-check-circle mr-1"></i>Disponible</span>`;
-        case 'Lesionado': return `<span class='player-status status-injured'><i class="fas fa-user-injured mr-1"></i>Lesionado</span>`;
-        case 'Duda': return `<span class='player-status status-doubt'><i class="fas fa-question-circle mr-1"></i>Duda</span>`;
-        default: return `<span class='player-status status-available'>Disponible</span>`;
-      }
-    }
+  function calculateTotals(perfs){
+    return perfs.reduce((acc,p)=>{
+      if(p.points!==null) acc.points+=p.points;
+      acc.minutes+=p.minutes;
+      acc.goals+=p.goals;
+      acc.assists+=p.assists;
+      acc.cards+=p.cards;
+      return acc;
+    }, {points:0, minutes:0, goals:0, assists:0, cards:0});
+  }
 
-    function calculateTotals(perfs){
-      return perfs.reduce((acc,p)=>{
-        if(p.points!==null) acc.points+=p.points;
-        acc.minutes+=p.minutes;
-        acc.goals+=p.goals;
-        acc.assists+=p.assists;
-        acc.cards+=p.cards;
-        return acc;
-      }, {points:0, minutes:0, goals:0, assists:0, cards:0});
-    }
+  function calculateAvg(perfs){
+    const valid = perfs.filter(p=>p.points!==null).map(p=>p.points);
+    if(valid.length===0) return 0;
+    return (valid.reduce((a,b)=>a+b,0)/valid.length).toFixed(2);
+  }
 
-    function calculateAvg(perfs){
-      const valid = perfs.filter(p=>p.points!==null).map(p=>p.points);
-      if(valid.length===0) return 0;
-      return (valid.reduce((a,b)=>a+b,0)/valid.length).toFixed(2);
-    }
-    
-    function renderInjuryFeed(){
-  const feed = document.getElementById('injuryFeed');
-  feed.innerHTML = '';
+  function renderInjuryFeed(){
+    const feed = document.getElementById('injuryFeed');
+    feed.innerHTML = '';
 
-  // Solo mostrar noticias generales (sin jugador vinculado)
-  const generalNews = news.filter(n => n.playerId === null);
+    // Solo mostrar noticias generales (sin jugador vinculado)
+    const generalNews = news.filter(n => n.playerId === null);
 
-  generalNews.forEach(n => {
-    const div = document.createElement('div');
-    div.className = 'news-item';
-    
-    // Verificar si la noticia tiene URL
-    if (n.url) {
-      div.innerHTML = `
+    generalNews.forEach(n => {
+      const div = document.createElement('div');
+      div.className = 'news-item';
+
+      // Verificar si la noticia tiene URL
+      if (n.url) {
+        div.innerHTML = `
         <a href="${n.url}" class="block hover:no-underline">
           <div class="news-title">${n.title} <i class="fas fa-external-link-alt text-xs ml-1"></i></div>
           <div class="news-text">${n.text}</div>
         </a>
       `;
-    } else {
-      div.innerHTML = `
+      } else {
+        div.innerHTML = `
         <div class="news-title">${n.title}</div>
         <div class="news-text">${n.text}</div>
       `;
-    }
-    
-    feed.appendChild(div);
-  });
-}
+      }
+
+      feed.appendChild(div);
+    });
+  }
 
 
-    
-    function render(){
-      const grid = document.getElementById('gridView');
-      const posFilter = document.getElementById('positionFilter').value;
-      const statusFilter = document.getElementById('statusFilter').value;
-      const filtered = players.filter(p => 
-        (posFilter === 'all' || p.pos === posFilter) && 
-        (statusFilter === 'all' || p.status === statusFilter)
-      );
-      
-      grid.innerHTML = '';
 
-      filtered.forEach(p => {
-        const lastThree = p.performances.slice(-3);
-        const totals = calculateTotals(p.performances);
-        const avgPoints = calculateAvg(p.performances);
+  function render(){
+    const grid = document.getElementById('gridView');
+    const posFilter = document.getElementById('positionFilter').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+    const filtered = players.filter(p =>
+      (posFilter === 'all' || p.pos === posFilter) &&
+      (statusFilter === 'all' || p.status === statusFilter)
+    );
 
-        const card = document.createElement('div');
-        card.className = `player-card ${getCardStatusClass(p.status)}`;
-        
-        card.innerHTML = `
-          <div class="player-header">
-            <div class="player-info">
-              <div class="player-name">${p.name}</div>
-              <div class="player-position ${getPositionClass(p.pos)}">${p.pos}</div>
-            </div>
-            <div class="player-points">
-              <div class="points-label">Puntos</div>
-              <div class="points-value">${totals.points}</div>
-              <div class="points-avg">Media: ${avgPoints}</div>
-            </div>
-          </div>
-          
-          <div class="player-performance">
-            <div class="performance-label">Últimas jornadas</div>
-            <div class="performance-badges">
-              ${lastThree.map(l => renderScoreBadge(l.points)).join('')}
-            </div>
-          </div>
-          
-          <div>
-            ${renderStatusBadge(p.status)}
-          </div>
-        `;
-        
-        card.onclick = () => openModal(p.id);
-        grid.appendChild(card);
-      });
+    grid.innerHTML = '';
 
-      // Actualizar contadores
-      document.getElementById('playerCount').textContent = players.length;
-      document.getElementById('injuredCount').textContent = players.filter(p => p.status === "Lesionado").length;
-      document.getElementById('doubtCount').textContent = players.filter(p => p.status === "Duda").length;
-      document.getElementById('showingCount').textContent = filtered.length;
-
-      renderInjuryFeed();
-    }
-
-    function openModal(id){
-      const p = players.find(x => x.id === id); 
-      if(!p) return;
-      
-      document.getElementById('modalName').textContent = p.name;
-      document.getElementById('modalPosition').textContent = p.pos;
-      document.getElementById('modalPosition').className = `modal-player-position ${getModalPositionClass(p.pos)}`;
-      
+    filtered.forEach(p => {
+      const lastFive = p.performances.slice(-5);  // ← CAMBIADO A -5
       const totals = calculateTotals(p.performances);
-      document.getElementById('modalPoints').textContent = totals.points;
-      document.getElementById('modalMinutes').textContent = totals.minutes;
-      document.getElementById('modalGoals').textContent = totals.goals;
-      document.getElementById('modalAssists').textContent = totals.assists;
-      document.getElementById('modalCards').textContent = totals.cards;
-      document.getElementById('modalAvgPoints').textContent = calculateAvg(p.performances);
-      
-      // Actualizar estado en el modal
-      const modalStatus = document.getElementById('modalStatus');
-      modalStatus.className = `player-status ${getStatusClass(p.status)}`;
-      modalStatus.innerHTML = renderStatusBadge(p.status).replace('player-status', '');
+      const avgPoints = calculateAvg(p.performances);
 
-      const perfDiv = document.getElementById('modalPerformances'); 
-      perfDiv.innerHTML = '';
-      
-      const modalNews = document.getElementById('modalNews');
-      modalNews.innerHTML = '';
-      
-      // Mostrar noticia asociada (si existe)
-      const playerNews = news.find(n => n.playerId === p.id);
-      if (playerNews) {
-        const newsDiv = document.createElement('div');
-        // Determinar la clase según el tipo de noticia
-        const newsClass = playerNews.title === 'Lesión' ? 'modal-news-injury' : 'modal-news-doubt';
-        newsDiv.className = `modal-news-item ${newsClass}`;
-        newsDiv.innerHTML = `
+      const card = document.createElement('div');
+      card.className = `player-card ${getCardStatusClass(p.status)}`;
+
+      card.innerHTML = `
+      <div class="player-header">
+        <div class="player-info">
+          <div class="player-name">${p.name}</div>
+          <div class="player-position ${getPositionClass(p.pos)}">${p.pos}</div>
+        </div>
+        <div class="player-points">
+          <div class="points-label">Puntos</div>
+          <div class="points-value">${totals.points}</div>
+          <div class="points-avg">Media: ${avgPoints}</div>
+        </div>
+      </div>
+
+      <div class="player-performance">
+        <div class="performance-label">Últimas jornadas</div>
+        <div class="performance-badges">
+          ${lastFive.map(l => renderScoreBadge(l.points)).join('')}  <!-- ← CAMBIADO A lastFive -->
+        </div>
+      </div>
+
+      <div>
+        ${renderStatusBadge(p.status)}
+      </div>
+    `;
+
+      card.onclick = () => openModal(p.id);
+      grid.appendChild(card);
+    });
+
+    // Actualizar contadores
+    document.getElementById('playerCount').textContent = players.length;
+    document.getElementById('injuredCount').textContent = players.filter(p => p.status === "Lesionado").length;
+    document.getElementById('doubtCount').textContent = players.filter(p => p.status === "Duda").length;
+    document.getElementById('showingCount').textContent = filtered.length;
+
+    renderInjuryFeed();
+  }
+
+  function openModal(id){
+    const p = players.find(x => x.id === id);
+    if(!p) return;
+
+    document.getElementById('modalName').textContent = p.name;
+    document.getElementById('modalPosition').textContent = p.pos;
+    document.getElementById('modalPosition').className = `modal-player-position ${getModalPositionClass(p.pos)}`;
+
+    const totals = calculateTotals(p.performances);
+    document.getElementById('modalPoints').textContent = totals.points;
+    document.getElementById('modalMinutes').textContent = totals.minutes;
+    document.getElementById('modalGoals').textContent = totals.goals;
+    document.getElementById('modalAssists').textContent = totals.assists;
+    document.getElementById('modalCards').textContent = totals.cards;
+    document.getElementById('modalAvgPoints').textContent = calculateAvg(p.performances);
+
+    // Actualizar estado en el modal
+    const modalStatus = document.getElementById('modalStatus');
+    modalStatus.className = `player-status ${getStatusClass(p.status)}`;
+    modalStatus.innerHTML = renderStatusBadge(p.status).replace('player-status', '');
+
+    const perfDiv = document.getElementById('modalPerformances');
+    perfDiv.innerHTML = '';
+
+    const modalNews = document.getElementById('modalNews');
+    modalNews.innerHTML = '';
+
+    // Mostrar noticia asociada (si existe)
+    const playerNews = news.find(n => n.playerId === p.id);
+    if (playerNews) {
+      const newsDiv = document.createElement('div');
+      // Determinar la clase según el tipo de noticia
+      const newsClass = playerNews.title === 'Lesión' ? 'modal-news-injury' : 'modal-news-doubt';
+      newsDiv.className = `modal-news-item ${newsClass}`;
+      newsDiv.innerHTML = `
           <div class="modal-news-title">
             <i class="fas fa-exclamation-circle"></i>
             ${playerNews.title}
           </div>
           <div class="modal-news-text">${playerNews.text}</div>
         `;
-        modalNews.appendChild(newsDiv);
-      }
+      modalNews.appendChild(newsDiv);
+    }
 
-      // Mostrar actuaciones
-      p.performances.forEach((perf, i) => {
-        const div = document.createElement('div');
-        div.className = 'performance-item';
-        div.innerHTML = `
+    // Mostrar actuaciones
+    p.performances.forEach((perf, i) => {
+      const div = document.createElement('div');
+      div.className = 'performance-item';
+      div.innerHTML = `
           <div class="performance-match">
             Jornada ${i+1}: ${renderScoreBadge(perf.points)}
           </div>
           <div class="performance-comment">${perf.comment}</div>
         `;
-        perfDiv.appendChild(div);
-      });
-      
-      // Mostrar modal
-      document.getElementById('statModal').classList.add('active');
-    }
+      perfDiv.appendChild(div);
+    });
 
-    // Event listeners
-    document.getElementById('positionFilter').addEventListener('change', render);
-    document.getElementById('statusFilter').addEventListener('change', render);
-    
-    document.getElementById('closeModal').addEventListener('click', () => {
+    // Mostrar modal
+    document.getElementById('statModal').classList.add('active');
+  }
+
+  // Event listeners
+  document.getElementById('positionFilter').addEventListener('change', render);
+  document.getElementById('statusFilter').addEventListener('change', render);
+
+  document.getElementById('closeModal').addEventListener('click', () => {
+    document.getElementById('statModal').classList.remove('active');
+  });
+
+  document.getElementById('statModal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('statModal')) {
       document.getElementById('statModal').classList.remove('active');
-    });
-    
-    document.getElementById('statModal').addEventListener('click', (e) => {
-      if (e.target === document.getElementById('statModal')) {
-        document.getElementById('statModal').classList.remove('active');
-      }
-    });
+    }
+  });
 
-    // Inicializar
-    render();
-  </script>
+  // Inicializar
+  render();
+</script>
 </body>
 </html>
