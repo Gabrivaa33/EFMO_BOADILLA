@@ -1347,56 +1347,61 @@
   }
 
   function render(){
-    const grid = document.getElementById('gridView');
-    const posFilter = document.getElementById('positionFilter').value;
-    const statusFilter = document.getElementById('statusFilter').value;
+  const grid = document.getElementById('gridView');
+  const posFilter = document.getElementById('positionFilter').value;
+  const statusFilter = document.getElementById('statusFilter').value;
+  
+  // Verificar si hay filtros activos (no "all")
+  const hasActiveFilters = posFilter !== 'all' || statusFilter !== 'all';
+  
+  // Separar jugadores regulares y especiales
+  const regularPlayers = players.filter(p =>
+    !p.special &&
+    (posFilter === 'all' || p.pos === posFilter) &&
+    (statusFilter === 'all' || p.status === statusFilter)
+  );
 
-    // Separar jugadores regulares y especiales
-    const regularPlayers = players.filter(p =>
-      !p.special &&
-      (posFilter === 'all' || p.pos === posFilter) &&
-      (statusFilter === 'all' || p.status === statusFilter)
-    );
-
-    const specialPlayers = players.filter(p =>
+  // Los jugadores especiales SOLO aparecen si NO hay filtros activos
+  const specialPlayers = !hasActiveFilters ? 
+    players.filter(p =>
       p.special &&
       (posFilter === 'all' || p.pos === posFilter) &&
       (statusFilter === 'all' || p.status === statusFilter)
-    );
+    ) : [];
 
-    grid.innerHTML = '';
+  grid.innerHTML = '';
 
-    // Renderizar jugadores regulares primero
-    regularPlayers.forEach(p => {
-      grid.appendChild(renderPlayerCard(p, false));
+  // Renderizar jugadores regulares primero
+  regularPlayers.forEach(p => {
+    grid.appendChild(renderPlayerCard(p, false));
+  });
+
+  // Si hay jugadores especiales y NO hay filtros activos, añadir separador y luego los especiales
+  if (specialPlayers.length > 0 && !hasActiveFilters) {
+    const separator = document.createElement('div');
+    separator.className = 'special-players-separator';
+    separator.innerHTML = `<span>Jugadores de otros equipos</span>`;
+    grid.appendChild(separator);
+
+    specialPlayers.forEach(p => {
+      grid.appendChild(renderPlayerCard(p, true));
     });
-
-    // Si hay jugadores especiales, añadir separador y luego los especiales
-    if (specialPlayers.length > 0) {
-      const separator = document.createElement('div');
-      separator.className = 'special-players-separator';
-      separator.innerHTML = `<span>Jugadores de otros equipos</span>`;
-      grid.appendChild(separator);
-
-      specialPlayers.forEach(p => {
-        grid.appendChild(renderPlayerCard(p, true));
-      });
-    }
-
-    // Actualizar contadores - SOLO jugadores regulares
-    const allRegularPlayers = players.filter(p => !p.special);
-    document.getElementById('playerCount').textContent = allRegularPlayers.length;
-    document.getElementById('injuredCount').textContent = allRegularPlayers.filter(p => p.status === "Lesionado").length;
-    document.getElementById('doubtCount').textContent = allRegularPlayers.filter(p => p.status === "Duda").length;
-
-    // Mostrar cuántos jugadores se están viendo (regulares + especiales)
-    const showingCount = regularPlayers.length + specialPlayers.length;
-    const totalPlayers = players.length;
-    document.getElementById('showingCount').textContent = showingCount;
-    document.getElementById('totalPlayers').textContent = totalPlayers;
-
-    renderInjuryFeed();
   }
+
+  // Actualizar contadores - SOLO jugadores regulares
+  const allRegularPlayers = players.filter(p => !p.special);
+  document.getElementById('playerCount').textContent = allRegularPlayers.length;
+  document.getElementById('injuredCount').textContent = allRegularPlayers.filter(p => p.status === "Lesionado").length;
+  document.getElementById('doubtCount').textContent = allRegularPlayers.filter(p => p.status === "Duda").length;
+
+  // Mostrar cuántos jugadores se están viendo
+  const showingCount = regularPlayers.length + specialPlayers.length;
+  const totalPlayers = hasActiveFilters ? regularPlayers.length : players.length;
+  document.getElementById('showingCount').textContent = showingCount;
+  document.getElementById('totalPlayers').textContent = totalPlayers;
+
+  renderInjuryFeed();
+}
 
   function openModal(id){
     const p = players.find(x => x.id === id);
