@@ -259,6 +259,26 @@
       border: 4px solid var(--warning);
     }
 
+    /* Estilo para jugadores especiales (de otros equipos) */
+    .player-card.special-player {
+      opacity: 0.85;
+      border: 2px dashed #6b7280 !important;
+      background: rgba(107, 114, 128, 0.1);
+    }
+
+    .player-card.special-player:hover {
+      opacity: 1;
+      transform: translateY(-3px);
+    }
+
+    .player-card.special-player .player-name {
+      color: #9ca3af;
+    }
+
+    .player-card.special-player .points-value {
+      color: #9ca3af;
+    }
+
     .player-header {
       display: flex;
       justify-content: space-between;
@@ -621,6 +641,35 @@
       color: var(--text-light);
     }
 
+    /* Separador para jugadores especiales */
+    .special-players-separator {
+      grid-column: 1 / -1;
+      margin: 2rem 0 1rem;
+      text-align: center;
+      position: relative;
+    }
+
+    .special-players-separator::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    }
+
+    .special-players-separator span {
+      background: rgba(30, 41, 59, 0.9);
+      padding: 0.5rem 1.5rem;
+      border-radius: 20px;
+      font-size: 0.875rem;
+      color: #9ca3af;
+      border: 1px solid rgba(255,255,255,0.1);
+      position: relative;
+      z-index: 1;
+    }
+
     /* Scrollbar personalizado */
     ::-webkit-scrollbar {
       width: 6px;
@@ -713,7 +762,7 @@
     <div class="players-section">
       <div class="players-header">
         <h2 class="players-title">Plantilla del Equipo</h2>
-        <div class="players-count">Mostrando <span id="showingCount">26</span> de 26 jugadores</div>
+        <div class="players-count">Mostrando <span id="showingCount">25</span> de <span id="totalPlayers">25</span> jugadores</div>
       </div>
       <div id="gridView" class="players-grid">
         <!-- Las tarjetas de jugadores se cargarán aquí -->
@@ -780,10 +829,9 @@
 </div>
 
 <script>
-  // Datos de jugadores y noticias (igual que en tu código original)
-  // {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}
+  // Datos de jugadores y noticias
   const players = [
-    { id:1, name:'J. Agudo', pos:'Portero', status:'Duda', performances:[
+    { id:1, name:'J. Agudo', pos:'Portero', status:'Duda', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:54, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -796,7 +844,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:2, name:'Gabri', pos:'Portero', status:'OK', performances:[
+    { id:2, name:'Gabri', pos:'Portero', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:1, minutes:90, goals:0, assists:0, cards:0, comment:'(6,3)'},
@@ -809,7 +857,7 @@
         {points:null, minutes:10, goals:0, assists:0, cards:0, comment:'↩️ (-)'}
       ]},
 
-    { id:3, name:'Álvaro', pos:'Portero', status:'Duda', performances:[
+    { id:3, name:'Álvaro', pos:'Portero', status:'Duda', special: false, performances:[
         {points:2, minutes:90, goals:0, assists:0, cards:0, comment:'(6,5)'},
         {points:null, minutes:36, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
@@ -822,7 +870,7 @@
         {points:null, minutes:80, goals:0, assists:0, cards:0, comment:'↪️ (-)'}
       ]},
 
-    { id:4, name:'Luisja', pos:'Defensa', status:'Duda', performances:[
+    { id:4, name:'Luisja', pos:'Defensa', status:'Duda', special: false, performances:[
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,2)'},
         {points:null, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (Sin grabación)'},
         {points:4, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,8)'},
@@ -830,12 +878,12 @@
         {points:5, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (7,1)'},
         {points:11, minutes:90, goals:0, assists:0, cards:0, comment:'(8,6)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
-        {points:null, minutes:90, goals:0, assists:1, cards:0, comment:'🅰️ (0,0+🅰️)'}, //1 assist?
+        {points:null, minutes:90, goals:0, assists:1, cards:0, comment:'🅰️ (0,0+🅰️)'},
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,3)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:5, name:'J. Martínez', pos:'Atacante', status:'OK', performances:[
+    { id:5, name:'J. Martínez', pos:'Atacante', status:'OK', special: false, performances:[
         {points:3, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,7)'},
         {points:null, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (Sin grabación)'},
         {points:9, minutes:63, goals:1, assists:0, cards:0, comment:'↪️⚽ (7,3+⚽)'},
@@ -843,12 +891,12 @@
         {points:6, minutes:90, goals:0, assists:1, cards:0, comment:'🅰️ (7,0+🅰️)'},
         {points:3, minutes:62, goals:0, assists:0, cards:1, comment:'🟨↪️ (6,7)'},
         {points:6, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (7,3)'},
-        {points:null, minutes:57, goals:0, assists:1, cards:1, comment:'🟨🅰️ (0,0+🅰️)'}, //1 assist?
+        {points:null, minutes:57, goals:0, assists:1, cards:1, comment:'🟨🅰️ (0,0+🅰️)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Sancionado'},
         {points:null, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (-)'}
       ]},
 
-    { id:6, name:'Rafa Crooke', pos:'Defensa', status:'Duda', performances:[
+    { id:6, name:'Rafa Crooke', pos:'Defensa', status:'Duda', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:26, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -861,7 +909,7 @@
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(-)'}
       ]},
 
-    { id:7, name:'Jacobo', pos:'Defensa', status:'OK', performances:[
+    { id:7, name:'Jacobo', pos:'Defensa', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:4, minutes:63, goals:0, assists:0, cards:0, comment:'↪️ (6,9)'},
@@ -874,7 +922,7 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (-)'}
       ]},
 
-    { id:8, name:'Rodri', pos:'Defensa', status:'Duda', performances:[
+    { id:8, name:'Rodri', pos:'Defensa', status:'Duda', special: false, performances:[
         {points:2, minutes:90, goals:0, assists:0, cards:0, comment:'(6,4)'},
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(Sin grabación)'},
         {points:1, minutes:90, goals:0, assists:0, cards:0, comment:'(6,3)'},
@@ -887,7 +935,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}
       ]},
 
-    { id:9, name:'Adriano', pos:'Defensa', status:'Duda', performances:[
+    { id:9, name:'Adriano', pos:'Defensa', status:'Duda', special: false, performances:[
         {points:9, minutes:90, goals:0, assists:0, cards:0, comment:'(7,8)'},
         {points:null, minutes:64, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:2, minutes:27, goals:0, assists:0, cards:0, comment:'↩️ (6,4)'},
@@ -900,7 +948,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:10, name:'Á. Infante', pos:'Defensa', status:'OK', performances:[
+    { id:10, name:'Á. Infante', pos:'Defensa', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -913,7 +961,7 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (-)'}
       ]},
 
-    { id:11, name:'A. Molina', pos:'Centrocampista', status:'OK', performances:[
+    { id:11, name:'A. Molina', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:4, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (6,8)'},
         {points:null, minutes:75, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
@@ -926,7 +974,7 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (-)'}
       ]},
 
-    { id:12, name:'L. Lausín', pos:'Defensa', status:'Lesionado', performances:[
+    { id:12, name:'L. Lausín', pos:'Defensa', status:'Lesionado', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:2, minutes:20, goals:0, assists:0, cards:0, comment:'↩️ (6,5)'},
@@ -939,7 +987,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:13, name:'J. Zarcero', pos:'Defensa', status:'OK', performances:[
+    { id:13, name:'J. Zarcero', pos:'Defensa', status:'OK', special: false, performances:[
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,0)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:4, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,8)'},
@@ -952,7 +1000,7 @@
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(-)'}
       ]},
 
-    { id:14, name:'Kito', pos:'Centrocampista', status:'OK', performances:[
+    { id:14, name:'Kito', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:6, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (7,3)'},
         {points:null, minutes:75, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:7, minutes:70, goals:0, assists:1, cards:1, comment:'🟨↪️🅰️ (7,2+🅰️)'},
@@ -965,7 +1013,7 @@
         {points:null, minutes:45, goals:0, assists:1, cards:0, comment:'↩️🅰️ (0,0+🅰️)'}
       ]},
 
-    { id:15, name:'Víctor Jaén', pos:'Centrocampista', status:'OK', performances:[
+    { id:15, name:'Víctor Jaén', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:2, minutes:21, goals:0, assists:0, cards:0, comment:'↩️ (6,4)'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:4, minutes:63, goals:0, assists:0, cards:1, comment:'🟨↪️ (6,8)'},
@@ -978,7 +1026,7 @@
         {points:null, minutes:10, goals:0, assists:0, cards:0, comment:'↩️ (-)'}
       ]},
 
-    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Lesionado', performances:[
+    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Lesionado', special: false, performances:[
         {points:7, minutes:72, goals:0, assists:0, cards:0, comment:'↪️ (7,5)'},
         {points:null, minutes:75, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,1)'},
@@ -989,10 +1037,9 @@
         {points:null, minutes:33, goals:0, assists:0, cards:0, comment:'↪️ (-)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
-
       ]},
 
-    { id:17, name:'Pablo', pos:'Centrocampista', status:'OK', performances:[
+    { id:17, name:'Pablo', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:4, minutes:69, goals:0, assists:0, cards:1, comment:'🟨↪️ (6,9)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -1005,7 +1052,7 @@
         {points:null, minutes:80, goals:0, assists:0, cards:1, comment:'🟨↪️ (-)'}
       ]},
 
-    { id:18, name:'Javi Pardo', pos:'Centrocampista', status:'Duda', performances:[
+    { id:18, name:'Javi Pardo', pos:'Centrocampista', status:'Duda', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(Sin grabación)'},
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,3)'},
@@ -1018,7 +1065,7 @@
         {points:null, minutes:90, goals:1, assists:0, cards:0, comment:'⚽ (0,0+⚽)'}
       ]},
 
-    { id:19, name:'Mario', pos:'Centrocampista', status:'OK', performances:[
+    { id:19, name:'Mario', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -1031,7 +1078,7 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (-)'}
       ]},
 
-    { id:20, name:'J. Ogayar', pos:'Centrocampista', status:'OK', performances:[
+    { id:20, name:'J. Ogayar', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:1, minutes:18, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:2, minutes:27, goals:0, assists:0, cards:0, comment:'↩️ (6,4)'},
@@ -1044,7 +1091,7 @@
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(-)'}
       ]},
 
-    { id:21, name:'Rodri de Castro', pos:'Atacante', status:'OK', performances:[
+    { id:21, name:'Rodri de Castro', pos:'Atacante', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -1057,7 +1104,7 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (-)'}
       ]},
 
-    { id:22, name:'H. Panizo', pos:'Atacante', status:'Duda', performances:[
+    { id:22, name:'H. Panizo', pos:'Atacante', status:'Duda', special: false, performances:[
         {points:4, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (6,9)'},
         {points:null, minutes:64, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:4, minutes:27, goals:0, assists:0, cards:0, comment:'↩️ (6,9)'},
@@ -1070,7 +1117,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'}
       ]},
 
-    { id:23, name:'Manu Medina', pos:'Atacante', status:'OK', performances:[
+    { id:23, name:'Manu Medina', pos:'Atacante', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -1083,7 +1130,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}
       ]},
 
-    { id:24, name:'Manu de Vicente', pos:'Atacante', status:'Lesionado', performances:[
+    { id:24, name:'Manu de Vicente', pos:'Atacante', status:'Lesionado', special: false, performances:[
         {points:1, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (6,3)'},
         {points:null, minutes:26, goals:0, assists:0, cards:1, comment:'🟨↩️ (Sin grabación)'},
         {points:1, minutes:27, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'},
@@ -1096,7 +1143,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:25, name:'S. Griñán', pos:'Atacante', status:'OK', performances:[
+    { id:25, name:'S. Griñán', pos:'Atacante', status:'OK', special: false, performances:[
         {points:3, minutes:45, goals:0, assists:0, cards:0, comment:'↩️ (6,6)'},
         {points:null, minutes:90, goals:1, assists:0, cards:1, comment:'🟨⚽ (Sin grabación)'},
         {points:7, minutes:63, goals:1, assists:0, cards:0, comment:'↪️⚽🅿️ (6,8+⚽🅿️)'},
@@ -1109,7 +1156,7 @@
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(-)'}
       ]},
 
-    { id:26, name:'Manu (JB)', pos:'Defensa', status:'OK', performances:[
+    { id:26, name:'Manu (JB)', pos:'Defensa', status:'OK', special: true, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'},
@@ -1133,8 +1180,8 @@
     { playerId: null, title: 'Jornada 8', text: "E.F.M.O. Boadilla 'B' 2-2 CDE Aupa - Mentema Boadilla 'A'", url: 'InformeJ8.html' },
     { playerId: 3, title: 'Duda', text: "Molestias en el tobillo, cuello, costillas y contusión en la cabeza, desconocido" },
     { playerId: null, title: 'Jornada 7', text: "CDE Fútbol Club Samba-Las Rozas 1-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ7.html' },
-    { playerId: 18, title: 'Duda', text: "Molestias en el tobillo, 3-4 semanas" }, //Javi Pardo
-    { playerId: 6, title: 'Duda', text: "Lesión de tobillo, 3-5 semanas" }, //Rafa
+    { playerId: 18, title: 'Duda', text: "Molestias en el tobillo, 3-4 semanas" },
+    { playerId: 6, title: 'Duda', text: "Lesión de tobillo, 3-5 semanas" },
     { playerId: null, title: 'Jornada 6', text: "E.F.M.O. Boadilla 'B' 2-1 CD Prodet Pozuelo", url: 'InformeJ6.html' },
     { playerId: 12, title: 'Lesión', text: "Luxación de rodilla, 6-8 semanas" },
     { playerId: null, title: 'Jornada 5', text: "CD Retamar 3-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ5.html' },
@@ -1253,31 +1300,24 @@
     });
   }
 
+  // Nueva función para renderizar tarjetas individuales
+  function renderPlayerCard(p, isSpecial = false) {
+    const lastFive = p.performances.slice(-5);
+    const totals = calculateTotals(p.performances);
+    const avgPoints = calculateAvg(p.performances);
 
+    const card = document.createElement('div');
+    card.className = `player-card ${getCardStatusClass(p.status)} ${isSpecial ? 'special-player' : ''}`;
 
-  function render(){
-    const grid = document.getElementById('gridView');
-    const posFilter = document.getElementById('positionFilter').value;
-    const statusFilter = document.getElementById('statusFilter').value;
-    const filtered = players.filter(p =>
-      (posFilter === 'all' || p.pos === posFilter) &&
-      (statusFilter === 'all' || p.status === statusFilter)
-    );
+    // Para jugadores especiales, mostrar solo jornadas donde jugaron
+    const recentPerformances = isSpecial ?
+      p.performances.filter(perf => perf.minutes > 0 || perf.points !== null).slice(-5) :
+      lastFive;
 
-    grid.innerHTML = '';
-
-    filtered.forEach(p => {
-      const lastFive = p.performances.slice(-5);  // ← CAMBIADO A -5
-      const totals = calculateTotals(p.performances);
-      const avgPoints = calculateAvg(p.performances);
-
-      const card = document.createElement('div');
-      card.className = `player-card ${getCardStatusClass(p.status)}`;
-
-      card.innerHTML = `
+    card.innerHTML = `
       <div class="player-header">
         <div class="player-info">
-          <div class="player-name">${p.name}</div>
+          // <div class="player-name">${p.name}${isSpecial ? ' <span class="text-xs text-gray-400">(Juvenil B)</span>' : ''}</div>
           <div class="player-position ${getPositionClass(p.pos)}">${p.pos}</div>
         </div>
         <div class="player-points">
@@ -1288,26 +1328,72 @@
       </div>
 
       <div class="player-performance">
-        <div class="performance-label">Últimas jornadas</div>
+        <div class="performance-label">${isSpecial ? 'Últimas apariciones' : 'Últimas jornadas'}</div>
         <div class="performance-badges">
-          ${lastFive.map(l => renderScoreBadge(l.points)).join('')}  <!-- ← CAMBIADO A lastFive -->
+          ${recentPerformances.map(l => renderScoreBadge(l.points)).join('')}
+          ${recentPerformances.length === 0 && isSpecial ?
+      '<span class="text-xs text-gray-500 italic">No ha jugado aún</span>' : ''}
         </div>
       </div>
 
       <div>
         ${renderStatusBadge(p.status)}
+        ${isSpecial ? '<div class="mt-2 text-xs text-gray-400 italic">Jugador de otro equipo</div>' : ''}
       </div>
     `;
 
-      card.onclick = () => openModal(p.id);
-      grid.appendChild(card);
+    card.onclick = () => openModal(p.id);
+    return card;
+  }
+
+  function render(){
+    const grid = document.getElementById('gridView');
+    const posFilter = document.getElementById('positionFilter').value;
+    const statusFilter = document.getElementById('statusFilter').value;
+
+    // Separar jugadores regulares y especiales
+    const regularPlayers = players.filter(p =>
+      !p.special &&
+      (posFilter === 'all' || p.pos === posFilter) &&
+      (statusFilter === 'all' || p.status === statusFilter)
+    );
+
+    const specialPlayers = players.filter(p =>
+      p.special &&
+      (posFilter === 'all' || p.pos === posFilter) &&
+      (statusFilter === 'all' || p.status === statusFilter)
+    );
+
+    grid.innerHTML = '';
+
+    // Renderizar jugadores regulares primero
+    regularPlayers.forEach(p => {
+      grid.appendChild(renderPlayerCard(p, false));
     });
 
-    // Actualizar contadores
-    document.getElementById('playerCount').textContent = players.length;
-    document.getElementById('injuredCount').textContent = players.filter(p => p.status === "Lesionado").length;
-    document.getElementById('doubtCount').textContent = players.filter(p => p.status === "Duda").length;
-    document.getElementById('showingCount').textContent = filtered.length;
+    // Si hay jugadores especiales, añadir separador y luego los especiales
+    if (specialPlayers.length > 0) {
+      const separator = document.createElement('div');
+      separator.className = 'special-players-separator';
+      separator.innerHTML = `<span>Jugadores de otros equipos</span>`;
+      grid.appendChild(separator);
+
+      specialPlayers.forEach(p => {
+        grid.appendChild(renderPlayerCard(p, true));
+      });
+    }
+
+    // Actualizar contadores - SOLO jugadores regulares
+    const allRegularPlayers = players.filter(p => !p.special);
+    document.getElementById('playerCount').textContent = allRegularPlayers.length;
+    document.getElementById('injuredCount').textContent = allRegularPlayers.filter(p => p.status === "Lesionado").length;
+    document.getElementById('doubtCount').textContent = allRegularPlayers.filter(p => p.status === "Duda").length;
+
+    // Mostrar cuántos jugadores se están viendo (regulares + especiales)
+    const showingCount = regularPlayers.length + specialPlayers.length;
+    const totalPlayers = players.length;
+    document.getElementById('showingCount').textContent = showingCount;
+    document.getElementById('totalPlayers').textContent = totalPlayers;
 
     renderInjuryFeed();
   }
