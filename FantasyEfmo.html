@@ -1395,10 +1395,12 @@
   document.getElementById('doubtCount').textContent = allRegularPlayers.filter(p => p.status === "Duda").length;
 
   // Mostrar cuántos jugadores se están viendo
-  const showingCount = regularPlayers.length + specialPlayers.length;
-  const totalPlayers = hasActiveFilters ? regularPlayers.length : players.length;
+  // IMPORTANTE: NUNCA contar jugadores especiales en "Mostrando X"
+  const showingCount = regularPlayers.length; // Solo regulares
+  const totalRegularCount = allRegularPlayers.length; // Solo regulares
+  
   document.getElementById('showingCount').textContent = showingCount;
-  document.getElementById('totalPlayers').textContent = totalPlayers;
+  document.getElementById('totalPlayers').textContent = totalRegularCount;
 
   renderInjuryFeed();
 }
