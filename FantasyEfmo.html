@@ -831,7 +831,7 @@
 <script>
   // Datos de jugadores y noticias
   const players = [
-    { id:1, name:'J. Agudo', pos:'Portero', status:'Duda', special: false, performances:[
+    { id:1, name:'J. Agudo', pos:'Portero', status:'Lesionado', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:54, goals:0, assists:0, cards:0, comment:'↪️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -935,7 +935,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}
       ]},
 
-    { id:9, name:'Adriano', pos:'Defensa', status:'Lesionado', special: false, performances:[
+    { id:9, name:'Adriano', pos:'Defensa', status:'Duda', special: false, performances:[
         {points:9, minutes:90, goals:0, assists:0, cards:0, comment:'(7,8)'},
         {points:null, minutes:64, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:2, minutes:27, goals:0, assists:0, cards:0, comment:'↩️ (6,4)'},
@@ -1026,7 +1026,7 @@
         {points:null, minutes:10, goals:0, assists:0, cards:0, comment:'↩️ (-)'}
       ]},
 
-    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Lesionado', special: false, performances:[
+    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Duda', special: false, performances:[
         {points:7, minutes:72, goals:0, assists:0, cards:0, comment:'↪️ (7,5)'},
         {points:null, minutes:75, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,1)'},
@@ -1078,7 +1078,7 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (-)'}
       ]},
 
-    { id:20, name:'J. Ogayar', pos:'Centrocampista', status:'Duda', special: false, performances:[
+    { id:20, name:'J. Ogayar', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:1, minutes:18, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:2, minutes:27, goals:0, assists:0, cards:0, comment:'↩️ (6,4)'},
@@ -1130,7 +1130,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}
       ]},
 
-    { id:24, name:'Manu de Vicente', pos:'Atacante', status:'Lesionado', special: false, performances:[
+    { id:24, name:'Manu de Vicente', pos:'Atacante', status:'Duda', special: false, performances:[
         {points:1, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (6,3)'},
         {points:null, minutes:26, goals:0, assists:0, cards:1, comment:'🟨↩️ (Sin grabación)'},
         {points:1, minutes:27, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'},
@@ -1172,14 +1172,13 @@
 
   // 📰 Noticias del equipo
   const news = [
-    { playerId: 20, title: 'Duda', text: "Molestias, desconocido" },
-    { playerId: 10, title: 'Duda', text: "Contusión en la cabeza, 5-10 días" },
+    { playerId: 10, title: 'Duda', text: "Sobrecarga, 5-10 días" },
     { playerId: null, title: 'Jornada 10', text: "E.F.M.O. Boadilla 'B' 1-1 CDE Delta Juventud FC", url: 'InformeJ9.html' },
     { playerId: 4, title: 'Duda', text: "Molestias musculares, 1-3 semanas" },
     { playerId: null, title: 'Jornada 9', text: "EE PP San Fernando Escolapios Pozuelo 4-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ9.html' },
-    { playerId: 16, title: 'Lesión', text: "Lesión en los isquios, desconocido" },
+    { playerId: 16, title: 'Duda', text: "Lesión en los isquios, desconocido" },
     { playerId: null, title: 'Jornada 8', text: "E.F.M.O. Boadilla 'B' 2-2 CDE Aupa - Mentema Boadilla 'A'", url: 'InformeJ8.html' },
-    { playerId: 3, title: 'Duda', text: "Molestias en el tobillo, cuello, costillas y contusión en la cabeza, desconocido" },
+    { playerId: 3, title: 'Duda', text: "Esguince de tobillo y molestias en el cuello, desconocido" },
     { playerId: null, title: 'Jornada 7', text: "CDE Fútbol Club Samba-Las Rozas 1-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ7.html' },
     { playerId: 18, title: 'Duda', text: "Molestias en el tobillo, 3-4 semanas" },
     { playerId: 6, title: 'Duda', text: "Lesión de tobillo, 3-5 semanas" },
@@ -1188,10 +1187,10 @@
     { playerId: null, title: 'Jornada 5', text: "CD Retamar 3-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ5.html' },
     { playerId: null, title: 'Jornada 4', text: "E.F.M.O. Boadilla 'B' 0-1 CD Puerta de Madrid 'B'", url: 'InformeJ4.html' },
     { playerId: 8, title: 'Duda', text: "Pubalgia, 7-10 semanas" },
-    { playerId: 24, title: 'Lesión', text: "Edema óseo, 8-10 semanas" },
-    { playerId: 9, title: 'Adriano', text: "Molestias en el talón y en la pierna, 8-10 semanas" },
+    { playerId: 24, title: 'Duda', text: "Edema óseo, 9-10 semanas" },
+    { playerId: 9, title: 'Duda', text: "Molestias en el talón y en la pierna, 9-10 semanas" },
     { playerId: null, title: 'Jornada 3', text: "Gimnástica Colmenarejo CD 'B' 4-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ3.html' },
-    { playerId: 1, title: 'Duda', text: "Rotura fibrilar en el cuádriceps, 9-11 semanas" },
+    { playerId: 1, title: 'Lesión', text: "Rotura fibrilar en el cuádriceps, 12-15 semanas" },
     { playerId: null, title: 'Jornada 2', text: "E.F.M.O. Boadilla 'B' 1-3 CDE F.B. Dptvo. Torrelodones", url: 'InformeJ2.html' },
     { playerId: null, title: 'Jornada 1', text: "CF Rayo Majadahonda-Internacional 'B' 1-0 E.F.M.O. Boadilla 'B'", url: 'InformeJ1.html' },
     { playerId: null, title: 'Lesiones', text: "Para ver las lesiones o dudas, clica en el jugador y verás la información sobre su estado" }
