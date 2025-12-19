@@ -846,7 +846,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:2, name:'Gabri', pos:'Portero', status:'OK', special: false, performances:[
+    { id:2, name:'Gabri', pos:'Portero', status:'Duda', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:1, minutes:90, goals:0, assists:0, cards:0, comment:'(6,3)'},
@@ -888,7 +888,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:5, name:'J. Martínez', pos:'Atacante', status:'OK', special: false, performances:[
+    { id:5, name:'J. Martínez', pos:'Atacante', status:'Duda', special: false, performances:[
         {points:3, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,7)'},
         {points:null, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (Sin grabación)'},
         {points:9, minutes:63, goals:1, assists:0, cards:0, comment:'↪️⚽ (7,3+⚽)'},
@@ -902,7 +902,7 @@
         {points:null, minutes:87, goals:0, assists:0, cards:1, comment:'🟨↪️ (-)'}
       ]},
 
-    { id:6, name:'Rafa Crooke', pos:'Defensa', status:'Duda', special: false, performances:[
+    { id:6, name:'Rafa Crooke', pos:'Defensa', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:26, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -958,7 +958,7 @@
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(-)'}
       ]},
 
-    { id:10, name:'Á. Infante', pos:'Defensa', status:'Duda', special: false, performances:[
+    { id:10, name:'Á. Infante', pos:'Defensa', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -1042,7 +1042,7 @@
         {points:null, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (-)'}
       ]},
 
-    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Duda', special: false, performances:[
+    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:7, minutes:72, goals:0, assists:0, cards:0, comment:'↪️ (7,5)'},
         {points:null, minutes:75, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,1)'},
@@ -1140,7 +1140,7 @@
         {points:null, minutes:8, goals:0, assists:0, cards:0, comment:'↩️ (-)'}
       ]},
 
-    { id:23, name:'Manu Medina', pos:'Atacante', status:'OK', special: false, performances:[
+    { id:23, name:'Manu Medina', pos:'Atacante', status:'Lesionado', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -1199,17 +1199,19 @@
 
   // 📰 Noticias del equipo
   const news = [
+    { playerId: 5, title: 'Duda', text: "Desconocido" },
+    { playerId: 23, title: 'Lesión', text: "Fisura de peroné, 1-3 meses" },
+    { playerId: 2, title: 'Duda', text: "Molestias en la cadera, 6-10 días" },
     { playerId: null, title: 'Jornada 11', text: "Escuela Europea CF 3-3 E.F.M.O. Boadilla 'B'", url: 'InformeJ11.html' },
-    { playerId: 10, title: 'Duda', text: "Sobrecarga, 5-10 días" },
     { playerId: null, title: 'Jornada 10', text: "E.F.M.O. Boadilla 'B' 1-1 CDE Delta Juventud FC", url: 'InformeJ10.html' },
     { playerId: 4, title: 'Lesión', text: "Molestias musculares, 1-3 semanas" },
     { playerId: null, title: 'Jornada 9', text: "EE PP San Fernando Escolapios Pozuelo 4-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ9.html' },
-    { playerId: 16, title: 'Duda', text: "Lesión en los isquios, desconocido" },
+   // { playerId: 16, title: 'Duda', text: "Lesión en los isquios, desconocido" }, // Á. Brito
     { playerId: null, title: 'Jornada 8', text: "E.F.M.O. Boadilla 'B' 2-2 CDE Aupa - Mentema Boadilla 'A'", url: 'InformeJ8.html' },
     { playerId: 3, title: 'Duda', text: "Esguince de tobillo y molestias en el cuello, desconocido" },
     { playerId: null, title: 'Jornada 7', text: "CDE Fútbol Club Samba-Las Rozas 1-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ7.html' },
-   // { playerId: 18, title: 'Duda', text: "Molestias en el tobillo, 3-4 semanas" },
-    { playerId: 6, title: 'Duda', text: "Lesión de tobillo, 3-5 semanas" },
+   // { playerId: 18, title: 'Duda', text: "Molestias en el tobillo, 3-4 semanas" }, //J. Pardo
+   // { playerId: 6, title: 'Duda', text: "Lesión de tobillo, 3-5 semanas" }, //Rafa
     { playerId: null, title: 'Jornada 6', text: "E.F.M.O. Boadilla 'B' 2-1 CD Prodet Pozuelo", url: 'InformeJ6.html' },
     { playerId: 12, title: 'Lesión', text: "Luxación de rodilla, 6-8 semanas" },
     { playerId: null, title: 'Jornada 5', text: "CD Retamar 3-2 E.F.M.O. Boadilla 'B'", url: 'InformeJ5.html' },
