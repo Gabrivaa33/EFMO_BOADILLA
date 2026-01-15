@@ -1223,6 +1223,18 @@
       ]}
   ];
 
+  players.forEach(player => {
+  console.log(`\n// ${player.name}`);
+  console.log(`{ id:${player.id}, name:'${player.name}', pos:'${player.pos}', status:'${player.status}', special:${player.special}, performances:[`);
+
+  player.performances.forEach((perf, index) => {
+    console.log(`  //J${index + 1}`);
+    console.log(`  ${JSON.stringify(perf)},`);
+  });
+
+  console.log(`] },`);
+});
+  
   // 📰 Noticias del equipo
   const news = [
     { playerId: 22, title: 'Lesión', text: "Esguince de tobillo, 1-3 semanas" },
