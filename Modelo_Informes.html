@@ -1,0 +1,1036 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Informe Jornada </title> //Añadir nº de jornada
+  <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;900&display=swap');
+
+    :root {
+      --azul: #00b4d8;
+      --azul-oscuro: #03045e;
+      --verde: #38b000;
+      --naranja: #ff9100;
+      --rojo: #ff4444;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: 'Montserrat', sans-serif;
+      background: linear-gradient(120deg, var(--azul-oscuro), #001233 70%);
+      color: white;
+      line-height: 1.6;
+    }
+
+    .container-informe {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 40px 20px;
+    }
+
+    .btn-volver {
+      display: inline-block;
+      margin-bottom: 30px;
+      color: var(--azul);
+      text-decoration: none;
+      font-weight: bold;
+      padding: 10px 20px;
+      border: 2px solid var(--azul);
+      border-radius: 6px;
+      transition: all 0.3s;
+    }
+
+    .btn-volver:hover {
+      background: var(--azul);
+      color: var(--azul-oscuro);
+    }
+
+    .header-informe {
+      text-align: center;
+      margin-bottom: 40px;
+      padding-bottom: 20px;
+      border-bottom: 3px solid var(--azul);
+    }
+
+    .header-informe h1 {
+      font-size: 2.5rem;
+      color: var(--azul);
+      margin-bottom: 10px;
+    }
+
+    .resultado-principal {
+      font-size: 2.2rem;
+      font-weight: 900;
+      text-align: center;
+      margin: 20px 0;
+      background: linear-gradient(90deg, var(--azul), #caf0f8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    /* SECCIONES */
+    .seccion {
+      margin-bottom: 40px;
+      padding: 25px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 15px;
+      border-left: 4px solid var(--azul);
+    }
+
+    .seccion h3 {
+      color: var(--azul);
+      font-size: 1.5rem;
+      margin-top: 0;
+      margin-bottom: 20px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .seccion h3::before {
+      content: "•";
+      color: var(--naranja);
+      font-size: 2rem;
+    }
+
+    .formacion-titulo {
+      text-align: center;
+      font-size: 1.4rem;
+      color: var(--naranja);
+      margin-bottom: 15px;
+      font-weight: bold;
+    }
+
+    /* GOLES */
+    .goles-lista {
+      background: rgba(56,176,0,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--verde);
+    }
+
+    .gol {
+      padding: 10px;
+      margin: 8px 0;
+      background: rgba(56,176,0,0.2);
+      border-radius: 6px;
+      border-left: 4px solid var(--verde);
+    }
+
+    .gol .minuto {
+      font-weight: bold;
+      color: var(--verde);
+    }
+
+    /* CAMBIOS */
+    .cambios-lista {
+      background: rgba(255,145,0,0.1);
+      padding: 20px;
+      border-radius: 10px;
+      border: 1px solid var(--naranja);
+    }
+
+    .cambio {
+      padding: 10px;
+      margin: 8px 0;
+      background: rgba(255,145,0,0.2);
+      border-radius: 6px;
+      border-left: 4px solid var(--naranja);
+      display: block;
+    }
+
+    .cambio .minuto {
+      font-weight: bold;
+      color: var(--naranja);
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    .jugadores-cambio {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .flecha {
+      color: var(--naranja);
+      font-weight: bold;
+    }
+
+    /* COLORES DE PUNTUACIÓN - DEFINIDOS GLOBALMENTE */
+    .score-red { background-color: #ff4444 !important; }
+    .score-gray { background-color: #cccccc !important; }
+    .score-yellow { background-color: #ffdd00 !important; }
+    .score-green { background-color: #44ff44 !important; }
+    .score-blue { background-color: #44ddff !important; }
+    .score-darkblue { background-color: #374df5 !important; }
+
+    /* ESTILOS RESPONSIVE PARA CAMPOS DE FÚTBOL */
+    .field-container-responsive {
+      width: 100%;
+      background-color: #f0f0f0;
+      padding: 15px;
+      border-radius: 10px;
+      margin: 0 auto;
+    }
+
+    .field-responsive {
+      background: linear-gradient(135deg, #2e7d32 0%, #1b5e20 100%);
+      position: relative;
+      width: 100%;
+      overflow: hidden;
+      border-radius: 8px;
+      margin: 0 auto;
+      box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.3);
+      height: 450px; /* Un poco más alto para 5 jugadores */
+    }
+
+    .grass-pattern-responsive {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-image:
+        linear-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.1) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.3;
+    }
+
+    .players-formation-responsive {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: 15px 5px;
+    }
+
+    .player-row-responsive {
+      display: flex;
+      justify-content: space-around;
+      width: 100%;
+      flex-wrap: nowrap;
+      gap: 5px;
+    }
+
+    .player-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      flex-shrink: 1;
+      min-width: 55px;
+      flex: 1;
+    }
+
+    .player-circle-responsive {
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      background-color: #d32f2f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      margin-bottom: 2px;
+      z-index: 2;
+      border: 2px solid white;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+      font-size: 0.7rem;
+    }
+
+    .player-rating-responsive {
+      position: relative;
+      color: #000;
+      padding: 1px 4px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      margin-bottom: 3px;
+      z-index: 3;
+      min-width: 30px;
+      text-align: center;
+    }
+
+    .player-name-responsive {
+      font-size: 0.6rem;
+      color: white;
+      text-align: center;
+      max-width: 60px;
+      overflow: visible;
+      text-overflow: unset;
+      white-space: normal;
+      z-index: 1;
+      font-weight: 600;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+      line-height: 1.1;
+      word-wrap: break-word;
+      hyphens: auto;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      min-height: 1.5em;
+    }
+
+    /* NUEVOS ESTILOS PARA GOLES Y ASISTENCIAS */
+    .player-with-stats-responsive {
+      display: flex;
+      align-items: flex-start;
+      position: relative;
+    }
+
+    .player-main-info-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .player-stats-side-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+      position: absolute;
+      left: 38px;
+      top: -8px;
+      z-index: 4;
+    }
+
+    .player-goals-row-responsive, .player-assists-row-responsive {
+      font-size: 0.9rem;
+      line-height: 1;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      white-space: nowrap;
+    }
+
+    /* NUEVOS ESTILOS PARA TARJETAS */
+    .player-cards-side-responsive {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
+      gap: 2px;
+      position: absolute;
+      right: 38px;
+      top: -8px;
+      z-index: 4;
+    }
+    
+    .player-cards-row-responsive {
+      font-size: 0.9rem;
+      line-height: 1;
+      text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
+      white-space: nowrap;
+    }
+
+    /* Estilos para la alineación con banquillo */
+    .container-responsive {
+      width: 100%;
+      background-color: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      overflow: hidden;
+      margin: 0 auto;
+    }
+
+    .header-responsive {
+      background-color: #d32f2f;
+      color: white;
+      padding: 12px 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .team-name-responsive {
+      font-size: 1.2rem;
+      font-weight: bold;
+    }
+
+    .formation-responsive {
+      font-size: 0.9rem;
+      background-color: rgba(255, 255, 255, 0.2);
+      padding: 4px 8px;
+      border-radius: 15px;
+    }
+
+    .content-responsive {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .bench-responsive {
+      width: 100%;
+      padding: 15px;
+      background-color: #f8f8f8;
+      border-top: 1px solid #e0e0e0;
+    }
+
+    .bench-title-responsive {
+      font-size: 1.1rem;
+      font-weight: bold;
+      margin-bottom: 12px;
+      color: #333;
+      text-align: center;
+    }
+
+    .bench-player-responsive {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+
+    .bench-player-responsive:last-child {
+      border-bottom: none;
+    }
+
+    .bench-player-info-responsive {
+      display: flex;
+      align-items: center;
+    }
+
+    .bench-player-number-responsive {
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background-color: #d32f2f;
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.7rem;
+      margin-right: 8px;
+      font-weight: bold;
+    }
+
+    .bench-player-name-responsive {
+      font-size: 0.8rem;
+      color: #333 !important;
+      white-space: normal;
+      line-height: 1.2;
+    }
+
+    .bench-player-rating-responsive {
+      padding: 2px 6px;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: bold;
+      min-width: 30px;
+      text-align: center;
+      color: #000 !important;
+    }
+
+    .bench-player-stats-responsive {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      margin-right: 8px;
+      font-size: 0.9rem;
+      white-space: nowrap;
+    }
+
+    /* MEDIA QUERIES */
+    @media (max-width: 768px) {
+      .container-informe {
+        padding: 20px 15px;
+      }
+
+      .header-informe h1 {
+        font-size: 2rem;
+      }
+
+      .resultado-principal {
+        font-size: 1.8rem;
+      }
+
+      .seccion {
+        padding: 20px 15px;
+        margin-bottom: 30px;
+      }
+
+      .seccion h3 {
+        font-size: 1.3rem;
+      }
+
+      .btn-volver {
+        padding: 8px 16px;
+        font-size: 0.9rem;
+      }
+
+      .content-responsive {
+        flex-direction: column;
+      }
+
+      .bench-responsive {
+        width: 100%;
+      }
+
+      /* Ajustes para emojis en móviles */
+      .player-stats-side-responsive {
+        left: 32px;
+        top: -6px;
+      }
+
+      .player-goals-row-responsive, .player-assists-row-responsive {
+        font-size: 0.8rem;
+      }
+
+      /* Ajustes para tarjetas en móviles */
+      .player-cards-side-responsive {
+        right: 32px;
+        top: -6px;
+      }
+      
+      .player-cards-row-responsive {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .field-responsive {
+        height: 420px;
+      }
+
+      .player-responsive {
+        min-width: 50px;
+      }
+      
+      .player-circle-responsive {
+        width: 30px;
+        height: 30px;
+        font-size: 0.65rem;
+      }
+      
+      .player-name-responsive {
+        font-size: 0.55rem;
+        max-width: 50px;
+        line-height: 1.0;
+      }
+      
+      .players-formation-responsive {
+        padding: 10px 3px;
+      }
+
+      .player-stats-side-responsive {
+        left: 28px;
+        top: -5px;
+      }
+
+      .player-cards-side-responsive {
+        right: 28px;
+        top: -5px;
+      }
+    }
+
+    @media (min-width: 769px) {
+      .content-responsive {
+        flex-direction: row;
+      }
+
+      .field-responsive {
+        height: 450px;
+      }
+
+      .player-responsive {
+        min-width: 65px;
+      }
+      
+      .player-circle-responsive {
+        width: 40px;
+        height: 40px;
+        font-size: 0.8rem;
+      }
+      
+      .player-name-responsive {
+        font-size: 0.7rem;
+        max-width: 70px;
+      }
+
+      .bench-responsive {
+        width: 250px;
+        border-top: none;
+        border-left: 1px solid #e0e0e0;
+      }
+
+      .player-stats-side-responsive {
+        left: 42px;
+        top: -10px;
+      }
+
+      .player-cards-side-responsive {
+        right: 42px;
+        top: -10px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .field-responsive {
+        height: 500px;
+      }
+
+      .player-circle-responsive {
+        width: 45px;
+        height: 45px;
+        font-size: 0.85rem;
+      }
+
+      .player-name-responsive {
+        font-size: 0.75rem;
+        max-width: 80px;
+      }
+
+      .players-formation-responsive {
+        padding: 25px 15px;
+      }
+
+      .player-responsive {
+        min-width: 75px;
+      }
+
+      .player-stats-side-responsive {
+        left: 48px;
+        top: -12px;
+      }
+
+      .player-cards-side-responsive {
+        right: 48px;
+        top: -12px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="container-informe">
+  <a href="InformesPost_partido.html" class="btn-volver">← Volver a Todos los Informes</a>
+
+  <div class="header-informe">
+    <h1>Informe Jornada 12</h1> //Añadir nº de jornada
+    <div class="resultado-principal">EFMO Boadilla 'B'</div> //Añadir rival y resultado
+  </div>
+
+  <!-- Alineación Probable -->
+  <div class="seccion">
+    <h3>Alineación Probable</h3>
+    <div class="formacion-titulo">4-5-1</div> //Cambiar formación en caso necesario
+
+    <div class="field-container-responsive">
+      <div class="field-responsive">
+        <div class="grass-pattern-responsive"></div>
+
+        <div class="players-formation-responsive" id="formation-container-probable">
+          <!-- La formación se genera automáticamente -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ALINEACIÓN PROBABLE
+      const playersProbable = {
+        'portero': [
+          { number: '00', name: 'AAA' }
+        ],
+        'defensas': [
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' }
+        ], //El último sin coma
+        'mediocentros': [
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' }
+        ], //El último sin coma
+        'delanteros': [
+          { number: '00', name: 'AAA' }
+        ] //El último sin coma
+      };
+      
+      // Configuraciones de formaciones //Cambiar formación en caso necesario
+      const formations = {
+        '4-5-1': [
+          playersProbable.delanteros,
+          playersProbable.mediocentros,
+          playersProbable.defensas,
+          playersProbable.portero
+        ]
+      };
+
+      // Función para renderizar una formación
+      function renderFormationProbable(formationKey) {
+        const formationContainer = document.getElementById('formation-container-probable');
+        formationContainer.innerHTML = '';
+
+        const formation = formations[formationKey];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            playerElement.innerHTML = `
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+      }
+
+      // Renderizar formación para alineación probable
+      renderFormationProbable('4-5-1'); //Cambiar formación en caso necesario
+    </script>
+  </div>
+<!-- Alineación Confirmada -->
+  <div class="seccion">
+    <h3>Alineación Confirmada</h3>
+
+    <div class="container-responsive">
+      <div class="header-responsive">
+        <div class="team-name-responsive">E.F.M.O. Boadilla</div>
+        <div class="formation-responsive">4-5-1</div> //Cambiar formación en caso necesario
+      </div>
+
+      <div class="content-responsive">
+        <div class="field-container-responsive">
+          <div class="field-responsive">
+            <div class="grass-pattern-responsive"></div>
+
+            <div class="players-formation-responsive" id="formation-container-confirmada">
+              <!-- La formación se genera automáticamente -->
+            </div>
+          </div>
+        </div>
+
+        <div class="bench-responsive">
+          <div class="bench-title-responsive">Banquillo</div>
+          <div id="bench-container">
+            <!-- El banquillo se genera automáticamente -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ALINEACIÓN CONFIRMADA
+      // MODIFICADO: Agregar campo 'cards' a cada jugador
+      const playersConfirmada = {
+        'portero': [
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null }
+        ],
+        'defensas': [
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null }
+        ], //El último sin coma
+        'mediocentros': [
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null }
+        ], //El último sin coma
+        'delanteros': [
+          { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null }
+        ] //El último sin coma
+      };
+
+      // Datos del banquillo - MODIFICADO: Agregar campo 'cards'
+      const benchPlayers = [
+        { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+        { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+        { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+        { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+        { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+        { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null },
+        { number: '00', name: 'AAA', rating: '00', goals: 0, assists: 0, cards: null }
+      ]; //El último sin coma
+
+      // Configuraciones de formaciones //Cambiar formación en caso necesario
+      const formationsConfirmada = {
+        '4-5-1': [
+          playersConfirmada.delanteros,
+          playersConfirmada.mediocentros,
+          playersConfirmada.defensas,
+          playersConfirmada.portero
+        ]
+      };
+
+      // Función para aplicar el color correcto según la puntuación
+      function applyRatingColor(element, rating) {
+        if (rating === '-') {
+          element.classList.add('score-gray');
+          return;
+        }
+
+        const numericRating = parseFloat(rating);
+
+        if (numericRating >= 9.0) {
+          element.classList.add('score-darkblue');
+        } else if (numericRating >= 8.0) {
+          element.classList.add('score-blue');
+        } else if (numericRating >= 7.0) {
+          element.classList.add('score-green');
+        } else if (numericRating >= 6.0) {
+          element.classList.add('score-yellow');
+        } else if (numericRating >= 3.0) {
+          element.classList.add('score-red');
+        } else {
+          element.classList.add('score-gray');
+        }
+      }
+
+      // MODIFICADO: Función para crear HTML de estadísticas (ahora incluye tarjetas)
+      function createStatsHTML(goals, assists, cards) {
+        let statsHTML = '';
+        let cardsHTML = '';
+        
+        // HTML para goles y asistencias (a la derecha)
+        if (goals > 0 || assists > 0) {
+          const goalsHTML = goals > 0 ? 
+            `<div class="player-goals-row-responsive">${'⚽'.repeat(goals)}</div>` : '';
+          
+          const assistsHTML = assists > 0 ? 
+            `<div class="player-assists-row-responsive">${'🅰️'.repeat(assists)}</div>` : '';
+          
+          statsHTML = `
+            <div class="player-stats-side-responsive">
+              ${goalsHTML}
+              ${assistsHTML}
+            </div>
+          `;
+        }
+        
+        // HTML para tarjetas (a la izquierda)
+        if (cards) {
+          cardsHTML = `
+            <div class="player-cards-side-responsive">
+              <div class="player-cards-row-responsive">${cards}</div>
+            </div>
+          `;
+        }
+        
+        return statsHTML + cardsHTML;
+      }
+
+      // MODIFICADO: Función para renderizar una formación (ahora pasa cards a createStatsHTML)
+      function renderFormationConfirmada(formationKey) {
+        const formationContainer = document.getElementById('formation-container-confirmada');
+        formationContainer.innerHTML = '';
+
+        const formation = formationsConfirmada[formationKey];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            const statsHTML = createStatsHTML(player.goals, player.assists, player.cards);
+
+            playerElement.innerHTML = `
+              <div class="player-with-stats-responsive">
+                <div class="player-main-info-responsive">
+                  <div class="player-circle-responsive">${player.number}</div>
+                  <div class="player-rating-responsive">${player.rating}</div>
+                  <div class="player-name-responsive">${player.name}</div>
+                </div>
+                ${statsHTML}
+              </div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+
+        // Aplicar colores a los ratings
+        document.querySelectorAll('.player-rating-responsive').forEach(ratingElement => {
+          const rating = ratingElement.textContent;
+          applyRatingColor(ratingElement, rating);
+        });
+
+        document.querySelector('.formation-responsive').textContent = formationKey;
+      }
+
+      // MODIFICADO: Función para renderizar el banquillo (ahora incluye tarjetas)
+      function renderBench() {
+        const benchContainer = document.getElementById('bench-container');
+        benchContainer.innerHTML = '';
+
+        benchPlayers.forEach(player => {
+          const benchPlayerElement = document.createElement('div');
+          benchPlayerElement.className = 'bench-player-responsive';
+
+          // Crear HTML para estadísticas de goles, asistencias y tarjetas del banquillo
+          let statsHTML = '';
+          if (player.goals > 0 || player.assists > 0 || player.cards) {
+            const goalsText = player.goals > 0 ? '⚽'.repeat(player.goals) : '';
+            const assistsText = player.assists > 0 ? '🅰️'.repeat(player.assists) : '';
+            const cardsText = player.cards ? player.cards : '';
+            
+            statsHTML = `
+              <div class="bench-player-stats-responsive">
+                ${cardsText}${goalsText}${assistsText}
+              </div>
+            `;
+          }
+
+          benchPlayerElement.innerHTML = `
+            <div class="bench-player-info-responsive">
+              <div class="bench-player-number-responsive">${player.number}</div>
+              <div class="bench-player-name-responsive">${player.name}</div>
+            </div>
+            ${statsHTML}
+            <div class="bench-player-rating-responsive">${player.rating}</div>
+          `;
+
+          benchContainer.appendChild(benchPlayerElement);
+          });
+        
+          // Aplicar colores a los ratings del banquillo
+        document.querySelectorAll('.bench-player-rating-responsive').forEach(ratingElement => {
+          const rating = ratingElement.textContent;
+          applyRatingColor(ratingElement, rating);
+        });
+      }
+
+      renderFormationConfirmada('4-5-1'); //Cambiar formación en caso necesario
+      renderBench();
+    </script>
+  </div>
+
+  
+  <!-- Goles  
+  <div class="seccion">
+    <h3>Goles a Favor</h3>
+    <div class="goles-lista">
+      <div class="gol">
+        <span class="minuto">00'</span> - AAA (Asistencia: AAA)
+      </div>
+    </div>
+  </div> -->
+
+  <!-- Cambios 
+  <div class="seccion">
+    <h3>Cambios Realizados</h3>
+    <div class="cambios-lista">
+      <div class="cambio">
+        <span class="minuto">00'</span>
+        <div class="jugadores-cambio">
+          <span>AAA</span>
+          <span class="flecha">→</span>
+          <span>AAA</span>
+        </div>
+      </div>
+  </div> -->
+
+  <!-- Once Final -->
+  <div class="seccion">
+    <h3>Once Final</h3>
+    <div class="formacion-titulo">4-5-1</div> //Cambiar formación en caso necesario
+
+    <div class="field-container-responsive">
+      <div class="field-responsive">
+        <div class="grass-pattern-responsive"></div>
+
+        <div class="players-formation-responsive" id="formation-container-final">
+          <!-- La formación se genera automáticamente -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ONCE FINAL
+      const playersFinal = {
+        'portero': [
+          { number: '00', name: 'AAA' }
+        ],
+        'defensas': [
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' }
+        ], //El último sin coma
+        'mediocentros': [
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' },
+          { number: '00', name: 'AAA' }
+        ], //El último sin coma
+        'delanteros': [
+          { number: '00', name: 'AAA' }
+        ] //El último sin coma
+      };
+
+      // Configuraciones de formaciones //Cambiar formación en caso necesario
+      const formationsFinal = {
+        '4-5-1': [
+          playersFinal.delanteros,
+          playersFinal.mediocentros,
+          playersFinal.defensas,
+          playersFinal.portero
+        ]
+      };
+
+      // Función para renderizar una formación
+      function renderFormationFinal(formationKey) {
+        const formationContainer = document.getElementById('formation-container-final');
+        formationContainer.innerHTML = '';
+
+        const formation = formationsFinal[formationKey];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            playerElement.innerHTML = `
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+      }
+
+      // Renderizar formación para once final
+      renderFormationFinal('4-5-1'); //Cambiar formación en caso necesario
+    </script>
+  </div>
+
+</div>
+  
+</body>
+</html>
