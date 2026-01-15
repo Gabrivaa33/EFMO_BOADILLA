@@ -1177,7 +1177,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:24, name:'Manu de Vicente', pos:'Atacante', status:'OK', special: false, performances:[
+    { id:24, name:'Manu de V.', pos:'Atacante', status:'OK', special: false, performances:[
         {points:1, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (6,3)'},
         {points:null, minutes:26, goals:0, assists:0, cards:1, comment:'🟨↩️ (Sin grabación)'},
         {points:1, minutes:27, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'},
@@ -1222,18 +1222,6 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'En el JB'}
       ]}
   ];
-
-  players.forEach(player => {
-  console.log(`\n// ${player.name}`);
-  console.log(`{ id:${player.id}, name:'${player.name}', pos:'${player.pos}', status:'${player.status}', special:${player.special}, performances:[`);
-
-  player.performances.forEach((perf, index) => {
-    console.log(`  //J${index + 1}`);
-    console.log(`  ${JSON.stringify(perf)},`);
-  });
-
-  console.log(`] },`);
-});
   
   // 📰 Noticias del equipo
   const news = [
