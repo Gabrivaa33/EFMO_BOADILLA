@@ -1030,7 +1030,7 @@
         {points:4, minutes:61, goals:0, assists:0, cards:0, comment:'↪️ (6,8)'}
       ]},
 
-    { id:12, name:'L. Lausín', pos:'Defensa', status:'OK', special: false, performances:[
+    { id:12, name:'L. Lausín', pos:'Defensa', status:'Duda', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:15, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:2, minutes:20, goals:0, assists:0, cards:0, comment:'↩️ (6,5)'},
@@ -1102,7 +1102,7 @@
         {points:1, minutes:29, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'}
       ]},
 
-    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'OK', special: false, performances:[
+    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Duda', special: false, performances:[
         {points:7, minutes:72, goals:0, assists:0, cards:0, comment:'↪️ (7,5)'},
         {points:null, minutes:75, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,1)'},
@@ -1120,7 +1120,7 @@
         {points:7, minutes:79, goals:0, assists:0, cards:0, comment:'↪️ (7,5)'}
       ]},
 
-    { id:17, name:'Pablo', pos:'Centrocampista', status:'Duda', special: false, performances:[
+    { id:17, name:'Pablo', pos:'Centrocampista', status:'Lesionado', special: false, performances:[
         {points:4, minutes:69, goals:0, assists:0, cards:1, comment:'🟨↪️ (6,9)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
@@ -1320,12 +1320,14 @@
   
   // 📰 Noticias del equipo
   const news = [
-    { playerId: 9, title: 'Lesión', text: "Rotura de isquios, 6-8 semanas" },
+    { playerId: 16, title: 'Duda', text: "Sobrecarga, 3-5 días" },
+    { playerId: 12, title: 'Duda', text: "Molestias en la pierna, 2-5 días" },
     { playerId: null, title: 'Jornada 16', text: "E.F.M.O. Boadilla 'B' 1-2 CF Rayo Majadahonda 'B'", url: 'InformeJ16.html' },
+    { playerId: 9, title: 'Lesión', text: "Rotura de isquios, 6-8 semanas" },
    // { playerId: 3, title: 'Duda', text: "Enfermedad, 3-5 días" }, //Álvaro
     { playerId: null, title: 'Jornada 15', text: "E.F.M.O. Boadilla 'B' 0-0 CD Nuevo Boadilla 'D'", url: 'InformeJ15.html' },
     { playerId: null, title: 'Stats J14', text: "Estadísticas detalladas de la J14", url: 'StatsJ14.html' },
-    { playerId: 17, title: 'Duda', text: "Molestias en el rotuliano" },
+    { playerId: 17, title: 'Lesión', text: "Molestias en el rotuliano" },
     { playerId: 13, title: 'Lesión', text: "Fisura en la órbita, 3-5 semanas" },
     { playerId: null, title: 'Jornada 14', text: "CD Galapagar 'C' 4-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ14.html' },
    // { playerId: 10, title: 'Duda', text: "Molestias de cuello, 7-10 días" }, //Infante
