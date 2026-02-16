@@ -874,7 +874,7 @@
         {points:4, minutes:90, goals:0, assists:0, cards:0, comment:'(6,8)'}
       ]},
 
-    { id:3, name:'Álvaro', pos:'Portero', status:'Duda', special: false, performances:[
+    { id:3, name:'Álvaro', pos:'Portero', status:'OK', special: false, performances:[
         {points:2, minutes:90, goals:0, assists:0, cards:0, comment:'(6,5)'},
         {points:null, minutes:36, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
@@ -936,7 +936,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'}
       ]},
 
-    { id:6, name:'Rafa Crooke', pos:'Defensa', status:'OK', special: false, performances:[
+    { id:6, name:'Rafa Crooke', pos:'Defensa', status:'Duda', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'},
         {points:null, minutes:26, goals:0, assists:0, cards:0, comment:'↩️ (Sin grabación)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -1020,7 +1020,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:10, name:'Á. Infante', pos:'Defensa', status:'OK', special: false, performances:[
+    { id:10, name:'Á. Infante', pos:'Defensa', status:'Lesionado', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -1188,7 +1188,7 @@
         {points:3, minutes:64, goals:0, assists:0, cards:0, comment:'↪️ (6,6)'}
       ]},
 
-    { id:18, name:'Javi Pardo', pos:'Centrocampista', status:'OK', special: false, performances:[
+    { id:18, name:'Javi Pardo', pos:'Centrocampista', status:'Lesionado', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(Sin grabación)'},
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,3)'},
@@ -1420,19 +1420,20 @@
   
   // 📰 Noticias del equipo
   const news = [
+    { playerId: null, title: 'Jornada 18', text: "E.F.M.O. Boadilla 'B' 1-2 Gimnástica Colmenarejo CD 'B'", url: 'InformeJ18.html' },
+    { playerId: 10, title: 'Lesión', text: "Lesión de pierna, 5-10 días" }, //Infante
+    { playerId: 18, title: 'Lesión', text: "Microrrotura en el cuádriceps, 2-3 semanas" }, //Pardo
+    { playerId: 6, title: 'Duda', text: "Molestias en la pierna, 1-2 semanas" }, //Rafa
     { playerId: null, title: 'Stats J17', text: "Estadísticas detalladas de la J17", url: 'StatsJ17.html' },
-    { playerId: null, title: 'Jornada 17', text: " CDE F.B. Dptvo. Torrelodones 5-3 E.F.M.O. Boadilla 'B'", url: 'InformeJ17.html' },
-    { playerId: 16, title: 'Duda', text: "Sobrecarga y molestias en la pierna, 1-2 semanas" },
-    { playerId: 12, title: 'Duda', text: "Molestias en la pierna, 1-2 semanas" },
+    { playerId: null, title: 'Jornada 17', text: "CDE F.B. Dptvo. Torrelodones 5-3 E.F.M.O. Boadilla 'B'", url: 'InformeJ17.html' },
+    { playerId: 16, title: 'Duda', text: "Sobrecarga y molestias en la pierna, 2-3 semanas" }, //Brito
+    { playerId: 12, title: 'Duda', text: "Molestias en la pierna, 2-3 semanas" }, // Lausín
     { playerId: null, title: 'Jornada 16', text: "E.F.M.O. Boadilla 'B' 1-2 CF Rayo Majadahonda 'B'", url: 'InformeJ16.html' },
     { playerId: 9, title: 'Lesión', text: "Rotura de isquios, 6-8 semanas" },
-    { playerId: 3, title: 'Duda', text: "Enfermedad, 1-2 semanas" }, //Álvaro
     { playerId: null, title: 'Jornada 15', text: "E.F.M.O. Boadilla 'B' 0-0 CD Nuevo Boadilla 'D'", url: 'InformeJ15.html' },
     { playerId: null, title: 'Stats J14', text: "Estadísticas detalladas de la J14", url: 'StatsJ14.html' },
-   // { playerId: 17, title: 'Duda', text: "Molestias en el rotuliano" },
     { playerId: 13, title: 'Lesión', text: "Fisura en la órbita, 3-5 semanas" },
     { playerId: null, title: 'Jornada 14', text: "CD Galapagar 'C' 4-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ14.html' },
-   // { playerId: 10, title: 'Duda', text: "Molestias de cuello, 7-10 días" }, //Infante
     { playerId: 22, title: 'Lesión', text: "Esguince de tobillo, 3-5 semanas" }, //Panizo
     { playerId: null, title: 'Jornada 13', text: "CDE Colegio Juan Pablo II 4-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ13.html' },
     { playerId: null, title: 'Stats J8', text: "Estadísticas detalladas de la J8", url: 'StatsJ8.html' },
