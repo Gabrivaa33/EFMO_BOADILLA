@@ -701,5 +701,359 @@
     </script>
   </div>
 
+  <!-- Alineación Confirmada -->
+  <div class="seccion">
+    <h3>Alineación Confirmada</h3>
+
+    <div class="container-responsive">
+      <div class="header-responsive">
+        <div class="team-name-responsive">E.F.M.O. Boadilla</div>
+        <div class="formation-responsive">4-5-1</div> <!-- Cambiar formación en caso necesario -->
+      </div>
+
+      <div class="content-responsive">
+        <div class="field-container-responsive">
+          <div class="field-responsive">
+            <div class="grass-pattern-responsive"></div>
+
+            <div class="players-formation-responsive" id="formation-container-confirmada">
+              <!-- La formación se genera automáticamente -->
+            </div>
+          </div>
+        </div>
+
+        <div class="bench-responsive">
+          <div class="bench-title-responsive">Banquillo</div>
+          <div id="bench-container">
+            <!-- El banquillo se genera automáticamente -->
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ALINEACIÓN CONFIRMADA
+      // MODIFICADO: Agregar campo 'cards' a cada jugador
+      // '🟨' '🟥' '🔴🅿️' '🔴' '🧤'
+      const playersConfirmada = {
+        'portero': [
+          { number: '1', name: 'Gabri', rating: '6,8', goals: 0, assists: 0, cards: null }
+        ],
+        'defensas': [
+          { number: '16', name: 'Luisja', rating: '7,0', goals: 0, assists: 0, cards: '🟨' },
+          { number: '15', name: 'Jacobo', rating: '7,0', goals: 0, assists: 0, cards: '🟨' },
+          { number: '25', name: 'Rodri', rating: '6,9', goals: 0, assists: 0, cards: '🟨' },
+          { number: '20', name: 'A. Molina', rating: '6,9', goals: 0, assists: 0, cards: null }
+        ], //El último sin coma
+        'mediocentros': [
+          { number: '12', name: 'L. Lausín', rating: '6,8', goals: 0, assists: 0, cards: null },
+          { number: '2', name: 'Á. Brito', rating: '8,4', goals: 0, assists: 1, cards: '🟨' },
+          { number: '19', name: 'Pablo', rating: '6,7', goals: 0, assists: 0, cards: null },
+          { number: '21', name: 'Víctor Jaén', rating: '6,8', goals: 0, assists: 0, cards: null },
+          { number: '8', name: 'Rodri de Castro', rating: '6,6', goals: 0, assists: 0, cards: null }
+        ], //El último sin coma
+        'delanteros': [
+          { number: '14', name: 'J. Ogayar', rating: '6,7', goals: 0, assists: 0, cards: '🟨' }
+        ] //El último sin coma
+      };
+
+      // Datos del banquillo - MODIFICADO: Agregar campo 'cards'
+      const benchPlayers = [
+        { number: '22', name: 'J. Agudo', rating: '-', goals: 0, assists: 0, cards: '🟨' },
+        { number: '10', name: 'Adri (JB)', rating: '6,2', goals: 0, assists: 0, cards: null },
+        { number: '3', name: 'Mario', rating: '6,4', goals: 0, assists: 0, cards: null },
+        { number: '9', name: 'M. Danini (JB)', rating: '6,9', goals: 0, assists: 0, cards: '🟨' },
+        { number: '11', name: 'Manu Medina', rating: '-', goals: 0, assists: 0, cards: null },
+        { number: '18', name: 'Manu de V.', rating: '6,8', goals: 1, assists: 0, cards: '🟨🟥' }
+      ]; //El último sin coma
+
+      // Configuraciones de formaciones <!-- Cambiar formación en caso necesario -->
+      const formationsConfirmada = {
+        '4-5-1': [
+          playersConfirmada.delanteros,
+          playersConfirmada.mediocentros,
+          playersConfirmada.defensas,
+          playersConfirmada.portero
+        ]
+      };
+
+      // Función para aplicar el color correcto según la puntuación
+      function applyRatingColor(element, rating) {
+        if (rating === '-') {
+          element.classList.add('score-gray');
+          return;
+        }
+
+        const numericRating = parseFloat(rating);
+
+        if (numericRating >= 9.0) {
+          element.classList.add('score-darkblue');
+        } else if (numericRating >= 8.0) {
+          element.classList.add('score-blue');
+        } else if (numericRating >= 7.0) {
+          element.classList.add('score-green');
+        } else if (numericRating >= 6.0) {
+          element.classList.add('score-yellow');
+        } else if (numericRating >= 3.0) {
+          element.classList.add('score-red');
+        } else {
+          element.classList.add('score-gray');
+        }
+      }
+
+      // MODIFICADO: Función para crear HTML de estadísticas (ahora incluye tarjetas)
+      function createStatsHTML(goals, assists, cards) {
+        let statsHTML = '';
+        let cardsHTML = '';
+        
+        // HTML para goles y asistencias (a la derecha)
+        if (goals > 0 || assists > 0) {
+          const goalsHTML = goals > 0 ? 
+            `<div class="player-goals-row-responsive">${'⚽'.repeat(goals)}</div>` : '';
+          
+          const assistsHTML = assists > 0 ? 
+            `<div class="player-assists-row-responsive">${'🅰️'.repeat(assists)}</div>` : '';
+          
+          statsHTML = `
+            <div class="player-stats-side-responsive">
+              ${goalsHTML}
+              ${assistsHTML}
+            </div>
+          `;
+        }
+        
+        // HTML para tarjetas (a la izquierda)
+        if (cards) {
+          cardsHTML = `
+            <div class="player-cards-side-responsive">
+              <div class="player-cards-row-responsive">${cards}</div>
+            </div>
+          `;
+        }
+        
+        return statsHTML + cardsHTML;
+      }
+
+      // MODIFICADO: Función para renderizar una formación (ahora pasa cards a createStatsHTML)
+      function renderFormationConfirmada(formationKey) {
+        const formationContainer = document.getElementById('formation-container-confirmada');
+        formationContainer.innerHTML = '';
+
+        const formation = formationsConfirmada[formationKey];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            const statsHTML = createStatsHTML(player.goals, player.assists, player.cards);
+
+            playerElement.innerHTML = `
+              <div class="player-with-stats-responsive">
+                <div class="player-main-info-responsive">
+                  <div class="player-circle-responsive">${player.number}</div>
+                  <div class="player-rating-responsive">${player.rating}</div>
+                  <div class="player-name-responsive">${player.name}</div>
+                </div>
+                ${statsHTML}
+              </div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+
+        // Aplicar colores a los ratings
+        document.querySelectorAll('.player-rating-responsive').forEach(ratingElement => {
+          const rating = ratingElement.textContent;
+          applyRatingColor(ratingElement, rating);
+        });
+
+        document.querySelector('.formation-responsive').textContent = formationKey;
+      }
+
+      // MODIFICADO: Función para renderizar el banquillo (ahora incluye tarjetas)
+      function renderBench() {
+        const benchContainer = document.getElementById('bench-container');
+        benchContainer.innerHTML = '';
+
+        benchPlayers.forEach(player => {
+          const benchPlayerElement = document.createElement('div');
+          benchPlayerElement.className = 'bench-player-responsive';
+
+          // Crear HTML para estadísticas de goles, asistencias y tarjetas del banquillo
+          let statsHTML = '';
+          if (player.goals > 0 || player.assists > 0 || player.cards) {
+            const goalsText = player.goals > 0 ? '⚽'.repeat(player.goals) : '';
+            const assistsText = player.assists > 0 ? '🅰️'.repeat(player.assists) : '';
+            const cardsText = player.cards ? player.cards : '';
+            
+            statsHTML = `
+              <div class="bench-player-stats-responsive">
+                ${cardsText}${goalsText}${assistsText}
+              </div>
+            `;
+          }
+
+          benchPlayerElement.innerHTML = `
+            <div class="bench-player-info-responsive">
+              <div class="bench-player-number-responsive">${player.number}</div>
+              <div class="bench-player-name-responsive">${player.name}</div>
+            </div>
+            ${statsHTML}
+            <div class="bench-player-rating-responsive">${player.rating}</div>
+          `;
+
+          benchContainer.appendChild(benchPlayerElement);
+          });
+        
+          // Aplicar colores a los ratings del banquillo
+        document.querySelectorAll('.bench-player-rating-responsive').forEach(ratingElement => {
+          const rating = ratingElement.textContent;
+          applyRatingColor(ratingElement, rating);
+        });
+      }
+//Cambiar formación en caso necesario
+      renderFormationConfirmada('4-5-1');
+      renderBench();
+    </script>
+  </div>
+
+  
+  <!-- Goles --> 
+  <div class="seccion">
+    <h3>Goles a Favor</h3>
+    <div class="goles-lista">
+      <div class="gol">
+        <span class="minuto">77'</span> - Manu de V. (Asistencia: Á. Brito)
+      </div>
+    </div>
+  </div> 
+
+  <!-- Cambios -->
+  <div class="seccion">
+    <h3>Cambios Realizados</h3>
+    <div class="cambios-lista">
+      <div class="cambio">
+        <span class="minuto">32'</span>
+        <div class="jugadores-cambio">
+          <span>L. Lausín</span>
+          <span class="flecha">→</span>
+          <span>Manu de V.</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">64'</span>
+        <div class="jugadores-cambio">
+          <span>Luisja</span>
+          <span class="flecha">→</span>
+          <span>Adri (JB)</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">64'</span>
+        <div class="jugadores-cambio">
+          <span>Pablo</span>
+          <span class="flecha">→</span>
+          <span>M. Danini (JB)</span>
+        </div>
+      </div>
+      <div class="cambio">
+        <span class="minuto">73'</span>
+        <div class="jugadores-cambio">
+          <span>Víctor Jaén</span>
+          <span class="flecha">→</span>
+          <span>Mario</span>
+        </div>
+      </div>
+  </div> 
+
+  <!-- Once Final -->
+  <div class="seccion">
+    <h3>Once Final</h3>
+    <div class="formacion-titulo">4-5-0</div> <!-- Cambiar formación en caso necesario -->
+
+    <div class="field-container-responsive">
+      <div class="field-responsive">
+        <div class="grass-pattern-responsive"></div>
+
+        <div class="players-formation-responsive" id="formation-container-final">
+          <!-- La formación se genera automáticamente -->
+        </div>
+      </div>
+    </div>
+
+    <script>
+      // Datos de los jugadores organizados por posición - ONCE FINAL
+      const playersFinal = {
+        'portero': [
+          { number: '1', name: 'Gabri' }
+        ],
+        'defensas': [
+          { number: '10', name: 'Adri (JB)' },
+          { number: '15', name: 'Jacobo' },
+          { number: '25', name: 'Rodri' },
+          { number: '20', name: 'A. Molina' }
+        ], //El último sin coma
+        'mediocentros': [
+          { number: '8', name: 'Rodri de Castro' },
+          { number: '2', name: 'Á. Brito' },
+          { number: '14', name: 'J. Ogayar' },
+          { number: '3', name: 'Mario' },
+          { number: '9', name: 'M. Danini (JB)' }
+        ], //El último sin coma
+        'delanteros': [
+        ] //El último sin coma
+      };
+
+      // Configuraciones de formaciones <!-- Cambiar formación en caso necesario -->
+      const formationsFinal = {
+        '4-5-0': [
+          playersFinal.delanteros,
+          playersFinal.mediocentros,
+          playersFinal.defensas,
+          playersFinal.portero
+        ]
+      };
+
+      // Función para renderizar una formación
+      function renderFormationFinal(formationKey) {
+        const formationContainer = document.getElementById('formation-container-final');
+        formationContainer.innerHTML = '';
+
+        const formation = formationsFinal[formationKey];
+
+        formation.forEach(rowPlayers => {
+          const row = document.createElement('div');
+          row.className = 'player-row-responsive';
+
+          rowPlayers.forEach(player => {
+            const playerElement = document.createElement('div');
+            playerElement.className = 'player-responsive';
+
+            playerElement.innerHTML = `
+              <div class="player-circle-responsive">${player.number}</div>
+              <div class="player-name-responsive">${player.name}</div>
+            `;
+
+            row.appendChild(playerElement);
+          });
+
+          formationContainer.appendChild(row);
+        });
+      }
+
+      // Renderizar formación para once final <!-- Cambiar formación en caso necesario -->
+      renderFormationFinal('4-5-0'); 
+    </script>
+  </div>
+
+</div>
+  
 </body>
 </html>
