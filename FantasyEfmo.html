@@ -932,8 +932,8 @@
         {points:3, minutes:90, goals:0, assists:0, cards:0, comment:'(6,6)'},
         {points:5, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (7,1)'},
         {points:4, minutes:90, goals:0, assists:0, cards:0, comment:'(6,9)'},
-        {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
-        {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'}
+        {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'},
+        {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
     { id:6, name:'Rafa Crooke', pos:'Defensa', status:'Duda', special: false, performances:[
@@ -1293,7 +1293,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Lesionado'}
       ]},
 
-    { id:23, name:'Manu Medina', pos:'Atacante', status:'OK', special: false, performances:[
+    { id:23, name:'Manu Medina', pos:'Atacante', status:'Duda', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -1314,7 +1314,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'-'}
       ]},
 
-    { id:24, name:'Manu de V.', pos:'Atacante', status:'OK', special: false, performances:[
+    { id:24, name:'Manu de V.', pos:'Atacante', status:'Duda', special: false, performances:[
         {points:1, minutes:45, goals:0, assists:0, cards:0, comment:'↪️ (6,3)'},
         {points:null, minutes:26, goals:0, assists:0, cards:1, comment:'🟨↩️ (Sin grabación)'},
         {points:1, minutes:27, goals:0, assists:0, cards:1, comment:'🟨↩️ (6,3)'},
@@ -1420,14 +1420,17 @@
   
   // 📰 Noticias del equipo
   const news = [
+    { playerId: 23, title: 'Duda', text: "Lesión de rodilla, 1-2 semanas" }, //Medina
+    { playerId: 24, title: 'Duda', text: "Lesión de tobillo, 1-2 semanas" }, //Manu V.
     { playerId: null, title: 'Jornada 18', text: "E.F.M.O. Boadilla 'B' 1-2 Gimnástica Colmenarejo CD 'B'", url: 'InformeJ18.html' },
-    { playerId: 10, title: 'Lesión', text: "Lesión de pierna, 5-10 días" }, //Infante
+    { playerId: 10, title: 'Lesión', text: "Esguince de rodilla, 2-3 semanas" }, //Infante
     { playerId: 18, title: 'Lesión', text: "Microrrotura en el cuádriceps, 2-3 semanas" }, //Pardo
     { playerId: 6, title: 'Duda', text: "Molestias en la pierna, 1-2 semanas" }, //Rafa
     { playerId: null, title: 'Stats J17', text: "Estadísticas detalladas de la J17", url: 'StatsJ17.html' },
     { playerId: null, title: 'Jornada 17', text: "CDE F.B. Dptvo. Torrelodones 5-3 E.F.M.O. Boadilla 'B'", url: 'InformeJ17.html' },
     { playerId: 16, title: 'Duda', text: "Sobrecarga y molestias en la pierna, 2-3 semanas" }, //Brito
     { playerId: 12, title: 'Duda', text: "Molestias en la pierna, 2-3 semanas" }, // Lausín
+    { playerId: 5, title: 'Lesión', text: "Lesión de isquios, 3-4 semanas" }, //Martínez
     { playerId: null, title: 'Jornada 16', text: "E.F.M.O. Boadilla 'B' 1-2 CF Rayo Majadahonda 'B'", url: 'InformeJ16.html' },
     { playerId: 9, title: 'Lesión', text: "Rotura de isquios, 6-8 semanas" },
     { playerId: null, title: 'Jornada 15', text: "E.F.M.O. Boadilla 'B' 0-0 CD Nuevo Boadilla 'D'", url: 'InformeJ15.html' },
