@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
+
 <link rel="icon" href="favicon.ico">
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -16,14 +18,7 @@ margin:0;
 padding:0;
 box-sizing:border-box;
 }
-  
-.card img {
-      width: 100%;
-      height: auto;
-      transform: none;
-      border-radius: 16px 16px 0 0;
-    }
-  
+
 body{
 font-family:'Inter',sans-serif;
 min-height:100vh;
@@ -62,14 +57,18 @@ background:rgba(30,41,59,0.7);
 border-radius:18px;
 backdrop-filter:blur(10px);
 border:1px solid rgba(255,255,255,0.1);
-height:140px;
+
 display:flex;
-align-items:center;
-justify-content:center;
+flex-direction:column;
+
 text-decoration:none;
 color:white;
-font-size:1.6rem;
+
+font-size:1.4rem;
 font-weight:700;
+
+overflow:hidden;
+
 transition:all .25s ease;
 box-shadow:0 10px 25px rgba(0,0,0,0.3);
 }
@@ -78,6 +77,18 @@ box-shadow:0 10px 25px rgba(0,0,0,0.3);
 transform:translateY(-8px) scale(1.03);
 background:rgba(51,65,85,0.9);
 box-shadow:0 15px 35px rgba(0,0,0,0.45);
+}
+
+.card img{
+width:100%;
+height:150px;
+object-fit:cover;
+border-bottom:1px solid rgba(255,255,255,0.1);
+}
+
+.label{
+padding:18px;
+text-align:center;
 }
 
 </style>
@@ -90,24 +101,29 @@ box-shadow:0 15px 35px rgba(0,0,0,0.45);
 </header>
 
 <div class="container">
+
 <a class="card" href="StatsJ20.html">
-<img src="Jornada20.jpg" class="card-img">
+<img src="Jornada20.jpg">
 <div class="label">Jornada 20</div>
 </a>
 
 <!-- <a class="card" href="StatsJ21.html">Jornada 21</a> -->
 
-<a class="card" href="StatsJ20.html">Jornada 20</a>
+<a class="card" href="StatsJ17.html">
+<div class="label">Jornada 17</div>
+</a>
 
-<a class="card" href="StatsJ17.html">Jornada 17</a>
+<a class="card" href="StatsJ14.html">
+<div class="label">Jornada 14</div>
+</a>
 
-<a class="card" href="StatsJ14.html">Jornada 14</a>
-  
 <!-- <a class="card" href="StatsJ11.html">Jornada 11</a> -->
 
 <!-- <a class="card" href="StatsJ10.html">Jornada 10</a> -->
-  
-<a class="card" href="StatsJ8.html">Jornada 8</a>
+
+<a class="card" href="StatsJ8.html">
+<div class="label">Jornada 8</div>
+</a>
 
 </div>
 
