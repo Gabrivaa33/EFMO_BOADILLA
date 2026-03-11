@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Stats Detalladas 25/26</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+body{
+font-family:'Inter',sans-serif;
+min-height:100vh;
+background:linear-gradient(135deg,#0c4a6e,#1e3a8a,#1e1b4b);
+color:white;
+display:flex;
+flex-direction:column;
+align-items:center;
+}
+
+header{
+margin-top:40px;
+margin-bottom:40px;
+text-align:center;
+}
+
+h1{
+font-size:3rem;
+font-weight:800;
+background:linear-gradient(to right,#fbbf24,#f59e0b,#d97706);
+-webkit-background-clip:text;
+color:transparent;
+}
+
+.container{
+width:90%;
+max-width:1100px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+padding-bottom:50px;
+}
+
+.card{
+background:rgba(30,41,59,0.7);
+border-radius:18px;
+backdrop-filter:blur(10px);
+border:1px solid rgba(255,255,255,0.1);
+height:140px;
+display:flex;
+align-items:center;
+justify-content:center;
+text-decoration:none;
+color:white;
+font-size:1.6rem;
+font-weight:700;
+transition:all .25s ease;
+box-shadow:0 10px 25px rgba(0,0,0,0.3);
+}
+
+.card:hover{
+transform:translateY(-8px) scale(1.03);
+background:rgba(51,65,85,0.9);
+box-shadow:0 15px 35px rgba(0,0,0,0.45);
+}
+
+</style>
+</head>
+
+<body>
+
+<header>
+<h1>Estadísticas detalladas 25/26</h1>
+</header>
+
+<div class="container">
+
+<!-- <a class="card" href="StatsJ21.html">Jornada 21</a> -->
+
+<a class="card" href="StatsJ20.html">Jornada 20</a>
+
+<a class="card" href="StatsJ17.html">Jornada 17</a>
+
+<a class="card" href="StatsJ14.html">Jornada 14</a>
+  
+<!-- <a class="card" href="StatsJ11.html">Jornada 11</a> -->
+
+<!-- <a class="card" href="StatsJ10.html">Jornada 10</a> -->
+  
+<a class="card" href="StatsJ8.html">Jornada 8</a>
+
+</div>
+
+</body>
+</html>
