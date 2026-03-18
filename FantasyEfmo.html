@@ -1056,7 +1056,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Victoria administrativa'},
       ]},
 
-    { id:10, name:'Á. Infante', pos:'Defensa', status:'OK', special: false, performances:[
+    { id:10, name:'Á. Infante', pos:'Defensa', status:'Lesionado', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
@@ -1131,7 +1131,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Victoria administrativa'},
       ]},
 
-    { id:13, name:'J. Zarcero', pos:'Defensa', status:'Lesionado', special: false, performances:[
+    { id:13, name:'J. Zarcero', pos:'Defensa', status:'Duda', special: false, performances:[
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,0)'},
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:4, minutes:90, goals:0, assists:0, cards:1, comment:'🟨 (6,8)'},
@@ -1206,7 +1206,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Victoria administrativa'},
       ]},
 
-    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'Duda', special: false, performances:[
+    { id:16, name:'Á. Brito', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:7, minutes:72, goals:0, assists:0, cards:0, comment:'↪️ (7,5)'},
         {points:null, minutes:75, goals:0, assists:0, cards:1, comment:'🟨↪️ (Sin grabación)'},
         {points:5, minutes:90, goals:0, assists:0, cards:0, comment:'(7,1)'},
@@ -1256,7 +1256,7 @@
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'Victoria administrativa'},
       ]},
 
-    { id:18, name:'Javi Pardo', pos:'Centrocampista', status:'Duda', special: false, performances:[
+    { id:18, name:'Javi Pardo', pos:'Centrocampista', status:'OK', special: false, performances:[
         {points:null, minutes:0, goals:0, assists:0, cards:0, comment:'No convocado'},
         {points:null, minutes:90, goals:0, assists:0, cards:0, comment:'(Sin grabación)'},
         {points:6, minutes:90, goals:0, assists:0, cards:0, comment:'(7,3)'},
@@ -1532,6 +1532,8 @@
   
   // 📰 Noticias del equipo
   const news = [
+    { playerId: 10, title: 'Duda', text: "Corte en la cabeza, 1-2 semanas" }, //Infante
+    { playerId: null, title: 'Stats J10', text: "Estadísticas detalladas de la J10", url: 'StatsJ10.html' },
     { playerId: null, title: 'Stats J20', text: "Estadísticas detalladas de la J20", url: 'StatsJ20.html' },
     { playerId: null, title: 'Jornada 22', text: "E.F.M.O. Boadilla 'B' 2-0 CDE Fútbol Club Samba-Las Rozas" },
     { playerId: null, title: 'Jornada 21', text: "CD Prodet Pozuelo 0-0 E.F.M.O. Boadilla 'B'", url: 'InformeJ21.html' },
@@ -1545,16 +1547,16 @@
     { playerId: 15, title: 'Duda', text: "Lesión de rodilla, 1-4 semanas" }, //Víctor Jaén
     { playerId: null, title: 'Jornada 18', text: "E.F.M.O. Boadilla 'B' 1-2 Gimnástica Colmenarejo CD 'B'", url: 'InformeJ18.html' },
    // { playerId: 10, title: 'Duda', text: "Esguince de rodilla, 2-3 semanas" }, //Infante
-    { playerId: 18, title: 'Duda', text: "Microrrotura en el cuádriceps, 2-3 semanas" }, //Pardo
+   // { playerId: 18, title: 'Duda', text: "Microrrotura en el cuádriceps, 2-3 semanas" }, //Pardo
     { playerId: null, title: 'Stats J17', text: "Estadísticas detalladas de la J17", url: 'StatsJ17.html' },
     { playerId: null, title: 'Jornada 17', text: "CDE F.B. Dptvo. Torrelodones 5-3 E.F.M.O. Boadilla 'B'", url: 'InformeJ17.html' },
-    { playerId: 16, title: 'Duda', text: "Sobrecarga y molestias en la pierna, 4-6 semanas" }, //Brito
+   // { playerId: 16, title: 'Duda', text: "Sobrecarga y molestias en la pierna, 4-6 semanas" }, //Brito
     { playerId: null, title: 'Jornada 16', text: "E.F.M.O. Boadilla 'B' 1-2 CF Rayo Majadahonda 'B'", url: 'InformeJ16.html' },
     { playerId: 3, title: 'Duda', text: "Molestias en las rodillas y hombros, 2-3 meses" }, //Álvaro
     { playerId: 9, title: 'Lesión', text: "Rotura de isquios, 6-8 semanas" }, //Adriano
     { playerId: null, title: 'Jornada 15', text: "E.F.M.O. Boadilla 'B' 0-0 CD Nuevo Boadilla 'D'", url: 'InformeJ15.html' },
     { playerId: null, title: 'Stats J14', text: "Estadísticas detalladas de la J14", url: 'StatsJ14.html' },
-    { playerId: 13, title: 'Lesión', text: "Fisura en la órbita, 6-8 semanas" }, //Zarcero
+    { playerId: 13, title: 'Duda', text: "Fisura en la órbita, 6-8 semanas" }, //Zarcero
     { playerId: null, title: 'Jornada 14', text: "CD Galapagar 'C' 4-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ14.html' },
    // { playerId: 22, title: 'Duda', text: "Esguince de tobillo, 3-5 semanas" }, //Panizo
     { playerId: null, title: 'Jornada 13', text: "CDE Colegio Juan Pablo II 4-1 E.F.M.O. Boadilla 'B'", url: 'InformeJ13.html' },
