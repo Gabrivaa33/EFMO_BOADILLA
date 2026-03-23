@@ -457,15 +457,6 @@
     {nombre: "M. Danini (JB)", goles: 0, asistencias: 0, minutos: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 26, 0, 0, 0, 0]}
     ];
 
-    ${jugador.minutos.map((minuto, i) => `
-  <div class="match-item ${obtenerClaseColor(i)}">
-    <div class="match-journey">J${i + 1}</div>
-    <div class="match-minutes">
-      ${(i === 21 && minuto === 0) ? 'VA' : minuto + "'"}
-    </div>
-  </div>
-`).join('')}
-
     // Función para obtener la clase de color según el índice de la jornada (patrón de 3)
     function obtenerClaseColor(indiceJornada) {
       const patronColores = ['color-1', 'color-2', 'color-3'];
@@ -508,12 +499,14 @@
           <div class="card-body">
             <button class="toggle-details">Desglose por jornadas</button>
             <div class="matches-list">
-              ${jugador.minutos.map((minuto, i) => `
-                <div class="match-item ${obtenerClaseColor(i)}">
-                  <div class="match-journey">J${i + 1}</div>
-                  <div class="match-minutes">${minuto}'</div>
-                </div>
-              `).join('')}
+             ${jugador.minutos.map((minuto, i) => `
+  <div class="match-item ${obtenerClaseColor(i)}">
+    <div class="match-journey">J${i + 1}</div>
+    <div class="match-minutes">
+      ${(i === 21 && minuto === 0) ? 'VA' : minuto + "'"}
+    </div>
+  </div>
+`).join('')}
             </div>
           </div>
         `;
