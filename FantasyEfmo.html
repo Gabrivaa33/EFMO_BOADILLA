@@ -1688,14 +1688,19 @@
   ];
 
   // Render helpers
-  function renderScoreBadge(score){
-    if(score===null) return `<span class='score-badge score-null'>-</span>`;
-    if(score<0) return `<span class='score-badge score-red'>${score}</span>`;
-    if(score===0) return `<span class='score-badge score-gray'>${score}</span>`;
-    if(score>=1 && score<=4) return `<span class='score-badge score-yellow'>${score}</span>`;
-    if(score>=5 && score<=9) return `<span class='score-badge score-green'>${score}</span>`;
-    return `<span class='score-badge score-blue'>${score}</span>`;
+  function renderScoreBadge(score, jornada){
+  if(score === null){
+    if(jornada === 22) return `<span class='score-badge score-null'>VA</span>`;
+    if(jornada === 21 || jornada === 24) return `<span class='score-badge score-null'>FA</span>`;
+    return `<span class='score-badge score-null'>-</span>`;
   }
+
+  if(score < 0) return `<span class='score-badge score-red'>${score}</span>`;
+  if(score === 0) return `<span class='score-badge score-gray'>${score}</span>`;
+  if(score >= 1 && score <= 4) return `<span class='score-badge score-yellow'>${score}</span>`;
+  if(score >= 5 && score <= 9) return `<span class='score-badge score-green'>${score}</span>`;
+  return `<span class='score-badge score-blue'>${score}</span>`;
+}
 
   function getPositionClass(pos) {
     switch(pos) {
@@ -1821,7 +1826,10 @@
       <div class="player-performance">
         <div class="performance-label">${isSpecial ? 'Últimas apariciones' : 'Últimas jornadas'}</div>
         <div class="performance-badges">
-          ${recentPerformances.map(l => renderScoreBadge(l.points)).join('')}
+          ${recentPerformances.map((l, i, arr) => {
+          const jornadaReal = p.performances.length - arr.length + i + 1;
+          return renderScoreBadge(l.points, jornadaReal);
+          }).join('')}
           ${recentPerformances.length === 0 && isSpecial ?
       '<span class="text-xs text-gray-500 italic">No ha jugado aún</span>' : ''}
         </div>
